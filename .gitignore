@@ -9,6 +9,7 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
+gha-creds-*.json
 
 # Local agent tooling, not application source
 .agents/
