@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid slice" fill="none">
+  <defs>
+    <linearGradient id="cs-check" x1="548" y1="290" x2="574" y2="310" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35D4EA"/><stop offset="1" stop-color="#35d4ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" fill="#0e0c18"/>
+  <rect x="90" y="80" width="540" height="320" rx="16" fill="rgba(8,12,24,0.75)" stroke="rgba(186,104,200,0.25)"/>
+  <rect x="120" y="120" width="160" height="120" rx="10" fill="rgba(186,104,200,0.1)" stroke="rgba(186,104,200,0.3)"/>
+  <rect x="140" y="148" width="100" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
+  <rect x="140" y="164" width="80" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  <rect x="140" y="186" width="80" height="6" rx="3" fill="rgba(53,212,234,0.5)"/>
+  <circle cx="148" cy="189" r="3" fill="#35D4EA"/>
+  <rect x="310" y="120" width="280" height="56" rx="10" fill="rgba(53,212,234,0.08)" stroke="rgba(53,212,234,0.2)"/>
+  <rect x="330" y="140" width="200" height="8" rx="4" fill="rgba(255,255,255,0.12)"/>
+  <rect x="310" y="200" width="280" height="120" rx="10" fill="rgba(53,212,234,0.1)" stroke="rgba(53,212,234,0.35)"/>
+  <rect x="330" y="220" width="56" height="20" rx="10" fill="rgba(53,212,234,0.2)" stroke="rgba(53,212,234,0.4)"/>
+  <rect x="342" y="228" width="32" height="4" rx="2" fill="#35D4EA"/>
+  <rect x="330" y="252" width="180" height="8" rx="4" fill="rgba(53,212,234,0.45)"/>
+  <rect x="330" y="272" width="140" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="560" cy="300" r="40" stroke="#35D4EA" stroke-width="1.5" fill="rgba(53,212,234,0.12)"/>
+  <path d="M548 300 L558 310 L574 290" stroke="url(#cs-check)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

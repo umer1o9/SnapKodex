@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snap Kodex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --brand-cyan: #35d4ea;
+        --brand-purple: #ab54ec;
+        --brand-ink: #0b0d12;
+        --brand-ink-deep: #06070a;
+        --brand-text: #eef2ff;
+        --brand-muted: #a4abc1;
+        --brand-stroke: rgba(255, 255, 255, 0.12);
+        --brand-glass: rgba(12, 18, 32, 0.3);
+        --brand-glass-strong: rgba(20, 26, 44, 0.6);
+        --brand-gradient: linear-gradient(120deg, #35d4ea 0%, #6ec6ea 35%, #ab54ec 100%);
+        --brand-gradient-soft: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(53, 212, 234, 0.4),
+            rgba(10, 12, 20, 0)
+          ),
+          radial-gradient(1000px 560px at 85% 20%, rgba(171, 84, 236, 0.38), rgba(10, 12, 20, 0));
+        --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+        --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: var(--font-body);
+        background: var(--brand-ink);
+        color: var(--brand-text);
+        line-height: 1.5;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: rgba(6, 7, 10, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        transition: padding 0.2s ease, background 0.2s ease;
+      }
+
+      .nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 22px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        transition: padding 0.2s ease;
+      }
+
+      .nav__logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav__logo img {
+        height: 36px;
+        width: auto;
+      }
+
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .nav__links a {
+        color: var(--brand-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .nav__cta {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--brand-gradient);
+        color: #0b0d12;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .nav__actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav__login {
+        color: var(--brand-text);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .nav__signup {
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--brand-stroke);
+        color: var(--brand-text);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .site-header.is-shrunk .nav {
+        padding: 10px 24px;
+      }
+
+      .page {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background: var(--brand-gradient-soft), url("background.png") center/cover no-repeat;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(160deg, rgba(6, 7, 10, 0.4), rgba(6, 7, 10, 0));
+        z-index: 0;
+      }
+
+      .hero {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px 24px 120px;
+        display: grid;
+        gap: 56px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+      }
+
+      .hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(53, 212, 234, 0.18);
+        border: 1px solid rgba(53, 212, 234, 0.4);
+        font-size: 0.9rem;
+        color: var(--brand-text);
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+
+      .hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 4vw, 4rem);
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+
+      .hero__title span {
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero__copy {
+        color: var(--brand-text);
+        font-size: 1.05rem;
+        max-width: 520px;
+        margin-bottom: 32px;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn--primary {
+        background: var(--brand-gradient);
+        color: #0b0d12;
+        box-shadow: 0 18px 30px rgba(53, 212, 234, 0.25);
+      }
+
+      .btn--ghost {
+        background: var(--brand-glass);
+        color: var(--brand-text);
+        border: 1px solid var(--brand-stroke);
+        backdrop-filter: blur(18px);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero__visual {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+
+      .hero__panel {
+        padding: 20px;
+        border-radius: 0;
+        background: transparent;
+        border: 0;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+
+      .hero__panel img {
+        width: 100%;
+        height: clamp(320px, 46vw, 520px);
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 45px 90px rgba(6, 7, 10, 0.65);
+      }
+
+      .hero__panel video {
+        width: 100%;
+        height: clamp(320px, 46vw, 520px);
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 45px 90px rgba(6, 7, 10, 0.65);
+      }
+
+      .section {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 24px 120px;
+      }
+
+      .products {
+        position: relative;
+        display: grid;
+        gap: 32px;
+        align-items: start;
+      }
+
+      @media (min-width: 901px) {
+        .products {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-rows: auto auto;
+        }
+
+        .products__intro-copy {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        .products__grid-main {
+          grid-column: 2;
+          grid-row: 1 / span 2;
+          align-self: start;
+        }
+
+        .products__docubills {
+          grid-column: 1;
+          grid-row: 2;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .products {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .products::before {
+        content: "";
+        position: absolute;
+        inset: -40px 0;
+        width: 83vw;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 12, 24, 0.9) 0%,
+          rgba(22, 16, 40, 0.85) 55%,
+          rgba(10, 10, 24, 0.9) 100%
+        );
+        border-radius: 32px;
+        z-index: -1;
+        box-shadow: 0 30px 80px rgba(6, 7, 10, 0.55);
+      }
+
+      @media (max-width: 640px) {
+        .products::before {
+          width: 100%;
+          inset: -24px -12px;
+          left: 0;
+          transform: none;
+          border-radius: 24px;
+        }
+      }
+
+      .products__heading {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.2vw, 3rem);
+        margin-bottom: 18px;
+      }
+
+      .products__copy {
+        color: var(--brand-muted);
+        font-size: 1.05rem;
+        max-width: 520px;
+      }
+
+      .product-grid {
+        display: grid;
+        gap: 22px;
+      }
+
+      .product-card,
+      .partner-card {
+        padding: 22px;
+        border-radius: 20px;
+        background: var(--brand-glass);
+        border: 1px solid var(--brand-stroke);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 25px 60px rgba(6, 7, 10, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .partner-card {
+        background: #000000;
+        backdrop-filter: none;
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .product-card h3,
+      .partner-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+      }
+
+      .product-card p,
+      .partner-card p {
+        color: var(--brand-muted);
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+
+      .product-card a,
+      .partner-card a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(171, 84, 236, 0.2);
+        border: 1px solid rgba(171, 84, 236, 0.45);
+        color: var(--brand-text);
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .product-card a::after,
+      .partner-card a::after {
+        content: "->";
+        font-size: 1rem;
+      }
+
+      .product-card a:hover,
+      .partner-card a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(171, 84, 236, 0.35);
+      }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        background: radial-gradient(
+          140px 100px at 6% 94%,
+          rgba(255, 255, 255, 0.22),
+          rgba(255, 255, 255, 0)
+        );
+        pointer-events: none;
+      }
+
+      .partner-card::before {
+        display: none;
+      }
+
+      .partner-card--sycurely {
+        background: #ff0000;
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .partner-card--sycurely h3 {
+        color: #ffffff;
+      }
+
+      .partner-card--sycurely p {
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .partner-card--sycurely a {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #b30000;
+      }
+
+      .partner-card--sycurely a:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .partners {
+        position: relative;
+        z-index: 1;
+        isolation: isolate;
+        overflow: hidden;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 100px 24px;
+        display: grid;
+        gap: 28px;
+        background: rgba(8, 11, 20, 0.52);
+        backdrop-filter: blur(22px) saturate(1.25);
+        -webkit-backdrop-filter: blur(22px) saturate(1.25);
+        border-block: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      .partners::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            115deg,
+            rgba(53, 212, 234, 0.09) 0%,
+            transparent 42%,
+            transparent 58%,
+            rgba(171, 84, 236, 0.1) 100%
+          ),
+          radial-gradient(
+            ellipse 120% 80% at -10% 110%,
+            rgba(171, 84, 236, 0.18),
+            transparent 52%
+          ),
+          radial-gradient(
+            ellipse 90% 70% at 105% -5%,
+            rgba(53, 212, 234, 0.14),
+            transparent 48%
+          ),
+          radial-gradient(circle at 18% 28%, rgba(255, 255, 255, 0.06), transparent 42%),
+          radial-gradient(circle at 82% 72%, rgba(255, 255, 255, 0.05), transparent 38%),
+          conic-gradient(
+            from 210deg at 50% 120%,
+            rgba(53, 212, 234, 0.07),
+            transparent 25%,
+            rgba(171, 84, 236, 0.06),
+            transparent 55%,
+            rgba(53, 212, 234, 0.05),
+            transparent 85%
+          ),
+          repeating-linear-gradient(
+            -18deg,
+            transparent,
+            transparent 52px,
+            rgba(255, 255, 255, 0.018) 52px,
+            rgba(255, 255, 255, 0.018) 53px
+          );
+      }
+
+      .partners::after {
+        content: "";
+        position: absolute;
+        width: clamp(160px, 28vw, 320px);
+        height: clamp(160px, 28vw, 320px);
+        top: 12%;
+        right: 6%;
+        z-index: -1;
+        pointer-events: none;
+        border-radius: 28%;
+        transform: rotate(24deg);
+        background: linear-gradient(
+          145deg,
+          rgba(53, 212, 234, 0.12),
+          rgba(171, 84, 236, 0.08)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 60px rgba(53, 212, 234, 0.08);
+      }
+
+      .partners__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 1200px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .partners__title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.2vw, 3rem);
+      }
+
+      .partners__copy {
+        color: var(--brand-muted);
+        font-size: 1.05rem;
+        max-width: 560px;
+      }
+
+      .partners__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+        max-width: 1200px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      @media (max-width: 720px) {
+        .partners__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .partners::after {
+          width: min(42vw, 200px);
+          height: min(42vw, 200px);
+          top: 8%;
+          right: -8%;
+          opacity: 0.85;
+        }
+      }
+
+      .partner-card__logo {
+        display: block;
+        max-height: 52px;
+        max-width: min(260px, 100%);
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 14px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .partner-card h3,
+      .partner-card p,
+      .partner-card a {
+        position: relative;
+        z-index: 1;
+      }
+
+      .services {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 24px;
+        display: grid;
+        gap: 32px;
+        min-height: 100vh;
+        align-content: center;
+      }
+
+      .services__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .services__title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.2vw, 3rem);
+      }
+
+      .services__copy {
+        color: var(--brand-text);
+        max-width: 520px;
+      }
+
+      .services__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      @media (max-width: 720px) {
+        .services__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .service-card {
+          background: linear-gradient(
+            135deg,
+            rgba(8, 12, 24, 0.9),
+            rgba(12, 16, 32, 0.85) 60%,
+            rgba(6, 8, 16, 0.95)
+          );
+        }
+      }
+
+      .service-card {
+        padding: 18px 20px;
+        border-radius: 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(10, 14, 26, 0.85),
+          rgba(14, 18, 34, 0.8) 60%,
+          rgba(6, 8, 16, 0.9)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 18px 40px rgba(6, 7, 10, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card--skin-only {
+        min-height: 140px;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .service-card--skin-only::before,
+      .service-card--skin-only::after {
+        display: none;
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        background: radial-gradient(
+          140px 100px at 6% 94%,
+          rgba(255, 255, 255, 0.22),
+          rgba(255, 255, 255, 0)
+        );
+        pointer-events: none;
+      }
+
+      .service-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        background: radial-gradient(
+          140px 100px at 95% 5%,
+          rgba(171, 84, 236, 0.35),
+          rgba(171, 84, 236, 0)
+        );
+        pointer-events: none;
+      }
+
+      .service-card:nth-child(2),
+      .service-card:nth-child(3),
+      .service-card:nth-child(4),
+      .service-card:nth-child(5),
+      .service-card:nth-child(6),
+      .service-card:nth-child(7),
+      .service-card:nth-child(8) {
+        background: linear-gradient(
+          135deg,
+          rgba(10, 14, 26, 0.85),
+          rgba(14, 18, 34, 0.8) 60%,
+          rgba(6, 8, 16, 0.9)
+        );
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .service-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+      }
+
+      .service-card p {
+        color: var(--brand-text);
+        font-size: 0.92rem;
+      }
+
+      .service-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        background: rgba(8, 12, 24, 0.45);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .service-icon .material-symbols-rounded {
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .service-card:nth-child(1) .service-icon {
+        color: #6ea2ff;
+      }
+
+      .service-card:nth-child(2) .service-icon {
+        color: #5cd4ea;
+      }
+
+      .service-card:nth-child(3) .service-icon {
+        color: #b38bff;
+      }
+
+      .service-card:nth-child(4) .service-icon {
+        color: #46d69a;
+      }
+
+      .service-card:nth-child(5) .service-icon {
+        color: #ff9966;
+      }
+
+      .service-card:nth-child(6) .service-icon {
+        color: #5ac8fa;
+      }
+
+      .service-card:nth-child(7) .service-icon {
+        color: #ba68c8;
+      }
+
+      .service-card:nth-child(8) .service-icon {
+        color: #78e6be;
+      }
+
+      .contact {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 24px 140px;
+        display: grid;
+        gap: 32px;
+      }
+
+      .contact__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+      }
+
+      .contact__title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.2vw, 3rem);
+        margin-bottom: 16px;
+      }
+
+      .contact__copy {
+        color: var(--brand-muted);
+        font-size: 1.05rem;
+        max-width: 520px;
+      }
+
+      .contact__panel {
+        padding: 24px;
+        border-radius: 22px;
+        background: var(--brand-glass);
+        border: 1px solid var(--brand-stroke);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 25px 60px rgba(6, 7, 10, 0.45);
+      }
+
+      .contact__panel h3 {
+        font-family: var(--font-display);
+        margin-bottom: 12px;
+        font-size: 1.1rem;
+      }
+
+      .contact__meta {
+        display: grid;
+        gap: 12px;
+        color: var(--brand-text);
+        font-size: 0.95rem;
+      }
+
+      .contact__form {
+        display: grid;
+        gap: 14px;
+      }
+
+      .contact__form input,
+      .contact__form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(10, 14, 26, 0.6);
+        color: var(--brand-text);
+        font-family: var(--font-body);
+      }
+
+      .contact__form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .contact__form button {
+        justify-self: start;
+        padding: 12px 20px;
+        border-radius: 999px;
+        border: 0;
+        font-weight: 600;
+        cursor: pointer;
+        color: #0b0d12;
+        background: var(--brand-gradient);
+        box-shadow: 0 18px 30px rgba(53, 212, 234, 0.25);
+      }
+
+      .footer {
+        position: relative;
+        z-index: 1;
+        padding: 48px 24px 60px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(6, 7, 10, 0.75);
+      }
+
+      .footer__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .footer__logo {
+        height: 32px;
+        width: auto;
+      }
+
+      .footer__links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .footer__links a {
+        color: var(--brand-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .product-logo {
+        width: min(180px, 55%);
+        height: 48px;
+        display: block;
+        object-fit: contain;
+      }
+
+      .product-card__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+
+      .hero__logo {
+        width: min(240px, 60%);
+        margin-bottom: 20px;
+      }
+
+      .logo--dark {
+        display: block;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          padding-top: 36px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .nav__links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="nav__logo" href="#">
+          <img src="snapkodex logo full dark.svg" alt="Snap Kodex" />
+        </a>
+        <div class="nav__links">
+          <a href="#products">Our products</a>
+          <a href="#services">Our services</a>
+          <a href="#partners">Strategic partners</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav__actions">
+          <a class="nav__login" href="#">Log in</a>
+          <a class="nav__signup" href="#">Sign up</a>
+          <a class="nav__cta" href="#contact">Start a project</a>
+        </div>
+      </nav>
+    </header>
+    <main class="page">
+      <section class="hero">
+        <div>
+          <div class="hero__badge">Fast. Reliable. Crafted for ambitious teams.</div>
+          <h1 class="hero__title">
+            Excellence at <span>startup speed</span>, built for enterprise scale.
+          </h1>
+          <p class="hero__copy">
+            Snap Kodex is your software house for bold SaaS launches, enterprise-grade
+            solutions, and product accelerators. We move quickly without cutting corners.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#products">Our products</a>
+            <a class="btn btn--ghost" href="#services">Our services</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__panel">
+            <video
+              src="hero video 1.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              poster="hero image.png"
+              aria-label="Snap Kodex hero video"
+            ></video>
+          </div>
+        </div>
+      </section>
+      <section class="section products" id="products">
+        <div class="products__intro-copy">
+          <h2 class="products__heading">Our products</h2>
+          <p class="products__copy">
+            Modular platforms and accelerators designed to move fast without sacrificing
+            quality. Launch with confidence, scale with clarity, and own your roadmap.
+          </p>
+          <p class="products__copy" style="margin-top: 16px;">
+            Built on agentic AI workflows and modern stacks, our products blend OpenAI,
+            Gemini, and Agent Kit to deliver always-on intelligence with enterprise-grade
+            reliability.
+          </p>
+        </div>
+        <div class="product-grid products__grid-main">
+          <article class="product-card">
+            <div class="product-card__header">
+              <h3>SnapRytr</h3>
+              <img
+                class="product-logo"
+                src="snaprytr logo full - dark.svg"
+                alt="SnapRytr logo"
+              />
+            </div>
+            <h3>AI Chat for Expert Marketers</h3>
+            <p>
+              Strategy-grade marketing intelligence with instant brief generation, campaign
+              tuning, and growth-ready content flows.
+            </p>
+            <a href="https://snaprytr.com">Explore Snaprytr</a>
+          </article>
+          <article class="product-card">
+            <div class="product-card__header">
+              <h3>Snap Projects</h3>
+              <img
+                class="product-logo"
+                src="snap projects logo dark.svg"
+                alt="Snap Projects logo"
+              />
+            </div>
+            <h3>AI Chat for Busy Project Managers</h3>
+            <p>
+              Real-time project intelligence that summarizes risk, tracks blockers, and
+              keeps delivery moving without the status meetings.
+            </p>
+            <a href="snap-projects.html">Explore Snap Projects</a>
+          </article>
+        </div>
+        <article class="product-card products__docubills">
+          <div class="product-card__header">
+            <h3>DocuBills</h3>
+            <img
+              class="product-logo"
+              src="products/docubills-logo.png"
+              alt="DocuBills logo"
+            />
+          </div>
+          <h3>Invoicing from spreadsheets</h3>
+          <p>
+            Turn Excel or Google Sheets into professional invoices without column mapping.
+            Recurring billing, automated email reminders, and a single dashboard to send
+            and track payments.
+          </p>
+          <a href="https://docubills.com">Explore DocuBills</a>
+        </article>
+      </section>
+      <section class="services" id="services">
+        <div class="services__header">
+          <h2 class="services__title">Our services</h2>
+          <p class="services__copy">
+            Full-stack delivery teams and AI specialists that build, ship, and scale with
+            the speed your business demands.
+          </p>
+        </div>
+        <div class="services__grid">
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">hub</span>
+            <h3>Agentic AI Development</h3>
+            <p>Autonomous agents that plan, execute, and learn across your workflows.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">cloud</span>
+            <h3>SaaS Development</h3>
+            <p>Cloud-native SaaS builds with secure onboarding, billing, and scale.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">tune</span>
+            <h3>Custom Solution Development</h3>
+            <p>Tailor-made platforms that unify data, teams, and mission-critical tools.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">auto_awesome</span>
+            <h3>AI Automation</h3>
+            <p>Process automation that removes bottlenecks and keeps ops running fast.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">chat_bubble</span>
+            <h3>AI Chatbot Development</h3>
+            <p>Conversational assistants tuned for accuracy, tone, and business outcomes.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">trending_up</span>
+            <h3>Sales Agent Development</h3>
+            <p>AI sales copilots that qualify leads and accelerate pipeline momentum.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">support_agent</span>
+            <h3>Customer Service Agent Development</h3>
+            <p>Support agents that resolve tickets instantly and escalate with context.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon material-symbols-rounded">shopping_bag</span>
+            <h3>Ecommerce Bot Development</h3>
+            <p>Personalized shopping flows that lift conversion and retention.</p>
+          </div>
+          <div class="service-card service-card--skin-only" aria-hidden="true"></div>
+        </div>
+      </section>
+      <section class="partners" id="partners">
+        <div class="partners__header">
+          <h2 class="partners__title">Strategic partners</h2>
+          <p class="partners__copy">
+            We team with operators who own specialized lanes—customer operations and web
+            security—so Snap Kodex deliveries stay fast on the roadmap while production stays
+            staffed and resilient.
+          </p>
+        </div>
+        <div class="partners__grid">
+          <article class="partner-card">
+            <img
+              class="partner-card__logo"
+              src="strategic partners/logo fasttechbpo.png"
+              alt="FasttecBPO logo"
+            />
+            <h3>FasttecBPO</h3>
+            <p>
+              FasttecBPO provides outsourcing for transportation and high-touch operations—think
+              dispatch, omnichannel customer support, driver onboarding, billing assistance, and
+              back-office workflows. When our clients need human operations wrapped around the AI
+              products and SaaS we ship, FasttecBPO scales queues and processes alongside our
+              engineering work so response times stay predictable as you grow.
+            </p>
+            <a href="https://fasttecbpo.com">Visit FasttecBPO</a>
+          </article>
+          <article class="partner-card partner-card--sycurely">
+            <img
+              class="partner-card__logo"
+              src="strategic partners/logo sycurely.png"
+              alt="Sycurely logo"
+            />
+            <h3>Sycurely</h3>
+            <p>
+              Sycurely focuses on WordPress security—malware removal, incident response, server and
+              access hardening, and firewall tuning—with clear reporting for stakeholders. For sites
+              and WordPress experiences we launch with clients, Sycurely brings rapid cleanup paths
+              and long-term hardening so reputations, SEO, and checkout flows survive when threats
+              show up uninvited.
+            </p>
+            <a href="https://sycurely.com">Visit Sycurely</a>
+          </article>
+        </div>
+      </section>
+      <section class="contact" id="contact">
+        <div class="contact__grid">
+          <div>
+            <h2 class="contact__title">Contact us</h2>
+            <p class="contact__copy">
+              Tell us about your product, timeline, and goals. We respond quickly with a
+              clear plan and a team that can execute.
+            </p>
+          </div>
+          <div class="contact__panel">
+            <h3>Start the conversation</h3>
+            <div class="contact__meta">
+              <span>hello@snapkodex.com</span>
+              <span>Mon-Fri 9:00-18:00</span>
+            </div>
+            <form class="contact__form" action="#" method="post">
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Work email" required />
+              <textarea name="message" placeholder="Project details" required></textarea>
+              <button type="submit">Send message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__inner">
+        <img class="footer__logo" src="snapkodex logo full dark.svg" alt="Snap Kodex logo" />
+        <div class="footer__links">
+          <a href="#products">Products</a>
+          <a href="#services">Services</a>
+          <a href="#partners">Strategic partners</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const header = document.querySelector(".site-header");
+      const onScroll = () => {
+        if (!header) return;
+        header.classList.toggle("is-shrunk", window.scrollY > 20);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    </script>
+  </body>
+</html>
+

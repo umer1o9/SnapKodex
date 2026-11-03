@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" fill="none">
+  <defs>
+    <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ab54ec" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#35d4ea" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="120" rx="16" fill="url(#g2)"/>
+  <rect x="24" y="24" width="80" height="72" rx="10" fill="rgba(8,12,24,0.5)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="32" y="36" width="50" height="4" rx="2" fill="rgba(53,212,234,0.5)"/>
+  <rect x="32" y="48" width="64" height="3" rx="1.5" fill="rgba(255,255,255,0.1)"/>
+  <rect x="32" y="58" width="48" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+  <rect x="120" y="30" width="250" height="60" rx="10" fill="rgba(8,12,24,0.4)" stroke="rgba(53,212,234,0.2)" stroke-width="1"/>
+  <circle cx="140" cy="60" r="12" fill="url(#g2)"/>
+  <rect x="162" y="48" width="180" height="5" rx="2.5" fill="rgba(255,255,255,0.12)"/>
+  <rect x="162" y="62" width="140" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
+</svg>

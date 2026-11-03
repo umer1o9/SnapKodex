@@ -1,0 +1,61 @@
+{
+  "hosting": {
+    "site": "brain-3bc3a",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "functions/**",
+      "public/**",
+      "production/**",
+      "FIREBASE-SETUP.md",
+      "firestore.rules",
+      "*.code-workspace",
+      "*.md",
+      "*.rules",
+      "sitemap.xml"
+    ],
+    "rewrites": [
+      {
+        "source": "/sitemap.xml",
+        "function": {
+          "functionId": "siteMap",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/api/blog",
+        "function": {
+          "functionId": "autoblogApi",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/api/blog/**",
+        "function": {
+          "functionId": "autoblogApi",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/blog",
+        "destination": "/blog.html"
+      },
+      {
+        "source": "/blog/**",
+        "function": {
+          "functionId": "blogPage",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "functions": {
+    "source": "functions"
+  }
+}

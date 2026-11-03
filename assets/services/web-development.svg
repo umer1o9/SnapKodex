@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="720" viewBox="0 0 480 720" preserveAspectRatio="xMidYMid slice" fill="none">
+  <defs>
+    <linearGradient id="web-bg" x1="0" y1="0" x2="480" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f1728"/><stop offset="1" stop-color="#121a2e"/>
+    </linearGradient>
+    <linearGradient id="web-sun" x1="240" y1="80" x2="240" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffc857" stop-opacity="0.28"/><stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="web-edge" x1="40" y1="48" x2="440" y2="672" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5ac8fa" stop-opacity="0.4"/><stop offset="0.5" stop-opacity="0"/><stop offset="1" stop-color="#ff9966" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="720" fill="url(#web-bg)"/>
+  <ellipse cx="240" cy="120" rx="180" ry="100" fill="url(#web-sun)"/>
+  <rect x="40" y="48" width="400" height="624" rx="18" fill="rgba(8,12,24,0.78)" stroke="url(#web-edge)" stroke-width="1.5"/>
+  <rect x="68" y="88" width="344" height="200" rx="14" fill="rgba(90,200,250,0.1)" stroke="rgba(90,200,250,0.28)"/>
+  <text x="92" y="130" fill="#5ac8fa" font-family="monospace" font-size="14" opacity="0.9">&lt;WordPress /&gt;</text>
+  <rect x="92" y="148" width="200" height="8" rx="4" fill="rgba(255,255,255,0.14)"/>
+  <rect x="92" y="168" width="260" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  <rect x="92" y="200" width="140" height="36" rx="8" fill="rgba(90,200,250,0.22)"/>
+  <rect x="68" y="312" width="344" height="140" rx="14" fill="rgba(255,153,102,0.1)" stroke="rgba(255,153,102,0.25)"/>
+  <rect x="92" y="340" width="120" height="10" rx="5" fill="rgba(255,153,102,0.45)"/>
+  <rect x="92" y="362" width="220" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  <rect x="92" y="380" width="180" height="6" rx="3" fill="rgba(255,255,255,0.06)"/>
+  <rect x="92" y="408" width="100" height="28" rx="6" fill="rgba(255,153,102,0.2)"/>
+  <rect x="68" y="476" width="344" height="140" rx="14" fill="rgba(70,214,154,0.1)" stroke="rgba(70,214,154,0.28)"/>
+  <circle cx="100" cy="510" r="16" fill="rgba(70,214,154,0.25)"/>
+  <rect x="128" y="502" width="160" height="8" rx="4" fill="rgba(70,214,154,0.4)"/>
+  <rect x="128" y="522" width="240" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+  <rect x="92" y="560" width="80" height="24" rx="6" fill="rgba(53,212,234,0.2)"/>
+  <rect x="180" y="560" width="80" height="24" rx="6" fill="rgba(179,139,255,0.2)"/>
+  <rect x="268" y="560" width="80" height="24" rx="6" fill="rgba(255,200,87,0.2)"/>
+</svg>

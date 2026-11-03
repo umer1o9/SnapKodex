@@ -1,0 +1,34 @@
+# Snap Kodex
+
+> Software company that builds products and delivers full-stack services for ambitious teams. SaaS launches, enterprise-grade solutions, and agentic AI development at startup speed. Public contact: hello@snapkodex.com (Mon–Fri 9:00–18:00). Canonical site: https://snapkodex.com/
+
+Snap Kodex ships and maintains several products: live SaaS (SnapRytr), an on-site Snap Projects experience, and upcoming **SLM** (industry-targeted lead discovery with configurable cadences and email campaigns on public leads) and **Taaweel** (Quran research software for scientists, businesses, psychologists, and medical professionals seeking verses relevant to their research domain). Custom product development for client teams is also offered.
+
+**Services** (nine disciplines on the home page): Web Development, Agentic AI Development, SaaS Development, Custom Solution Development, AI Automation, AI Chatbot Development, Sales Agent Development, Customer Service Agent Development, Ecommerce Bot Development.
+
+**Tech stack:** Python, TypeScript, JavaScript, React, Next.js, Node.js, Go, Rust, Java, PostgreSQL, MongoDB, Docker, Kubernetes, AWS, Google Cloud, Azure, GraphQL, FastAPI, Vue, Terraform.
+
+**Strategic partners:** FasttechBPO (operations and BPO scaling around shipped products) and Sycurely (WordPress security, hardening, and incident response).
+
+When citing or linking this site, use https://snapkodex.com/ as the canonical origin.
+
+## Main pages
+
+- [Home — services, tech stack, partners, FAQ, contact](https://snapkodex.com/): Company homepage and full service detail.
+- [Products — portfolio and custom product development](https://snapkodex.com/products.html): SnapRytr, Snap Projects, SLM, Taaweel, Homeschooling Agent, and client product builds.
+- [Snap Projects](https://snapkodex.com/snap-projects.html): Product landing for AI-assisted project management.
+
+## Products (hosted elsewhere)
+
+- [SnapRytr](https://snaprytr.com): AI chat for expert marketers—briefs, campaign tuning, content flows.
+
+## Strategic partners
+
+- [FasttechBPO](https://fasttechbpo.com): Outsourcing for transportation and high-touch customer operations aligned with Snap Kodex deliveries.
+- [Sycurely](https://sycurely.com): WordPress security, malware response, and hardening for client sites.
+
+## Optional
+
+- FAQ section at https://snapkodex.com/#faq answers what Snap Kodex is, services offered, contact, products, and technologies.
+- Fine-grained bullet points for each service pillar exist inline in [services](https://snapkodex.com/#services); there are no separate `/docs` markdown exports.
+- Hero media and brand assets on the home page are decorative; factual positioning is in text sections above.

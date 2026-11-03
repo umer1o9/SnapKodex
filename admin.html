@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Snap Kodex — Inbox</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="X-Robots-Tag" content="noindex, nofollow" />
+    <meta name="theme-color" content="#06070a" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --brand-cyan: #35d4ea;
+        --brand-purple: #ab54ec;
+        --brand-mint: #46d69a;
+        --brand-ink-deep: #06070a;
+        --brand-surface: #0e1118;
+        --brand-text: #eef2ff;
+        --brand-muted: #9aa3bc;
+        --brand-stroke: rgba(255, 255, 255, 0.1);
+        --brand-glass: rgba(14, 18, 30, 0.55);
+        --brand-gradient: linear-gradient(120deg, #35d4ea 0%, #6ec6ea 35%, #ab54ec 100%);
+        --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+        --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --content-max: 1100px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: var(--font-body);
+        background: var(--brand-ink-deep);
+        color: var(--brand-text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(900px 500px at 15% 10%, rgba(53, 212, 234, 0.18), transparent 60%),
+          radial-gradient(800px 480px at 85% 15%, rgba(171, 84, 236, 0.2), transparent 55%);
+        z-index: 0;
+      }
+
+      .admin {
+        position: relative;
+        z-index: 1;
+        max-width: var(--content-max);
+        margin: 0 auto;
+        padding: clamp(32px, 6vw, 64px) clamp(20px, 4vw, 40px);
+      }
+
+      .admin__brand {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 32px;
+        background: var(--brand-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .panel {
+        padding: clamp(28px, 4vw, 40px);
+        border-radius: var(--radius-lg);
+        background: var(--brand-glass);
+        border: 1px solid var(--brand-stroke);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 32px 80px rgba(6, 7, 10, 0.45);
+      }
+
+      .panel h1 {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 500;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+
+      .panel__sub {
+        color: var(--brand-muted);
+        margin-bottom: 28px;
+        font-size: 0.95rem;
+      }
+
+      .form {
+        display: grid;
+        gap: 16px;
+        max-width: 400px;
+      }
+
+      .form label {
+        display: grid;
+        gap: 6px;
+        font-size: 0.85rem;
+        color: var(--brand-muted);
+      }
+
+      .form input {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(8, 12, 24, 0.65);
+        color: var(--brand-text);
+        font-family: var(--font-body);
+        font-size: 1rem;
+      }
+
+      .form input:focus {
+        outline: none;
+        border-color: rgba(53, 212, 234, 0.45);
+        box-shadow: 0 0 0 3px rgba(53, 212, 234, 0.12);
+      }
+
+      .btn {
+        justify-self: start;
+        padding: 12px 22px;
+        border-radius: 999px;
+        border: 0;
+        font-weight: 600;
+        font-family: var(--font-body);
+        cursor: pointer;
+        color: #0b0d12;
+        background: var(--brand-gradient);
+        box-shadow: 0 12px 24px rgba(53, 212, 234, 0.2);
+        transition: opacity 0.2s ease;
+      }
+
+      .btn:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .btn--ghost {
+        color: var(--brand-text);
+        background: transparent;
+        border: 1px solid var(--brand-stroke);
+        box-shadow: none;
+      }
+
+      .status {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+        border-radius: 12px;
+      }
+
+      .status--error {
+        color: #ff8a80;
+        background: rgba(255, 105, 97, 0.12);
+        border: 1px solid rgba(255, 105, 97, 0.25);
+      }
+
+      .dashboard__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .dashboard__header h1 {
+        margin-bottom: 0;
+      }
+
+      .messages-loading,
+      .messages-empty {
+        color: var(--brand-muted);
+        padding: 24px 0;
+        text-align: center;
+      }
+
+      .messages-table-wrap {
+        overflow-x: auto;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--brand-stroke);
+      }
+
+      .messages-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+      }
+
+      .messages-table th,
+      .messages-table td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        vertical-align: top;
+      }
+
+      .messages-table th {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--brand-muted);
+        background: rgba(8, 12, 24, 0.5);
+      }
+
+      .messages-table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .messages-table a {
+        color: var(--brand-cyan);
+        text-decoration: none;
+      }
+
+      .messages-table a:hover {
+        text-decoration: underline;
+      }
+
+      .messages-cards {
+        display: none;
+        gap: 16px;
+      }
+
+      .message-card {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        background: rgba(8, 12, 24, 0.55);
+        border: 1px solid var(--brand-stroke);
+      }
+
+      .message-card__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .message-card__date {
+        font-size: 0.8rem;
+        color: var(--brand-muted);
+      }
+
+      .message-card__name {
+        font-family: var(--font-display);
+        font-weight: 500;
+      }
+
+      .message-card__email {
+        display: inline-block;
+        color: var(--brand-cyan);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        text-decoration: none;
+      }
+
+      .message-card__email:hover {
+        text-decoration: underline;
+      }
+
+      .message-card__body {
+        color: var(--brand-text);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      @media (max-width: 720px) {
+        .messages-table-wrap {
+          display: none;
+        }
+
+        .messages-cards {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin">
+      <div class="admin__brand">Snap Kodex</div>
+
+      <section class="panel" id="login-gate">
+        <h1>Admin sign in</h1>
+        <p class="panel__sub">Contact form inbox — authorized accounts only.</p>
+        <form class="form" id="login-form">
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="username" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <div class="status status--error" id="login-error" role="alert" hidden></div>
+          <button class="btn" type="submit">Sign in</button>
+        </form>
+      </section>
+
+      <section class="panel" id="dashboard" hidden>
+        <div class="dashboard__header">
+          <div>
+            <h1>Contact inbox</h1>
+            <p class="panel__sub">Messages from snapkodex.com</p>
+          </div>
+          <button class="btn btn--ghost" type="button" id="sign-out">Sign out</button>
+        </div>
+
+        <p class="messages-loading" id="messages-loading">Loading messages…</p>
+        <p class="messages-empty" id="messages-empty" hidden>No messages yet.</p>
+
+        <div class="messages-table-wrap">
+          <table class="messages-table" aria-label="Contact messages">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+              </tr>
+            </thead>
+            <tbody id="messages-body"></tbody>
+          </table>
+        </div>
+
+        <div class="messages-cards" id="messages-cards" aria-label="Contact messages"></div>
+      </section>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+  </body>
+</html>

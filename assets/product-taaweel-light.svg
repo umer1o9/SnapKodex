@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" fill="none">
+  <defs>
+    <linearGradient id="g4" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ab54ec" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#35d4ea" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="120" rx="16" fill="url(#g4)"/>
+  <rect x="40" y="28" width="48" height="64" rx="6" fill="rgba(255,255,255,0.9)" stroke="rgba(171,84,236,0.3)" stroke-width="1"/>
+  <rect x="52" y="40" width="24" height="3" rx="1.5" fill="rgba(171,84,236,0.5)"/>
+  <rect x="52" y="50" width="20" height="2" rx="1" fill="rgba(53,212,234,0.28)"/>
+  <rect x="52" y="58" width="22" height="2" rx="1" fill="rgba(171,84,236,0.22)"/>
+  <rect x="52" y="66" width="18" height="2" rx="1" fill="rgba(53,212,234,0.18)"/>
+  <path d="M120 60 Q180 30 240 60 Q300 90 360 60" stroke="rgba(53,212,234,0.4)" stroke-width="1.5" fill="none"/>
+  <circle cx="240" cy="60" r="16" fill="rgba(53,212,234,0.15)" stroke="rgba(53,212,234,0.4)" stroke-width="1"/>
+</svg>

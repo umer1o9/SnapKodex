@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" preserveAspectRatio="xMidYMid meet" fill="none">
+  <defs>
+    <linearGradient id="cta-bg" x1="0" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a0e18"/>
+      <stop offset="1" stop-color="#101828"/>
+    </linearGradient>
+    <linearGradient id="cta-g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#35d4ea" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ab54ec" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="cta-ambient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 420) scale(320)">
+      <stop stop-color="#35D4EA" stop-opacity="0.16"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .cta-pulse {
+        transform-origin: 360px 420px;
+        animation: cta-pulse 4s ease-in-out infinite;
+      }
+      @keyframes cta-pulse {
+        0%, 100% { opacity: 0.22; transform: scale(1); }
+        50% { opacity: 0.62; transform: scale(1.12); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cta-pulse { animation: none; opacity: 0.4; }
+      }
+    </style>
+  </defs>
+  <rect width="720" height="900" fill="url(#cta-bg)"/>
+  <rect width="720" height="900" fill="url(#cta-ambient)"/>
+
+  <g transform="translate(360 420)">
+    <circle r="110" stroke="url(#cta-g)" stroke-width="2" fill="rgba(53,212,234,0.05)"/>
+    <circle class="cta-pulse" r="18" fill="#35D4EA" opacity="0.35"/>
+    <circle r="10" fill="#35D4EA"/>
+
+    <g opacity="0.9">
+      <line x1="0" y1="0" x2="-160" y2="-200" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="170" y2="-180" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="200" y2="120" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="-190" y2="150" stroke="rgba(53,212,234,0.3)" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="0" y2="-240" stroke="rgba(171,84,236,0.2)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="0" y2="250" stroke="rgba(255,153,102,0.2)" stroke-width="1"/>
+    </g>
+
+    <circle cx="-160" cy="-200" r="34" stroke="#6ea2ff" stroke-width="1.5" fill="rgba(110,162,255,0.12)"/>
+    <circle cx="170" cy="-180" r="30" stroke="#5cd4ea" stroke-width="1.5" fill="rgba(92,212,234,0.1)"/>
+    <circle cx="0" cy="-240" r="26" stroke="#b38bff" stroke-width="1.5" fill="rgba(179,139,255,0.1)"/>
+    <circle cx="200" cy="120" r="36" stroke="#ff9966" stroke-width="1.5" fill="rgba(255,153,102,0.1)"/>
+    <circle cx="-190" cy="150" r="32" stroke="#35D4EA" stroke-width="2" fill="rgba(53,212,234,0.12)"/>
+    <circle cx="0" cy="250" r="28" stroke="#78e6be" stroke-width="1.5" fill="rgba(120,230,190,0.1)"/>
+  </g>
+
+  <rect x="80" y="760" width="560" height="72" rx="14" fill="rgba(8,12,24,0.55)" stroke="rgba(53,212,234,0.15)"/>
+  <rect x="104" y="788" width="200" height="8" rx="4" fill="rgba(53,212,234,0.4)"/>
+  <rect x="104" y="806" width="320" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+</svg>

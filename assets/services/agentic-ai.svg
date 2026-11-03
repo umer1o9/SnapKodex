@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" preserveAspectRatio="xMidYMid slice" fill="none">
+  <defs>
+    <linearGradient id="aa-bg" x1="0" y1="0" x2="720" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0e1424"/>
+      <stop offset="1" stop-color="#101828"/>
+    </linearGradient>
+    <linearGradient id="aa-g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#35d4ea" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#35D4EA" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ab54ec" stop-opacity="0.4"/>
+    </linearGradient>
+    <style>
+      .aa-glow {
+        transform-origin: 360px 220px;
+        animation: aa-glow 3.2s ease-in-out infinite;
+      }
+
+      @keyframes aa-glow {
+        0%, 100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.65;
+          transform: scale(2.2);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .aa-glow {
+          animation: none;
+          opacity: 0.35;
+          transform: scale(1.4);
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="720" height="480" fill="url(#aa-bg)"/>
+
+  <circle cx="360" cy="220" r="90" stroke="url(#aa-g)" stroke-width="2" fill="rgba(53,212,234,0.06)"/>
+  <circle cx="220" cy="140" r="36" stroke="#6ea2ff" stroke-width="1.5" fill="rgba(110,162,255,0.12)"/>
+  <circle cx="500" cy="130" r="32" stroke="#5cd4ea" stroke-width="1.5" fill="rgba(92,212,234,0.1)"/>
+  <circle cx="520" cy="300" r="40" stroke="#b38bff" stroke-width="1.5" fill="rgba(179,139,255,0.1)"/>
+  <circle cx="200" cy="310" r="34" stroke="#35D4EA" stroke-width="2" fill="rgba(53,212,234,0.14)"/>
+
+  <line x1="360" y1="220" x2="220" y2="140" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <line x1="360" y1="220" x2="500" y2="130" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <line x1="360" y1="220" x2="520" y2="300" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <line x1="360" y1="220" x2="200" y2="310" stroke="rgba(53,212,234,0.35)" stroke-width="1.5"/>
+
+  <circle class="aa-glow" cx="360" cy="220" r="10" fill="#35D4EA"/>
+  <circle cx="360" cy="220" r="6" fill="#35D4EA"/>
+
+  <rect x="80" y="380" width="560" height="56" rx="12" fill="rgba(8,12,24,0.6)" stroke="rgba(53,212,234,0.15)"/>
+  <rect x="100" y="398" width="180" height="8" rx="4" fill="rgba(53,212,234,0.45)"/>
+  <rect x="100" y="414" width="320" height="6" rx="3" fill="rgba(255,255,255,0.1)"/>
+</svg>
