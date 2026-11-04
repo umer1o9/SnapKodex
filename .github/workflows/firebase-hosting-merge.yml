@@ -33,6 +33,9 @@ jobs:
           project_id: brain-3bc3a
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BRAIN_3BC3A }}
 
+      - name: Provide functions params for deploy
+        run: echo "AUTOBLOG_SITE_ID=865e1d0b-8032-4803-b6ae-5523e5447f9a" > functions/.env.brain-3bc3a
+
       - name: Deploy Hosting and Cloud Functions
         run: npx --yes firebase-tools@latest deploy --only hosting,functions --project brain-3bc3a
         env:
