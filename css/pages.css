@@ -192,3 +192,18 @@ a.card:hover .card__more::after { transform: translateX(4px); }
 @media (prefers-reduced-motion: reduce) {
   .card, .nav-tile, .chip { transition: none; }
 }
+
+/* contact */
+.contact-panel { padding: 28px; border-radius: var(--radius-lg); background: var(--surface-card); border: 1px solid var(--surface-card-border); box-shadow: var(--shadow-card); }
+.contact__form { display: grid; gap: 16px; }
+.contact__form input, .contact__form textarea, .contact__form select { width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--surface-input-border); background: var(--surface-input); color: var(--brand-text); font-family: var(--font-body); font-size: 1rem; }
+.contact__form input:focus, .contact__form textarea:focus, .contact__form select:focus { outline: none; border-color: rgba(var(--accent-rgb), 0.55); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.14); }
+.contact__form textarea { min-height: 150px; resize: vertical; }
+.contact__form button { justify-self: start; padding: 13px 24px; border-radius: 999px; border: 0; font-weight: 600; cursor: pointer; color: #0b0d12; background: var(--brand-gradient); box-shadow: 0 18px 30px rgba(53, 212, 234, 0.25); }
+.contact__form button.is-loading { opacity: 0.7; pointer-events: none; }
+.contact__status { font-size: 0.9rem; padding: 10px 14px; border-radius: 12px; }
+.contact__status--success { color: var(--brand-mint); background: rgba(70, 214, 154, 0.12); border: 1px solid rgba(70, 214, 154, 0.25); }
+.contact__status--error { color: #ff8a80; background: rgba(255, 105, 97, 0.12); border: 1px solid rgba(255, 105, 97, 0.25); }
+
+.service-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--brand-cyan); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+.service-more:hover { text-decoration: underline; }

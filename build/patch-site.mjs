@@ -42,6 +42,31 @@ ${card("/snap-projects.html", "tasks", "Desktop app", "Snap Projects", "An AI wo
 ${card("https://snaprytr.com", "pencil", "Live SaaS", "SnapRytr", "AI chat for expert marketers: briefs, campaign tuning and content flows.")}
 </div>
 <p style="margin-top:28px"><a class="btn btn--ghost" href="/products/">View the full portfolio</a></p></div></section>`;
+  if (hasServices) {
+    const map = {
+      "service-web-development": ["/services/saas-and-enterprise-development/web-application-development/", "Explore web development"],
+      "service-agentic-ai": ["/services/agentic-ai-development/", "Explore architecture & specs"],
+      "service-saas": ["/services/saas-and-enterprise-development/", "Explore architecture & specs"],
+      "service-custom-solutions": ["/services/saas-and-enterprise-development/erp-crm-development/", "Explore architecture & specs"],
+      "service-automation": ["/services/ai-agents-and-automation/", "Explore architecture & specs"],
+      "service-sales-agent": ["/services/ai-agents-and-automation/sales-agents/", "Explore architecture & specs"],
+      "service-chatbot": ["/services/ai-agents-and-automation/rag-chatbots/", "Explore architecture & specs"],
+      "service-customer-service": ["/services/ai-agents-and-automation/customer-support-agents/", "Explore architecture & specs"],
+      "service-ecommerce": ["/services/ai-agents-and-automation/ecommerce-bots/", "Explore architecture & specs"],
+    };
+    for (const [id, [href, label]] of Object.entries(map)) {
+      const start = idx.indexOf(`id="${id}"`);
+      if (start < 0) continue;
+      const leadAt = idx.indexOf('class="service-card__lead"', start);
+      const pEnd = idx.indexOf("</p>", leadAt);
+      const nextCard = idx.indexOf("<article", start + 10);
+      if (leadAt < 0 || pEnd < 0 || (nextCard > 0 && pEnd > nextCard)) continue;
+      const link = `<a class="service-more" href="${href}">${label} &rarr;</a>`;
+      const seg = idx.slice(pEnd, pEnd + 400);
+      if (seg.includes("service-more")) continue;
+      idx = idx.slice(0, pEnd + 4) + "\n                " + link + idx.slice(pEnd + 4);
+    }
+  }
   idx = inject(idx, "hp-products", productsSection, /<section class="techstack" id="techstack">/);
   if (insightsPreview) idx = inject(idx, "hp-insights", insightsPreview, /<section class="faq" id="faq"/);
   save("index.html", idx);

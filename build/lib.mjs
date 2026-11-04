@@ -163,7 +163,8 @@ const AMBIENT = `<div class="ambient" aria-hidden="true"><div class="ambient__or
 export const LIVE = { services: false, insights: false, contact: false };
 export const U = {
   contact: () => (LIVE.contact ? "/contact/" : "/#contact"),
-  services: () => (LIVE.services ? "/services/agentic-ai-development/" : "/#services"),
+  services: () => (LIVE.services ? "/services/" : "/#services"),
+  agentic: () => (LIVE.services ? "/services/agentic-ai-development/" : "/#services"),
   saas: () => (LIVE.services ? "/services/saas-and-enterprise-development/" : "/#services"),
   agents: () => (LIVE.services ? "/services/ai-agents-and-automation/" : "/#services"),
   insights: () => (LIVE.insights ? "/insights/" : "/products/"),
@@ -201,7 +202,7 @@ ${drawer(links, cta)}`;
 export function globalFooter() {
   return `<footer class="footer"><div class="footer__cols">
 <div><img class="footer__logo" data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex logo" /><p>AI-native software house for SaaS, enterprise software and agentic AI, plus proprietary products.</p></div>
-<div><h4>Services</h4><a href="${U.services()}">Agentic AI development</a><a href="${U.saas()}">SaaS &amp; enterprise development</a><a href="${U.agents()}">AI agents &amp; automation</a></div>
+<div><h4>Services</h4><a href="${U.agentic()}">Agentic AI development</a><a href="${U.saas()}">SaaS &amp; enterprise development</a><a href="${U.agents()}">AI agents &amp; automation</a></div>
 <div><h4>Products</h4><a href="/products/">All products</a><a href="${BASE.taaweel}/">Taaweel</a><a href="${BASE.home}/">Homeschooling</a><a href="/snap-projects.html">Snap Projects</a></div>
 <div><h4>Company</h4>${LIVE.insights ? '<a href="/insights/">Insights</a>' : ""}<a href="${U.contact()}">Contact</a><a href="mailto:hello@snapkodex.com">hello@snapkodex.com</a><a href="/#partners">Partners</a></div></div>
 <div class="footer__bar"><span>&copy; ${new Date().getFullYear()} Snap Kodex. Mon&ndash;Fri 9:00&ndash;18:00.</span><span>snapkodex.com</span></div></footer>`;

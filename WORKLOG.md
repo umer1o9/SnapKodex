@@ -9,11 +9,15 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 5. Owner wants an excellent enhancement to the current website by morning.
 
 ## Status (update as you go)
-- [ ] scheduled backup job created
-- [ ] product_knowledge.md
-- [ ] product pages built
-- [ ] product pages deployed
-- [ ] services_content_plan.md
-- [ ] services pages built
+- [x] scheduled backup job created
+- [x] product_knowledge.md
+- [x] product pages built
+- [x] product pages deployed
+- [x] services_content_plan.md
+- [x] services pages built (pushed)
 - [ ] insights pages built
 - [ ] all deployed
+
+## Notes
+- Generator: `node build/gen.mjs` (content in build/content-*.mjs, pages-agency.mjs, pages-insights.mjs); `node build/check-links.mjs` must pass before every push. Deploy = commit + push main (CI deploys). Phase 1 (products) pushed as 4728272.
+- Next: services_content_plan.md -> build/pages-agency.mjs (3 hubs + 6 spokes each + /contact/) -> build/pages-insights.mjs (/insights/ hub + articles) -> patch homepage service cards + insights preview -> check-links -> push.

@@ -58,7 +58,9 @@ if (!form) {
 
     const name = form.elements.namedItem("name")?.value?.trim() ?? "";
     const email = form.elements.namedItem("email")?.value?.trim() ?? "";
-    const message = form.elements.namedItem("message")?.value?.trim() ?? "";
+    const topic = form.elements.namedItem("topic")?.value?.trim() ?? "";
+    const rawMessage = form.elements.namedItem("message")?.value?.trim() ?? "";
+    const message = rawMessage && topic ? `[${topic}] ${rawMessage}` : rawMessage;
 
     if (!name || !email || !message) {
       setStatus("error", "Please fill in all fields.");
