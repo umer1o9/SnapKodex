@@ -35,3 +35,5 @@ jobs:
 
       - name: Deploy Hosting and Cloud Functions
         run: npx --yes firebase-tools@latest deploy --only hosting,functions --project brain-3bc3a
+        env:
+          AUTOBLOG_SITE_ID: 865e1d0b-8032-4803-b6ae-5523e5447f9a
