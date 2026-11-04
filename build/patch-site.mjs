@@ -23,6 +23,7 @@ export function patchSite({ ROOT, L, BASE, hasInsights = false, hasServices = fa
       .replace(/href="products\.html"/g, 'href="/products/"')
       .replace(/snapkodex\.com\/products\.html/g, "snapkodex.com/products/");
   const addInsightsLink = (s) => {
+    s = s.replace(/(?:\s*<a href="\/insights\/">Insights<\/a>)+/g, "");
     if (!hasInsights) return s;
     // after the Blog link inside nav__links and nav__drawer-links, add an Insights link once
     return s.replace(/(<a href="(?:\.\/)?blog\.html" data-blog-link[^>]*>Blog<\/a>)(?!<a href="\/insights\/">)(\s*)/g, '$1$2<a href="/insights/">Insights</a>$2');
@@ -74,6 +75,19 @@ ${card("https://snaprytr.com", "pencil", "Live SaaS", "SnapRytr", "AI chat for e
   // ---- other pages: just fix links and add Insights link ----
   for (const f of ["blog.html", "snap-projects.html"]) {
     let s = addInsightsLink(fixLinks(read(f)));
+    if (f === "snap-projects.html") {
+      if (!s.includes("/css/pages.css")) s = s.replace("</head>", '<link rel="stylesheet" href="/css/pages.css" /></head>');
+      const items = [
+        ["mic", "Meeting answers", "A short answer to say aloud, a delivery cue and deeper follow-ups with dated, sourced evidence tiles. Statistics are accepted only when they match real search citations."],
+        ["flag", "Commitment ledger", "Reads meeting transcripts, Slack, Jira and ClickUp to catch verbal commitments that never landed anywhere, and flags drift between what was said and what the tracker shows."],
+        ["target", "Goals", "Give the assistant a durable objective with a token budget. It keeps working across many turns, checkpoints its progress and stops when it can show the work is done."],
+        ["check", "Checks", "Write a question once, such as whether a contract renews automatically, and get a probability, a pick or a score for every document, with flagged results queued for review."],
+        ["sparkle", "Skills", "Save how you like recurring work done, including release notes or client reports, and the assistant follows it whenever a request matches. Import Claude-style SKILL.md files."],
+        ["video", "Video and 3D animation", "Generate narrated videos and standalone 3D animations. Scenes are written as code by your chosen model, checked and repaired automatically, and rendered offline."],
+      ];
+      const sec = `<section class="band" id="whats-new" style="position:relative;z-index:1">${L.SVG_DEFS}<div class="wrap theme-snapprojects">${L.secHead("Built into the desktop app", "Beyond chat: tools for running real projects", "Recent releases add the features managers asked for most. Pricing and availability are shown below.")}<div class="cards">${items.map(([ic, t, d]) => L.cardPlain({ icon: ic, title: t, text: d })).join("")}</div></div></section>`;
+      s = inject(s, "sp-whatsnew", sec, /<section class="comparison" id="pricing">/);
+    }
     save(f, s);
   }
 }
