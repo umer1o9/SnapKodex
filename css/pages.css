@@ -213,3 +213,17 @@ a.card:hover .card__more::after { transform: translateX(4px); }
 button.chip { color: var(--brand-muted); }
 .nav__links a { white-space: nowrap; }
 @media (max-width: 1180px) { .nav__links { gap: 14px; } .nav__links a { font-size: 0.86rem; } .nav { gap: 10px; } }
+@media (max-width: 720px) {
+  .site-header:has(.pbrand) .nav__actions .nav__cta { display: none; }
+  .pbrand { font-size: 1.1rem; }
+}
+@media (max-width: 400px) { .pbrand small { display: none; } }
+/* light theme: darken accent text for contrast */
+[data-theme="light"] .sec-eyebrow,
+[data-theme="light"] .card__tag,
+[data-theme="light"] .card__more,
+[data-theme="light"] .tag,
+[data-theme="light"] .nav-tile small,
+[data-theme="light"] .step::before,
+[data-theme="light"] .service-more { color: color-mix(in srgb, var(--accent) 50%, #000); }
+[data-theme="light"] .nav__links a, [data-theme="light"] .crumbs, [data-theme="light"] .crumbs a { color: #3b4558; }
