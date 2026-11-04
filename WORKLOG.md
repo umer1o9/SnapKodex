@@ -15,8 +15,8 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 - [x] product pages deployed
 - [x] services_content_plan.md
 - [x] services pages built (pushed)
-- [ ] insights pages built
-- [ ] all deployed
+- [x] insights pages built
+- [x] all deployed (pushed insights phase)
 
 ## Notes
 - Generator: `node build/gen.mjs` (content in build/content-*.mjs, pages-agency.mjs, pages-insights.mjs); `node build/check-links.mjs` must pass before every push. Deploy = commit + push main (CI deploys). Phase 1 (products) pushed as 4728272.

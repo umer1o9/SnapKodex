@@ -18,6 +18,12 @@ When citing or linking this site, use https://snapkodex.com/ as the canonical or
 - [Products — portfolio and custom product development](https://snapkodex.com/products/): SnapRytr, Snap Projects, SLM, Taaweel, Homeschooling, and client product builds.
 - [Taaweel](https://snapkodex.com/products/taaweel/): AI research engine for Quranic inquiry (research pipeline, evidence and citations, root and word studies, adversarial audit, ontology explorer, Mizan numerical analysis).
 - [Homeschooling](https://snapkodex.com/products/homeschooling/): AI family learning platform (guiding-light curriculum, AI syllabus builder, weekly planner, activity player, fair scoring, kids' learning world).
+- [Services overview](https://snapkodex.com/services/): Three service areas covering nine disciplines.
+- [Agentic AI development](https://snapkodex.com/services/agentic-ai-development/): Multi-agent orchestration, tool calling, hybrid RAG, memory and knowledge graphs, human-in-the-loop workflows, evaluation and observability.
+- [SaaS and enterprise development](https://snapkodex.com/services/saas-and-enterprise-development/): Multi-tenant architecture, SSO and identity, usage-based billing, ERP and CRM, high-load pipelines, web applications.
+- [AI agents and automation](https://snapkodex.com/services/ai-agents-and-automation/): Customer support, sales and ecommerce agents, RAG chatbots, document extraction, workflow automation.
+- [Insights](https://snapkodex.com/insights/): Engineering articles on agentic AI, SaaS architecture and automation, plus case studies from Snap Kodex products.
+- [Contact](https://snapkodex.com/contact/): Project intake form and email hello@snapkodex.com.
 - [Snap Projects](https://snapkodex.com/snap-projects.html): Product landing for AI-assisted project management.
 
 ## Products (hosted elsewhere)

@@ -207,3 +207,9 @@ a.card:hover .card__more::after { transform: translateX(4px); }
 
 .service-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--brand-cyan); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
 .service-more:hover { text-decoration: underline; }
+.card[hidden] { display: none; }
+.post-card__svg { width: 100%; height: auto; border-radius: 14px; }
+.post-card .post-card__art { margin: -6px -6px 0; }
+button.chip { color: var(--brand-muted); }
+.nav__links a { white-space: nowrap; }
+@media (max-width: 1180px) { .nav__links { gap: 14px; } .nav__links a { font-size: 0.86rem; } .nav { gap: 10px; } }
