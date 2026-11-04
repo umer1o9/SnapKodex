@@ -805,9 +805,30 @@
         letter-spacing: -0.03em;
         font-weight: 500;
         max-width: 13em;
+        display: grid;
+        grid-template-areas: "slide";
+        margin-bottom: 12px;
       }
 
-      .hero__title span {
+      .hero__slide {
+        grid-area: slide;
+        align-self: start;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 550ms ease,
+          transform 550ms ease,
+          visibility 550ms;
+      }
+
+      .hero__slide.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .hero__slide-highlight {
         background: linear-gradient(
           120deg,
           var(--brand-cyan) 0%,
@@ -819,6 +840,34 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+      }
+
+      .hero__slider-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 28px;
+      }
+
+      .hero__slider-dot {
+        width: 22px;
+        height: 4px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.34);
+        cursor: pointer;
+        transition: width 220ms ease, background-color 220ms ease;
+      }
+
+      .hero__slider-dot[aria-current="true"] {
+        width: 38px;
+        background: var(--brand-cyan);
+      }
+
+      .hero__slider-dot:focus-visible {
+        outline: 2px solid var(--brand-cyan);
+        outline-offset: 4px;
       }
 
       .hero__copy {
@@ -3148,6 +3197,14 @@
         .hero__title {
           max-width: none;
           font-size: clamp(2.15rem, 8.2vw, 2.9rem);
+          margin-bottom: 10px;
+        }
+
+        .hero__slide {
+          transform: translateY(8px);
+        }
+
+        .hero__slider-controls {
           margin-bottom: 20px;
         }
 
@@ -3347,8 +3404,14 @@
         .hero__frame,
         .hero__badge::before,
         .hero__marquee-track,
-        .ambient__orb {
+        .ambient__orb,
+        .hero__slide {
           animation: none;
+          transition: none;
+        }
+
+        .hero__slider-dot {
+          transition: none;
         }
       }
 
@@ -3579,9 +3642,24 @@
       <section class="hero">
         <div class="hero__content">
           <div class="hero__badge">Fast. Reliable. Crafted for ambitious teams.</div>
-          <h1 class="hero__title">
-            A software company that <span>builds products</span> and delivers at scale.
-          </h1>
+          <div class="hero__slider" data-hero-slider>
+            <h1 class="hero__title">
+              <span class="hero__slide is-active" data-hero-slide>
+                A software company that <span class="hero__slide-highlight">builds products</span> and delivers at scale.
+              </span>
+              <span class="hero__slide" data-hero-slide aria-hidden="true">
+                We turn ambitious ideas into <span class="hero__slide-highlight">software that moves business forward.</span>
+              </span>
+              <span class="hero__slide" data-hero-slide aria-hidden="true">
+                Launch faster with reliable platforms <span class="hero__slide-highlight">built for what’s next.</span>
+              </span>
+            </h1>
+            <div class="hero__slider-controls" role="group" aria-label="Choose a headline">
+              <button class="hero__slider-dot" type="button" data-hero-slide-button aria-label="Show headline 1" aria-current="true"></button>
+              <button class="hero__slider-dot" type="button" data-hero-slide-button aria-label="Show headline 2" aria-current="false"></button>
+              <button class="hero__slider-dot" type="button" data-hero-slide-button aria-label="Show headline 3" aria-current="false"></button>
+            </div>
+          </div>
           <p class="hero__copy">
             Snap Kodex is a software house that builds products and delivers full-stack
             services for ambitious teams. SaaS launches, enterprise platforms, and agentic AI
@@ -4622,6 +4700,62 @@
     </footer>
     <script src="js/theme.js?v=20260705b"></script>
     <script>
+      (function initHeroSlider() {
+        const slider = document.querySelector("[data-hero-slider]");
+        if (!slider) return;
+
+        const slides = Array.from(slider.querySelectorAll("[data-hero-slide]"));
+        const buttons = Array.from(slider.querySelectorAll("[data-hero-slide-button]"));
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (slides.length < 2) return;
+
+        let activeIndex = 0;
+        let timer = null;
+
+        function showSlide(index) {
+          if (index === activeIndex) return;
+          slides[activeIndex].classList.remove("is-active");
+          slides[activeIndex].setAttribute("aria-hidden", "true");
+          buttons[activeIndex].setAttribute("aria-current", "false");
+          activeIndex = index;
+          slides[activeIndex].classList.add("is-active");
+          slides[activeIndex].removeAttribute("aria-hidden");
+          buttons[activeIndex].setAttribute("aria-current", "true");
+        }
+
+        function startRotation() {
+          if (timer !== null || reduceMotion.matches || document.hidden) return;
+          timer = window.setInterval(() => {
+            showSlide((activeIndex + 1) % slides.length);
+          }, 7000);
+        }
+
+        function stopRotation() {
+          if (timer === null) return;
+          window.clearInterval(timer);
+          timer = null;
+        }
+
+        buttons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            showSlide(index);
+            stopRotation();
+            startRotation();
+          });
+        });
+
+        slider.addEventListener("focusin", stopRotation);
+        slider.addEventListener("focusout", (event) => {
+          if (!slider.contains(event.relatedTarget)) startRotation();
+        });
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) stopRotation();
+          else startRotation();
+        });
+
+        startRotation();
+      })();
+
       const header = document.querySelector(".site-header");
       const onScroll = () => {
         if (!header) return;
