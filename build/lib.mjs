@@ -1,0 +1,261 @@
+// Shared helpers for the Snap Kodex static page generator.
+// Run: node build/gen.mjs   (outputs HTML next to the source tree; commit the output)
+
+export const SITE = "https://snapkodex.com";
+export const ORG = "Snap Kodex";
+
+// Product URL bases. For a future spin-off to a standalone domain, change the base here and regenerate.
+export const BASE = {
+  taaweel: "/products/taaweel",
+  home: "/products/homeschooling",
+  snapprojects: "/products/snap-projects",
+};
+export const APP = {
+  taaweel: null, // not yet public: CTA is early access by email
+  home: "https://homeschooling-b3e57.web.app/",
+};
+
+export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+// ---------- icons (24x24 line pictograms, brand gradient stroke) ----------
+const I = {
+  chat: '<path class="fill" d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4V16A1.5 1.5 0 0 1 4 14.5z"/><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4V16A1.5 1.5 0 0 1 4 14.5z"/><path d="M10 8.6a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2"/><circle class="dot" cx="12" cy="13.8" r=".7"/>',
+  network: '<path d="M6.5 7 11 11M17.5 7 13 11M6.5 17 11 13M17.5 17 13 13"/><circle class="fill" cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="5" cy="5.5" r="2"/><circle cx="19" cy="5.5" r="2"/><circle cx="5" cy="18.5" r="2"/><circle cx="19" cy="18.5" r="2"/>',
+  layers: '<path class="fill" d="m12 3 9 5-9 5-9-5z"/><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/>',
+  book: '<path class="fill" d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v15h5.5c.8 0 1.5.7 1.5 1.5z"/><path d="M6.5 8H9M15 8h2.5M6.5 11H9M15 11h2.5"/>',
+  shield: '<path class="fill" d="M12 3l7 3v5.2c0 4.4-3 7.8-7 9.8-4-2-7-5.4-7-9.8V6z"/><path d="M12 3l7 3v5.2c0 4.4-3 7.8-7 9.8-4-2-7-5.4-7-9.8V6z"/><path d="m8.8 12 2.2 2.2L15.4 10"/>',
+  graph: '<path d="M12 7.5V12M12 12l-5.5 5M12 12l5.5 5"/><circle class="fill" cx="12" cy="5" r="2.6"/><circle cx="12" cy="5" r="2.6"/><circle cx="5.5" cy="18" r="2.4"/><circle cx="18.5" cy="18" r="2.4"/><circle cx="12" cy="12" r="1.2"/>',
+  scale: '<path d="M12 4v16M7.5 20h9M5 7h14"/><path class="fill" d="M5 7l-2.8 6.5a2.8 2.8 0 0 0 5.6 0z"/><path d="M5 7l-2.8 6.5a2.8 2.8 0 0 0 5.6 0zM19 7l-2.8 6.5a2.8 2.8 0 0 0 5.6 0z"/>',
+  bars: '<path d="M3 20.5h18"/><rect class="fill" x="4.5" y="11" width="3.5" height="9.5" rx="1"/><rect x="4.5" y="11" width="3.5" height="9.5" rx="1"/><rect x="10.3" y="4" width="3.5" height="16.5" rx="1"/><rect x="16" y="8" width="3.5" height="12.5" rx="1"/>',
+  cube: '<path class="fill" d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>',
+  sun: '<circle class="fill" cx="12" cy="12" r="4.2"/><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/>',
+  route: '<circle class="fill" cx="6" cy="18" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H14a3.2 3.2 0 0 0 0-6.4h-4A3.2 3.2 0 0 1 10 5.2h5.6"/>',
+  calendar: '<rect class="fill" x="3.5" y="5" width="17" height="15" rx="2.5"/><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h2M12 14h2M8 17h2M12 17h2"/>',
+  play: '<rect class="fill" x="3" y="4.5" width="18" height="15" rx="3.5"/><rect x="3" y="4.5" width="18" height="15" rx="3.5"/><path d="m10 9 5 3-5 3z"/>',
+  coin: '<circle class="fill" cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="8.5"/><path d="M12 6.8v10.4M9.4 9.4c0-1 1.1-1.6 2.6-1.6s2.6.6 2.6 1.8c0 2.4-5.2 1.2-5.2 3.7 0 1.1 1.2 1.8 2.6 1.8s2.6-.6 2.6-1.6"/>',
+  pair: '<circle class="fill" cx="9" cy="12" r="5.5"/><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/>',
+  eye: '<path class="fill" d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  globe: '<circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/>',
+  blocks: '<rect class="fill" x="8" y="3" width="8" height="8" rx="1.8"/><rect x="8" y="3" width="8" height="8" rx="1.8"/><rect x="3" y="13" width="8" height="8" rx="1.8"/><rect x="13" y="13" width="8" height="8" rx="1.8"/>',
+  mic: '<rect class="fill" x="9" y="3" width="6" height="11" rx="3"/><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/>',
+  users: '<circle class="fill" cx="9" cy="8" r="3.2"/><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.8c1.8.7 3 2.4 3 5.2"/>',
+  lock: '<rect class="fill" x="5" y="11" width="14" height="9.5" rx="2.5"/><rect x="5" y="11" width="14" height="9.5" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><circle class="dot" cx="12" cy="15.7" r="1.2"/>',
+  sparkle: '<path class="fill" d="m11 3 2 5.6L18.6 10.6 13 12.6 11 18.2 9 12.6 3.4 10.6 9 8.6z"/><path d="m11 3 2 5.6 5.6 2-5.6 2L11 18.2l-2-5.6-5.6-2 5.6-2z"/><path d="M19 16v5M16.5 18.5h5"/>',
+  doc: '<path class="fill" d="M6 3h8l4 4v14H6z"/><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+  search: '<circle class="fill" cx="10.5" cy="10.5" r="6.5"/><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>',
+  compass: '<circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+  code: '<path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/>',
+  pencil: '<path class="fill" d="M4 20l1-4.5L16 4.5 19.5 8 8.5 19z"/><path d="M4 20l1-4.5L16 4.5 19.5 8 8.5 19zM13.5 7l3.5 3.5"/>',
+  dice: '<rect class="fill" x="4" y="4" width="16" height="16" rx="3.5"/><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle class="dot" cx="9" cy="9" r="1.1"/><circle class="dot" cx="15" cy="9" r="1.1"/><circle class="dot" cx="12" cy="12" r="1.1"/><circle class="dot" cx="9" cy="15" r="1.1"/><circle class="dot" cx="15" cy="15" r="1.1"/>',
+  wave: '<path d="M2 12h3l2-6 3 12 3-9 2 5 2-2h5"/>',
+  tasks: '<rect class="fill" x="4" y="3.5" width="16" height="17" rx="3"/><rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="m8 9 1.5 1.5L12 8M8 15l1.5 1.5L12 14M14.5 9.5H17M14.5 15.5H17"/>',
+  video: '<rect class="fill" x="3" y="6" width="13" height="12" rx="2.5"/><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3z"/>',
+  check: '<circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16.2 9.5"/>',
+  flag: '<path d="M5 21V4"/><path class="fill" d="M5 4h11l-2 4 2 4H5z"/><path d="M5 4h11l-2 4 2 4H5z"/>',
+  heart: '<path class="fill" d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>',
+  rocket: '<path class="fill" d="M12 3c3.5 2.2 5 5.6 5 9.5l-2 3h-6l-2-3C7 8.6 8.5 5.2 12 3z"/><path d="M12 3c3.5 2.2 5 5.6 5 9.5l-2 3h-6l-2-3C7 8.6 8.5 5.2 12 3z"/><circle cx="12" cy="10" r="1.6"/><path d="M9 15.5 6.5 19M15 15.5l2.5 3.5M12 16v4"/>',
+  robot: '<rect class="fill" x="4" y="8" width="16" height="11" rx="3.5"/><rect x="4" y="8" width="16" height="11" rx="3.5"/><path d="M12 4v4M9.5 4h5"/><circle class="dot" cx="9" cy="13.5" r="1.4"/><circle class="dot" cx="15" cy="13.5" r="1.4"/><path d="M2 12.5v2M22 12.5v2"/>',
+  cloud: '<path class="fill" d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.2 4.2 0 0 1-.5 8.5z"/><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4.2 4.2 0 0 1-.5 8.5z"/>',
+  bolt: '<path class="fill" d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/>',
+  headset: '<path d="M4.5 14v-2.5a7.5 7.5 0 0 1 15 0V14"/><rect class="fill" x="3" y="13" width="4" height="6" rx="1.8"/><rect x="3" y="13" width="4" height="6" rx="1.8"/><rect x="17" y="13" width="4" height="6" rx="1.8"/><path d="M19 19c0 1.5-1.5 2.5-4 2.5h-1.5"/>',
+  cart: '<path d="M3 4h2.5l2 11h10l2-8H7"/><circle class="fill" cx="9.5" cy="19" r="1.6"/><circle cx="9.5" cy="19" r="1.6"/><circle cx="16.5" cy="19" r="1.6"/>',
+  mail: '<rect class="fill" x="3" y="5" width="18" height="14" rx="3"/><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7.5 8 6 8-6"/>',
+  target: '<circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle class="dot" cx="12" cy="12" r="1.6"/>',
+  trophy: '<path class="fill" d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1.5A3 3 0 0 0 7 10.5M17 6h3v1.5a3 3 0 0 1-3 3M12 14v4M8.5 20.5h7"/>',
+  clock: '<circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  server: '<rect class="fill" x="3.5" y="4" width="17" height="7" rx="2.5"/><rect x="3.5" y="4" width="17" height="7" rx="2.5"/><rect x="3.5" y="13" width="17" height="7" rx="2.5"/><circle class="dot" cx="7.5" cy="7.5" r="1"/><circle class="dot" cx="7.5" cy="16.5" r="1"/>',
+  filter: '<path class="fill" d="M3 5h18l-7 8v6l-4-2v-4z"/><path d="M3 5h18l-7 8v6l-4-2v-4z"/>',
+  brain: '<path class="fill" d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3.2 3.2 0 0 0 2 5 3 3 0 0 0 6 1V5a2.5 2.5 0 0 0-3-1z"/><path d="M12 5v13M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3.2 3.2 0 0 0 2 5 3 3 0 0 0 6 1M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3.2 3.2 0 0 1-2 5 3 3 0 0 1-6 1"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  star: '<path class="fill" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+};
+export const iconNames = Object.keys(I);
+
+// gradient defs referenced by all .ico shapes; include once per page
+export const SVG_DEFS = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="skg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#35d4ea"/><stop offset="1" stop-color="#ab54ec"/></linearGradient><linearGradient id="skg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#35d4ea"/><stop offset="1" stop-color="#ab54ec"/></linearGradient></defs></svg>`;
+
+export function icon(name) {
+  const body = I[name];
+  if (!body) throw new Error("Unknown icon: " + name);
+  return `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${body}</svg>`;
+}
+export const pict = (name, size = "") => `<span class="pict${size ? " pict--" + size : ""}">${icon(name)}</span>`;
+
+// Large hero illustration: glowing disc, orbit rings, central glass tile with big pictogram, satellite badges.
+export function heroArt(main, sats = [], label = "") {
+  const cx = 240, cy = 210, R = 150;
+  const pos = (i, n) => {
+    const a = (-90 + (360 / n) * i + 18) * (Math.PI / 180);
+    return [cx + R * Math.cos(a), cy + R * Math.sin(a)];
+  };
+  const satSvg = sats
+    .map((s, i) => {
+      const [x, y] = pos(i, sats.length);
+      return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><circle r="30" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.45)"/><g transform="translate(-15 -15) scale(1.25)">${I[s].replace(/class="fill"/g, 'class="fill"')}</g></g>`;
+    })
+    .join("");
+  const links = sats.map((_, i) => { const [x, y] = pos(i, sats.length); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(var(--accent-rgb),.28)" stroke-dasharray="3 6"/>`; }).join("");
+  return `<svg class="art ico-scope" viewBox="0 0 480 420" role="img" aria-label="${esc(label || "Illustration")}">
+  <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgb(var(--accent-rgb))" stop-opacity=".32"/><stop offset="1" stop-color="rgb(var(--accent-rgb))" stop-opacity="0"/></radialGradient></defs>
+  <circle cx="${cx}" cy="${cy}" r="205" fill="url(#glow)"/>
+  <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" style="stroke:var(--svg-ring)" stroke-dasharray="2 7"/>
+  <circle cx="${cx}" cy="${cy}" r="${R - 55}" fill="none" style="stroke:var(--svg-ring)"/>
+  ${links}
+  <g class="ico"><rect x="${cx - 62}" y="${cy - 62}" width="124" height="124" rx="34" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.6)" stroke-width="1.4"/>
+  <g transform="translate(${cx - 42} ${cy - 42}) scale(3.5)" style="stroke-width:.5">${I[main]}</g></g>
+  <g class="ico">${satSvg}</g>
+</svg>`;
+}
+
+// ---------- head / header / footer ----------
+const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0" rel="stylesheet" />`;
+
+export function head({ title, description, path, ogImage = "/snapkodex logo full dark.svg", schema = [], type = "website", extra = "" }) {
+  const url = SITE + path;
+  const graph = schema.length ? `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": schema })}</script>` : "";
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KY185RDQ32"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KY185RDQ32');</script>
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="author" content="Snap Kodex" />
+<meta name="theme-color" content="#06070a" />
+<script>(function(){try{if(localStorage.getItem("sk-theme")==="light")document.documentElement.dataset.theme="light";}catch(e){}})();</script>
+<link rel="canonical" href="${url}" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta property="og:type" content="${type}" />
+<meta property="og:site_name" content="Snap Kodex" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${esc(description)}" />
+<meta property="og:url" content="${url}" />
+<meta property="og:image" content="${SITE}${encodeURI(ogImage)}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${esc(title)}" />
+<meta name="twitter:description" content="${esc(description)}" />
+${graph}
+${FONTS}
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="/css/theme.css" />
+<link rel="stylesheet" href="/css/pages.css" />
+${extra}
+</head>`;
+}
+
+const toggleBtn = `<button type="button" class="nav__theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to light theme"><span class="material-symbols-rounded" aria-hidden="true">light_mode</span></button>`;
+const hamburger = `<button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-drawer" aria-label="Open menu"><span class="material-symbols-rounded" aria-hidden="true">menu</span></button>`;
+
+function drawer(links, cta) {
+  return `<div class="nav__drawer" id="site-nav-drawer" aria-hidden="true"><div class="nav__drawer-backdrop" data-nav-close tabindex="-1" aria-hidden="true"></div>
+<div class="nav__drawer-panel" role="dialog" aria-modal="true" aria-label="Site menu"><div class="nav__drawer-head"><span class="nav__drawer-title">Menu</span><button class="nav__drawer-close" type="button" data-nav-close aria-label="Close menu"><span class="material-symbols-rounded" aria-hidden="true">close</span></button></div>
+<div class="nav__drawer-links">${links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("")}</div>
+<div class="nav__drawer-actions">${toggleBtn}<a class="nav__cta" href="${cta[0]}">${cta[1]}</a></div></div></div>`;
+}
+
+const AMBIENT = `<div class="ambient" aria-hidden="true"><div class="ambient__orb ambient__orb--cyan"></div><div class="ambient__orb ambient__orb--purple"></div><div class="ambient__orb ambient__orb--mid"></div><div class="ambient__orb ambient__orb--mint"></div><div class="ambient__grid"></div></div>`;
+
+export const LIVE = { services: false, insights: false, contact: false };
+export const U = {
+  contact: () => (LIVE.contact ? "/contact/" : "/#contact"),
+  services: () => (LIVE.services ? "/services/agentic-ai-development/" : "/#services"),
+  saas: () => (LIVE.services ? "/services/saas-and-enterprise-development/" : "/#services"),
+  agents: () => (LIVE.services ? "/services/ai-agents-and-automation/" : "/#services"),
+  insights: () => (LIVE.insights ? "/insights/" : "/products/"),
+};
+const GLOBAL_LINKS_ALL = [
+  ["svc", "Services"],
+  ["/products/", "Products"],
+  ["ins", "Insights"],
+  ["/#techstack", "Tech stack"],
+  ["/#partners", "Partners"],
+  ["/#faq", "FAQ"],
+  ["con", "Contact Us"],
+];
+export const globalLinks = () =>
+  GLOBAL_LINKS_ALL.filter(([h]) => !(h === "ins" && !LIVE.insights)).map(([h, t]) => [h === "svc" ? U.services() : h === "con" ? U.contact() : h === "ins" ? "/insights/" : h, t]);
+
+export function globalHeader(current = "") {
+  const GL = globalLinks();
+  const links = GL.map(([h, t]) => `<a href="${h}"${current === t ? ' aria-current="page"' : ""}>${t}</a>`).join("");
+  return `<a class="skip-link" href="#main">Skip to content</a>${SVG_DEFS}${AMBIENT}
+<header class="site-header"><nav class="nav" aria-label="Primary"><a class="nav__logo" href="/" aria-label="Snap Kodex home"><img data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex" width="160" height="36" /></a>
+<div class="nav__links">${links}</div><div class="nav__actions">${toggleBtn}<a class="nav__cta" href="${U.contact()}">Start a project</a></div>${hamburger}</nav></header>
+${drawer(GL, [U.contact(), "Start a project"])}`;
+}
+
+// Product-scoped header: product wordmark + product links only (no cross-silo links).
+export function productHeader({ name, tag, iconName, base, links, cta }) {
+  const l = links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("");
+  return `<a class="skip-link" href="#main">Skip to content</a>${SVG_DEFS}${AMBIENT}
+<header class="site-header"><nav class="nav" aria-label="Primary"><a class="pbrand" href="${base}/" aria-label="${esc(name)} home">${pict(iconName)}<span>${esc(name)}<small>${esc(tag)}</small></span></a>
+<div class="nav__links">${l}</div><div class="nav__actions">${toggleBtn}<a class="nav__cta" href="${cta[0]}"${/^https?:/.test(cta[0]) ? ' target="_blank" rel="noopener"' : ""}>${cta[1]}</a></div>${hamburger}</nav></header>
+${drawer(links, cta)}`;
+}
+
+export function globalFooter() {
+  return `<footer class="footer"><div class="footer__cols">
+<div><img class="footer__logo" data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex logo" /><p>AI-native software house for SaaS, enterprise software and agentic AI, plus proprietary products.</p></div>
+<div><h4>Services</h4><a href="${U.services()}">Agentic AI development</a><a href="${U.saas()}">SaaS &amp; enterprise development</a><a href="${U.agents()}">AI agents &amp; automation</a></div>
+<div><h4>Products</h4><a href="/products/">All products</a><a href="${BASE.taaweel}/">Taaweel</a><a href="${BASE.home}/">Homeschooling</a><a href="/snap-projects.html">Snap Projects</a></div>
+<div><h4>Company</h4>${LIVE.insights ? '<a href="/insights/">Insights</a>' : ""}<a href="${U.contact()}">Contact</a><a href="mailto:hello@snapkodex.com">hello@snapkodex.com</a><a href="/#partners">Partners</a></div></div>
+<div class="footer__bar"><span>&copy; ${new Date().getFullYear()} Snap Kodex. Mon&ndash;Fri 9:00&ndash;18:00.</span><span>snapkodex.com</span></div></footer>`;
+}
+
+export function productFooter({ name, base, cols }) {
+  return `<footer class="footer"><div class="footer__cols">
+<div><div class="pbrand">${pict(cols.icon)}<span>${esc(name)}</span></div><p>${esc(cols.blurb)}</p></div>
+${cols.groups.map((g) => `<div><h4>${g.title}</h4>${g.links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("")}</div>`).join("")}</div>
+<div class="footer__bar"><span class="footer__attrib">An AI product engineered by <a href="${SITE}/">Snap Kodex</a>.</span><span>&copy; ${new Date().getFullYear()} Snap Kodex</span></div></footer>`;
+}
+
+export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/pages.js" defer></script>`;
+
+export const page = (headHtml, body, bodyClass) => `${headHtml}
+<body class="${bodyClass}">
+${body}
+${SCRIPTS}
+</body>
+</html>
+`;
+
+// ---------- content blocks ----------
+export const crumbs = (items) => `<nav class="crumbs" aria-label="Breadcrumb"><ol>${items.map(([h, t], i) => (i === items.length - 1 ? `<li aria-current="page">${esc(t)}</li>` : `<li><a href="${h}">${esc(t)}</a></li>`)).join("")}</ol></nav>`;
+
+export const breadcrumbSchema = (items) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map(([h, t], i) => ({ "@type": "ListItem", position: i + 1, name: t, item: SITE + h })),
+});
+
+export const faqSchema = (faqs) => ({ "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) });
+
+export const faqHtml = (faqs) => `<div class="faq">${faqs.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}</div>`;
+
+export const secHead = (eyebrow, title, lead) => `<div class="sec-head"><span class="sec-eyebrow">${esc(eyebrow)}</span><h2>${title}</h2>${lead ? `<p>${lead}</p>` : ""}</div>`;
+
+export const cardLink = ({ href, icon: ic, tag, title, text, more = "Explore" }) => `<a class="card" href="${href}">${pict(ic)}${tag ? `<span class="card__tag">${esc(tag)}</span>` : ""}<h3>${title}</h3><p>${text}</p><span class="card__more">${more}</span></a>`;
+export const cardPlain = ({ icon: ic, title, text }) => `<div class="card">${pict(ic)}<h3>${title}</h3><p>${text}</p></div>`;
+export const stepsHtml = (steps) => `<div class="steps">${steps.map(([ic, t, d]) => `<div class="step">${pict(ic, "sm")}<h3>${t}</h3><p>${d}</p></div>`).join("")}</div>`;
+export const checklist = (items) => `<ul class="checklist">${items.map((i) => `<li><span>${i}</span></li>`).join("")}</ul>`;
+export const callout = (ic, title, text, quiet = false) => `<div class="callout${quiet ? " callout--quiet" : ""}"><h3>${pict(ic, "sm")}${title}</h3><p>${text}</p></div>`;
+export const cta = ({ title, text, primary, secondary }) => `<div class="ctaband"><h2>${title}</h2><p>${text}</p><div class="phero__actions"><a class="btn btn--primary" href="${primary[0]}"${/^https?:/.test(primary[0]) ? ' target="_blank" rel="noopener"' : ""}>${primary[1]}</a>${secondary ? `<a class="btn btn--ghost" href="${secondary[0]}">${secondary[1]}</a>` : ""}</div></div>`;
+
+// ring navigation for a spoke inside its wheel
+export function wheelNav(hub, spokes, i) {
+  const prev = spokes[(i - 1 + spokes.length) % spokes.length];
+  const next = spokes[(i + 1) % spokes.length];
+  return `<div class="wheelnav"><div class="wheelnav__row">
+<a class="nav-tile" href="${prev.url}" rel="prev"><small>Previous</small><span>${prev.nav}</span></a>
+<a class="nav-tile nav-tile--hub" href="${hub.url}"><small>Back to</small><span>${hub.nav}</span></a>
+<a class="nav-tile nav-tile--next" href="${next.url}" rel="next"><small>Next</small><span>${next.nav}</span></a></div>
+<div class="chips" aria-label="All topics">${spokes.map((s, j) => `<a class="chip" href="${s.url}"${j === i ? ' aria-current="page"' : ""}>${s.nav}</a>`).join("")}</div></div>`;
+}
+
+export const hero = ({ eyebrow, h1, lead, actions, art }) => `<section class="phero"><div><span class="phero__eyebrow">${esc(eyebrow)}</span><h1>${h1}</h1><p class="phero__lead">${lead}</p><div class="phero__actions">${actions
+  .map(([h, t, k]) => `<a class="btn btn--${k || "primary"}" href="${h}"${/^https?:/.test(h) ? ' target="_blank" rel="noopener"' : ""}>${t}</a>`)
+  .join("")}</div></div><div class="phero__art">${art}</div></section>`;

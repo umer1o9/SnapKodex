@@ -14,7 +14,11 @@
       "*.code-workspace",
       "*.md",
       "*.rules",
-      "sitemap.xml"
+      "sitemap.xml",
+      "build/**",
+      "backups/**",
+      "*.zip",
+      "WORKLOG.md"
     ],
     "rewrites": [
       {
@@ -52,6 +56,13 @@
       {
         "source": "**",
         "destination": "/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/products.html",
+        "destination": "/products/",
+        "type": 301
       }
     ]
   },
