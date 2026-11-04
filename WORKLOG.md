@@ -21,3 +21,6 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 ## Notes
 - Generator: `node build/gen.mjs` (content in build/content-*.mjs, pages-agency.mjs, pages-insights.mjs); `node build/check-links.mjs` must pass before every push. Deploy = commit + push main (CI deploys). Phase 1 (products) pushed as 4728272.
 - Next: services_content_plan.md -> build/pages-agency.mjs (3 hubs + 6 spokes each + /contact/) -> build/pages-insights.mjs (/insights/ hub + articles) -> patch homepage service cards + insights preview -> check-links -> push.
+
+## Final state (2026-11-05)
+All milestones done and deployed (last commit e09b05b). 47 generated pages + homepage/Snap Projects patches. Known follow-ups: live /sitemap.xml (Cloud Function, left unchanged) still lists /products.html (now a 301) and lacks new pages; sitemap_index.xml and sitemap-*.xml cover them. Per-product blogs not built (by request). Taaweel CTA is early-access email; Homeschooling CTA is https://homeschooling-b3e57.web.app/.
