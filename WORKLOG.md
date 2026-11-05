@@ -30,3 +30,9 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - Applied to every generated page and injected (marker-based, idempotent) into index, blog, snap-projects, products, `-snap-projects.html`, `fonts/index.html`.
 - Product pages keep a silo-scoped menu (own pages only) in the same component; no cross-product links.
 - `admin.html` (private inbox) intentionally untouched.
+
+## Friendlier menu and full sitemap (2026-11-05)
+- Menu redesigned: coloured icon tiles on every item, one tone per service area and product, plain-English one-liners, welcome cards, roomier panels. Dark panel lifted from near-black.
+- Palette added across cards, steps, stats, section eyebrows and the footer.
+- `/blog/<slug>` article pages (Cloud Function) now use the shared header and footer via `functions/site-chrome.json`.
+- Live `/sitemap.xml` now lists all static pages via `functions/site-pages.json` plus blog articles, drops `/products.html`, and still serves static pages if the blog API is down. Both JSON files are written by `node build/gen.mjs`.

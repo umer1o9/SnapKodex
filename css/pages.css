@@ -227,3 +227,20 @@ button.chip { color: var(--brand-muted); }
 [data-theme="light"] .step::before,
 [data-theme="light"] .service-more { color: color-mix(in srgb, var(--accent) 50%, #000); }
 [data-theme="light"] .nav__links a, [data-theme="light"] .crumbs, [data-theme="light"] .crumbs a { color: #3b4558; }
+
+/* ---------- playful colour: cards, steps and stats cycle through the brand palette ---------- */
+.cards > :not(.post-card):nth-child(6n+1), .steps > :nth-child(6n+1), .stats > :nth-child(4n+1) { --accent: var(--brand-cyan); --accent-rgb: 53, 212, 234; }
+.cards > :not(.post-card):nth-child(6n+2), .steps > :nth-child(6n+2), .stats > :nth-child(4n+2) { --accent: var(--brand-coral); --accent-rgb: 255, 153, 102; }
+.cards > :not(.post-card):nth-child(6n+3), .steps > :nth-child(6n+3), .stats > :nth-child(4n+3) { --accent: var(--brand-mint); --accent-rgb: 70, 214, 154; }
+.cards > :not(.post-card):nth-child(6n+4), .steps > :nth-child(6n+4), .stats > :nth-child(4n+4) { --accent: var(--brand-violet); --accent-rgb: 179, 139, 255; }
+.cards > :not(.post-card):nth-child(6n+5), .steps > :nth-child(6n+5) { --accent: var(--brand-amber); --accent-rgb: 255, 200, 87; }
+.cards > :not(.post-card):nth-child(6n), .steps > :nth-child(6n) { --accent: var(--brand-sky); --accent-rgb: 90, 200, 250; }
+.cards .pict .ico, .steps .pict .ico { stroke: var(--accent); }
+.cards .pict .ico .dot, .steps .pict .ico .dot { fill: var(--accent); }
+.cards .pict, .steps .pict { background: rgba(var(--accent-rgb), 0.16); }
+a.card:hover .pict { transform: rotate(-4deg) scale(1.06); }
+.card .pict { transition: transform 0.3s var(--ease-out); }
+[data-theme="light"] .cards .pict .ico, [data-theme="light"] .steps .pict .ico { stroke: color-mix(in srgb, var(--accent) 62%, #000); }
+[data-theme="light"] .cards .pict .ico .dot, [data-theme="light"] .steps .pict .ico .dot { fill: color-mix(in srgb, var(--accent) 62%, #000); }
+.sec-eyebrow::before { height: 3px; border-radius: 3px; background: linear-gradient(90deg, #ff9966, #ffc857, #46d69a, #35d4ea); }
+.hp-products .cards { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }

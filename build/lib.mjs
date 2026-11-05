@@ -181,15 +181,15 @@ ${navBlock(current)}`;
 }
 
 // Product-scoped header: same mega-menu component, product pages only (no cross-silo links).
-export function productHeader({ name, tag, iconName, base, links, cta, features = [] }) {
+export function productHeader({ name, tag, iconName, base, links, cta, features = [], tone }) {
   return `<a class="skip-link" href="#main">Skip to content</a>${AMBIENT}
-${productNavBlock({ name, tag, pictHtml: pict(iconName), base, features, links, cta })}`;
+${productNavBlock({ name, tag, pictHtml: pict(iconName), base, features, links, cta, tone })}`;
 }
 
 export const globalFooter = () => richFooter();
 
-export function productFooter({ name, base, cols }) {
-  return productFooterHtml({ name, pictHtml: pict(cols.icon), blurb: cols.blurb, groups: cols.groups });
+export function productFooter({ name, base, cols, tone }) {
+  return productFooterHtml({ name, pictHtml: pict(cols.icon), blurb: cols.blurb, groups: cols.groups, tone });
 }
 
 export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/nav.js" defer></script>`;

@@ -1,6 +1,9 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const { defineSecret, defineString } = require("firebase-functions/params");
 const logger = require("firebase-functions/logger");
+// Both files are written by build/gen.mjs: re-run it when pages or the menu change.
+const sitePages = require("./site-pages.json");
+const siteChrome = require("./site-chrome.json");
 
 const deliveryKey = defineSecret("AUTOBLOG_API_KEY");
 const siteId = defineString("AUTOBLOG_SITE_ID");
@@ -122,11 +125,11 @@ function articleDocument(article) {
 <link rel="canonical" href="${canonical}"><link rel="icon" href="/favicon.ico"><meta name="robots" content="index,follow">
 <meta property="og:type" content="article"><meta property="og:site_name" content="Snap Kodex"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}">${imageMeta}
 <meta name="twitter:card" content="${image ? "summary_large_image" : "summary"}"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}">
-<link rel="stylesheet" href="/css/theme.css"><link rel="stylesheet" href="/css/blog.css"><link rel="stylesheet" href="/css/article.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0" rel="stylesheet"><script>try{if(localStorage.getItem('sk-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
-<script src="/js/theme.js" defer></script></head><body><div class="blog-ambient" aria-hidden="true"></div>
-<header class="site-header"><nav class="nav" aria-label="Primary"><a class="nav__logo" href="/" aria-label="Snap Kodex home"><img data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex" width="160" height="36"></a><div class="nav__links"><a href="/products.html">Our products</a><a href="/blog">Blog</a><a href="/#services">Our services</a><a href="/#contact">Contact Us</a></div><div class="nav__actions"><button type="button" class="nav__theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to light theme"><span class="material-symbols-rounded" aria-hidden="true">light_mode</span></button><a class="nav__cta" href="/#contact">Start a project</a></div></nav></header>
+<link rel="stylesheet" href="/css/theme.css"><link rel="stylesheet" href="/css/blog.css"><link rel="stylesheet" href="/css/article.css"><link rel="stylesheet" href="/css/nav.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0" rel="stylesheet"><script>try{if(localStorage.getItem('sk-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script src="/js/theme.js" defer></script><script src="/js/nav.js" defer></script></head><body><div class="blog-ambient" aria-hidden="true"></div>
+${siteChrome.header}
 <main class="blog-article-page"><a class="blog-back" href="/blog">← All articles</a><div class="blog-content autoblog-article">${content}</div></main>
-<footer class="footer"><div class="footer__inner"><img class="footer__logo" src="/snapkodex logo full dark.svg" data-logo="snapkodex" alt="Snap Kodex"><div class="footer__links"><a href="/">Home</a><a href="/products.html">Products</a><a href="/blog">Blog</a><a href="/#contact">Contact</a></div></div></footer></body></html>`;
+${siteChrome.footer}</body></html>`;
 }
 
 exports.blogPage = onRequest(
@@ -162,13 +165,8 @@ exports.siteMap = onRequest(
     res.set("Cache-Control", "public, max-age=300, s-maxage=300");
     res.type("application/xml");
     if (req.method !== "GET") return res.status(405).send("<?xml version=\"1.0\"?><error>Method not allowed</error>");
+    const entries = sitePages.map((page) => ({ loc: page.url, lastmod: page.lastmod, priority: page.priority }));
     try {
-      const urls = [
-        `${SITE_BASE}/`,
-        `${SITE_BASE}/products.html`,
-        `${SITE_BASE}/snap-projects.html`,
-        `${SITE_BASE}/blog`,
-      ];
       const limit = 100;
       let offset = 0;
       let total = 0;
@@ -180,17 +178,26 @@ exports.siteMap = onRequest(
         const articles = Array.isArray(payload.articles) ? payload.articles : [];
         total = Number(payload.total) || 0;
         for (const article of articles) {
-          if (article.slug) urls.push(`${SITE_BASE}/blog/${encodeURIComponent(article.slug)}`);
+          if (!article.slug) continue;
+          const published = String(article.updatedAt || article.publishedAt || "").slice(0, 10);
+          entries.push({
+            loc: `${SITE_BASE}/blog/${encodeURIComponent(article.slug)}`,
+            lastmod: /^\d{4}-\d{2}-\d{2}$/.test(published) ? published : undefined,
+            priority: 0.6,
+          });
         }
         offset += articles.length;
         if (!articles.length) break;
       } while (offset < total && offset < 100000);
-
-      const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${escapeHtml(url)}</loc></url>`).join("\n")}\n</urlset>`;
-      return res.status(200).send(xml);
     } catch (error) {
-      logger.error("Unable to generate sitemap", { status: error.status, requestId: error.requestId, message: error.message });
-      return res.status(503).send("<?xml version=\"1.0\" encoding=\"UTF-8\"?><error>Sitemap temporarily unavailable.</error>");
+      // Static pages still get listed if the blog API is unavailable.
+      logger.error("Sitemap could not include blog articles", { status: error.status, requestId: error.requestId, message: error.message });
     }
+    const row = (entry) => `  <url><loc>${escapeHtml(entry.loc)}</loc>${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ""}${entry.priority ? `<priority>${entry.priority}</priority>` : ""}</url>`;
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.map(row).join("\n")}
+</urlset>`;
+    return res.status(200).send(xml);
   },
 );

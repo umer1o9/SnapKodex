@@ -1,0 +1,252 @@
+[
+ {
+  "url": "https://snapkodex.com/",
+  "lastmod": "2026-11-05",
+  "priority": 1
+ },
+ {
+  "url": "https://snapkodex.com/snap-projects.html",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/services/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/multi-agent-orchestration/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/tool-calling-and-api-actions/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/hybrid-rag-pgvector/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/agent-memory-knowledge-graphs/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/human-in-the-loop-workflows/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/agentic-ai-development/agent-evaluation-and-observability/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/multi-tenant-saas-architecture/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/sso-and-identity/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/usage-based-billing/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/erp-crm-development/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/high-load-queues-and-pipelines/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/saas-and-enterprise-development/web-application-development/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/customer-support-agents/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/sales-agents/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/rag-chatbots/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/ecommerce-bots/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/document-extraction-automation/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/services/ai-agents-and-automation/rpa-and-workflow-automation/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/contact/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/insights/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/insights/supervisor-vs-hierarchical-agent-orchestration/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/hybrid-rag-on-postgresql-pgvector/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/human-in-the-loop-review-lanes-for-ai-agents/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/idempotent-tool-calling-for-ai-agents/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/multi-tenant-saas-pool-bridge-silo/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/ai-customer-support-triage-urgency-and-mood/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/staged-research-pipeline-over-a-fixed-corpus/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/insights/realtime-firestore-lessons-from-a-homeschooling-platform/",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/blog",
+  "lastmod": "2026-11-05",
+  "priority": 0.7
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/research-pipeline/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/evidence-and-citations/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/root-and-word-studies/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/adversarial-audit/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/ontology-explorer/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/taaweel/mizan-numerical-analysis/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/",
+  "lastmod": "2026-11-05",
+  "priority": 0.9
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/guiding-light-curriculum/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/ai-syllabus-builder/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/weekly-planner/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/activity-player/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/fair-scoring-and-observations/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ },
+ {
+  "url": "https://snapkodex.com/products/homeschooling/kids-learning-world/",
+  "lastmod": "2026-11-05",
+  "priority": 0.8
+ }
+]

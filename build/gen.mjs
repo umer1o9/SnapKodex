@@ -49,8 +49,9 @@ function productChrome(p) {
   ];
   const ctaTarget = p.app || p.mail;
   const ctaLabel = p.app ? "Open the app" : "Request early access";
-  const header = L.productHeader({ name: p.name, tag: p.tag, iconName: p.icon, base: p.base, links, features: p.spokes.map((s) => [s.url, s.nav]), cta: [ctaTarget, ctaLabel] });
+  const header = L.productHeader({ name: p.name, tag: p.tag, iconName: p.icon, base: p.base, links, features: p.spokes.map((s) => [s.url, s.nav, s.icon]), tone: p.key === "home" ? "amber" : "violet", cta: [ctaTarget, ctaLabel] });
   const footer = L.productFooter({
+    tone: p.key === "home" ? "amber" : "violet",
     name: p.name,
     base: p.base,
     cols: {
@@ -222,4 +223,11 @@ fs.writeFileSync(
   path.join(ROOT, "sitemap_index.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${["sitemap-agency.xml", "sitemap-taaweel.xml", "sitemap-homeschooling.xml", "sitemap.xml"].map((f) => `  <sitemap><loc>${SITE}/${f}</loc><lastmod>${today}</lastmod></sitemap>`).join("\n")}\n</sitemapindex>\n`,
 );
-console.log(`Generated ${registry.length} pages.`);
+// Master list for the live /sitemap.xml (Cloud Function appends blog articles) and the repo copy of it.
+const blogHub = { url: SITE + "/blog", section: "agency", lastmod: today, priority: 0.7 };
+const master = [...agency, blogHub, ...registry.filter((r) => r.section !== "agency")];
+fs.writeFileSync(path.join(ROOT, "sitemap.xml"), urlset(master));
+fs.writeFileSync(path.join(ROOT, "functions", "site-pages.json"), JSON.stringify(master.map(({ url, lastmod, priority }) => ({ url, lastmod, priority })), null, 1) + "\n");
+// Shared chrome for pages the Cloud Function renders (/blog/<slug>).
+fs.writeFileSync(path.join(ROOT, "functions", "site-chrome.json"), JSON.stringify({ header: L.navBlock("company"), footer: L.richFooter() }) + "\n");
+console.log(`Generated ${registry.length} pages, ${master.length} URLs in sitemap.xml.`);
