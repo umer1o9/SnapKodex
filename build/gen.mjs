@@ -1,6 +1,7 @@
 // Snap Kodex static page generator.  Usage:  node build/gen.mjs
 // Writes HTML into the repo (folders with index.html) plus segmented sitemaps. Commit the output.
 import fs from "node:fs";
+import { STAGES, HERO_CROPS } from "./content-taaweel-stages.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as L from "./lib.mjs";
@@ -93,11 +94,11 @@ ${L.hero({
     h1: h.h1,
     lead: h.lead,
     actions: [[ctaTarget, ctaLabel + (p.app ? " →" : "")], ["#capabilities", "Explore capabilities", "ghost"]],
-    art: p.key === "taaweel" ? L.taaweelHeroArt(h.art.label) : L.heroArt(h.art.main, h.art.sats, h.art.label),
+    art: p.key === "taaweel" ? L.taaweelHeroArt("A completed Taaweel research run, all thirteen stages done", HERO_CROPS) : L.heroArt(h.art.main, h.art.sats, h.art.label),
   })}
 <section class="stats" aria-label="At a glance">${h.stats.map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("")}</section>
 </div>
-${p.galleryShots ? L.appGallery({ url: p.app, shots: p.galleryShots, name: p.name, folder: p.appAssets.folder, domain: p.appAssets.domain, logoSrc: p.appAssets.logoSrc, logoAlt: p.appAssets.logoAlt, icon: p.icon }) : ""}
+${p.galleryShots?.[0]?.stage ? L.stageGallery({ url: p.app, shots: p.galleryShots, stages: STAGES, name: p.name, domain: p.appAssets.domain, logoSrc: p.appAssets.logoSrc, logoAlt: p.appAssets.logoAlt }) : p.galleryShots ? L.appGallery({ url: p.app, shots: p.galleryShots, name: p.name, folder: p.appAssets.folder, domain: p.appAssets.domain, logoSrc: p.appAssets.logoSrc, logoAlt: p.appAssets.logoAlt, icon: p.icon }) : ""}
 <section class="band"><div class="wrap split"><div>${L.secHead("The problem", h.problemTitle)}<div class="prose">${h.problem.map((t) => `<p>${t}</p>`).join("")}</div></div><div>${L.checklist(h.problemPoints)}</div></div></section>
 <section class="band band--tint" id="capabilities"><div class="wrap">${L.secHead("Capabilities", h.capTitle, h.capLead)}
 <div class="cards">${p.spokes.map((s) => L.cardLink({ href: s.url, icon: s.icon, tag: s.eyebrow, title: s.h1.replace(/<\/?em>/g, ""), text: CARD[s.slug] || s.lead.split(". ")[0] + ".", more: "Read more" })).join("")}</div></div></section>
@@ -131,7 +132,7 @@ ${L.hero({
   })}
 </div>
 <section class="band"><div class="wrap split"><div>${L.secHead("Overview", "What it does")}<div class="prose">${s.overview.map((t) => `<p>${t}</p>`).join("")}</div></div><div>${L.callout(s.callout.icon, s.callout.title, s.callout.text)}<div style="height:22px"></div>${L.checklist(s.check)}</div></div></section>
-${s.shot ? L.appShot(s.shot, p.appAssets.folder, p.appAssets.domain) : ""}
+${s.shot?.stage ? L.stageBand(s.shot, STAGES[s.shot.stage], p.app) : s.shot ? L.appShot(s.shot, p.appAssets.folder, p.appAssets.domain) : ""}
 <section class="band band--tint"><div class="wrap">${L.secHead("How it works", "Step by step")}${L.stepsHtml(s.steps)}</div></section>
 <section class="band"><div class="wrap">${L.secHead("Features", s.featuresTitle)}<div class="cards">${s.features.map((f) => L.cardPlain(f)).join("")}</div></div></section>
 <section class="band band--tint"><div class="wrap">${L.secHead("Keep exploring", `More from ${p.name}`)}${L.wheelNav(p.hub, p.spokes, i)}</div></section>

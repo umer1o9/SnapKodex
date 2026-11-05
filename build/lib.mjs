@@ -110,34 +110,109 @@ export function heroArt(main, sats = [], label = "") {
 </svg>`;
 }
 
-// ---------- Taaweel hero pictogram: knot logo inside the orbit, stage satellites around ----------
+// ---------- Taaweel knot logo paths (used as a badge on the hero device stage) ----------
 const TWK_MAIN = "M 621 222.276 L 612.500 232.500 611.903 242.500 C 611.082 256.256, 610.769 322, 611.525 322 C 611.861 322, 616.085 319.452, 620.911 316.338 L 629.685 310.676 630.341 281.588 C 631.214 242.845, 631.174 211.994, 630.250 212.026 C 629.837 212.040, 625.675 216.653, 621 222.276 M 620.310 341.850 L 611.120 348.500 611.024 392 C 610.898 448.955, 610.137 511.908, 609.481 519.680 C 609.194 523.079, 608.706 530.279, 608.397 535.680 C 608.089 541.081, 607.017 552.475, 606.017 561 C 605.016 569.525, 604.324 576.633, 604.477 576.795 C 604.631 576.957, 606.855 573.511, 609.420 569.136 C 617.833 554.786, 624.648 534.922, 626.965 518 C 628.216 508.858, 630.154 402.226, 629.774 363.350 L 629.500 335.201 620.310 341.850";
 const TWK_ACC = "M 629.238 93.043 C 594.460 99.282, 562.490 128.680, 549.589 166.286 C 536.248 205.178, 542.900 243.347, 567.393 268.434 C 570.519 271.636, 573.295 274.038, 573.561 273.772 C 573.827 273.506, 571.600 269.393, 568.611 264.632 C 558.456 248.458, 554.136 235.388, 553.282 218.261 C 551.152 175.515, 577.672 137.831, 619 124.880 C 630.683 121.219, 651.377 121.438, 662.490 125.341 C 684.444 133.051, 699.455 149.590, 705.744 173 C 708.456 183.092, 708.113 205.704, 705.070 217.500 C 693.711 261.531, 667.875 288.320, 593.500 333.186 C 522.690 375.902, 495.383 396.837, 474.332 424.547 C 437.762 472.686, 432.696 540.750, 462.364 585.339 C 491.360 628.918, 550.003 633.182, 589.842 594.609 C 603.378 581.503, 603.696 580.845, 605.910 561.372 C 608.848 535.528, 609.262 527.741, 607.498 531.500 C 606.724 533.150, 606.070 535.104, 606.045 535.841 C 606.020 536.579, 603.961 541.130, 601.469 545.955 C 583.087 581.547, 537.748 596.863, 502.408 579.419 C 465.042 560.974, 452.862 509.897, 475.246 465.519 C 490.541 435.194, 512.035 416.114, 593 360.992 C 662.475 313.692, 690.023 286.466, 708.258 247.082 C 718.750 224.420, 722.406 207.238, 722.424 180.500 C 722.439 157.622, 720.761 149.282, 712.887 133.110 C 703.648 114.136, 686.160 99.863, 665.500 94.436 C 658.330 92.552, 636.623 91.718, 629.238 93.043";
-export function taaweelHeroArt(label = "") {
-  const cx = 240, cy = 198, R = 150;
-  const sats = ["route", "layers", "search", "shield", "graph", "scale"];
-  const pos = (i, n) => {
-    const a = (-90 + (360 / n) * i + 18) * (Math.PI / 180);
-    return [cx + R * Math.cos(a), cy + R * Math.sin(a)];
-  };
-  const satSvg = sats
-    .map((s, i) => {
-      const [x, y] = pos(i, sats.length);
-      return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><circle r="30" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.45)"/><g transform="translate(-15 -15) scale(1.25)">${I[s]}</g></g>`;
-    })
-    .join("");
-  const links = sats.map((_, i) => { const [x, y] = pos(i, sats.length); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(var(--accent-rgb),.28)" stroke-dasharray="3 6"/>`; }).join("");
-  return `<svg class="art ico-scope" viewBox="0 0 480 420" role="img" aria-label="${esc(label || "Taaweel illustration")}">
-  <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgb(var(--accent-rgb))" stop-opacity=".32"/><stop offset="1" stop-color="rgb(var(--accent-rgb))" stop-opacity="0"/></radialGradient></defs>
-  <circle cx="${cx}" cy="${cy}" r="205" fill="url(#glow)"/>
-  <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" style="stroke:var(--svg-ring)" stroke-dasharray="2 7"/>
-  <circle cx="${cx}" cy="${cy}" r="${R - 55}" fill="none" style="stroke:var(--svg-ring)"/>
-  ${links}
-  <g><rect x="${cx - 62}" y="${cy - 62}" width="124" height="124" rx="34" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.6)" stroke-width="1.4"/>
-  <g transform="translate(${cx - 90.3} ${cy - 55.2}) scale(0.155)" class="twk"><path class="twk-main" fill-rule="evenodd" d="${TWK_MAIN}"/><path class="twk-acc" fill-rule="evenodd" d="${TWK_ACC}"/></g></g>
-  <text x="${cx}" y="${cy + 92}" text-anchor="middle" font-family="Amiri, 'Noto Naskh Arabic', 'Segoe UI', serif" font-size="24" class="twk-word" direction="rtl">تأويل</text>
-  <g class="ico">${satSvg}</g>
-</svg>`;
+// ---------- device stages: real screenshots in SVG frames with annotations ----------
+const STAGE_W = 1200, STAGE_H = 600;
+const pct = (v, of) => `${+((v / of) * 100).toFixed(3)}%`;
+const sparkle = (x, y, r) => `<path class="stage__spark" d="M${x} ${y - r}C${x + r * 0.14} ${y - r * 0.3} ${x + r * 0.3} ${y - r * 0.14} ${x + r} ${y}C${x + r * 0.3} ${y + r * 0.14} ${x + r * 0.14} ${y + r * 0.3} ${x} ${y + r}C${x - r * 0.14} ${y + r * 0.3} ${x - r * 0.3} ${y + r * 0.14} ${x - r} ${y}C${x - r * 0.3} ${y - r * 0.14} ${x - r * 0.14} ${y - r * 0.3} ${x} ${y - r}Z"/>`;
+
+// SVG hardware drawn behind the screenshot; S is the screen rectangle.
+function deviceFrame(kind, S, W, H, uid, domain = "") {
+  const r = S.x + S.w, b = S.y + S.h, mid = S.x + S.w / 2;
+  const defs = `<defs><linearGradient id="${uid}m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe3ea"/><stop offset=".55" stop-color="#b3b9c6"/><stop offset="1" stop-color="#7f8695"/></linearGradient><radialGradient id="${uid}s"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>`;
+  const shadow = (y, rx) => `<ellipse cx="${mid}" cy="${y}" rx="${rx}" ry="${S.w * 0.035}" fill="url(#${uid}s)"/>`;
+  const bezel = (p, rad) => `<rect x="${S.x - p}" y="${S.y - p}" width="${S.w + p * 2}" height="${S.h + p * 2}" rx="${rad}" fill="#0c0e13" stroke="rgba(255,255,255,.22)"/>`;
+  let art = "";
+  if (kind === "laptop") {
+    const p = S.w * 0.018, by = b + p, ext = S.w * 0.075, h = S.w * 0.028;
+    art = shadow(by + h + 8, S.w * 0.62) + bezel(p, p * 1.3) +
+      `<path d="M${S.x - ext} ${by}H${r + ext}l${S.w * 0.012} ${h * 0.7}q-${S.w * 0.004} ${h * 0.3}-${S.w * 0.03} ${h * 0.3}H${S.x - ext + S.w * 0.018}q-${S.w * 0.026} 0-${S.w * 0.03}-${h * 0.3}Z" fill="url(#${uid}m)"/>` +
+      `<rect x="${mid - S.w * 0.07}" y="${by}" width="${S.w * 0.14}" height="${h * 0.34}" rx="${h * 0.17}" fill="#8b92a1"/>`;
+  } else if (kind === "monitor") {
+    const p = S.w * 0.016, by = b + p, n = S.w * 0.05, f = S.w * 0.17;
+    art = shadow(by + n + 12, S.w * 0.34) +
+      `<path d="M${mid - n * 0.9} ${by}h${n * 1.8}l${n * 0.3} ${n}h-${n * 2.4}Z" fill="url(#${uid}m)"/>` +
+      `<rect x="${mid - f}" y="${by + n - 1}" width="${f * 2}" height="${n * 0.2}" rx="${n * 0.1}" fill="url(#${uid}m)"/>` + bezel(p, p * 0.9);
+  } else if (kind === "tablet") {
+    const p = S.w * 0.03;
+    art = shadow(b + p + 10, S.w * 0.54) + bezel(p, p * 1.1) + `<circle cx="${mid}" cy="${S.y - p / 2}" r="${p * 0.13}" fill="#2a2e38"/>`;
+  } else {
+    const bar = S.w * 0.05;
+    art = shadow(b + 14, S.w * 0.54) +
+      `<rect x="${S.x - 1}" y="${S.y - bar}" width="${S.w + 2}" height="${S.h + bar + 1}" rx="${bar * 0.36}" fill="#171a21" stroke="rgba(255,255,255,.22)"/>` +
+      ["#ff6159", "#ffbd2e", "#28c941"].map((c, i) => `<circle cx="${S.x + bar * 0.55 + i * bar * 0.42}" cy="${S.y - bar / 2}" r="${bar * 0.13}" fill="${c}"/>`).join("") +
+      (domain ? `<rect x="${mid - S.w * 0.19}" y="${S.y - bar * 0.78}" width="${S.w * 0.38}" height="${bar * 0.56}" rx="${bar * 0.28}" fill="rgba(255,255,255,.08)"/><text x="${mid}" y="${S.y - bar * 0.4}" text-anchor="middle" font-size="${bar * 0.3}" fill="rgba(255,255,255,.65)">${esc(domain)}</text>` : "");
+  }
+  return `<svg class="stage__frame" viewBox="0 0 ${W} ${H}" aria-hidden="true" focusable="false">${defs}${art}${sparkle(W * 0.055, H * 0.12, W * 0.016)}${sparkle(W * 0.945, H * 0.86, W * 0.012)}</svg>`;
+}
+
+const cropCard = (c, W, H, eager = false) => `<div class="stage__crop" style="left:${pct(c.x, W)};top:${pct(c.y, H)};width:${pct(c.w, W)}"><i></i><img src="/assets/taaweel-app/stage/crop-${c.name}.webp" alt="" loading="${eager ? "eager" : "lazy"}" width="${c.dw}" height="${c.dh}" /></div>`;
+const stageBadge = (ic, x, y, W, H) => `<span class="stage__badge" style="left:${pct(x, W)};top:${pct(y, H)}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${I[ic]}</svg></span>`;
+
+// One annotated device stage on the 1200x600 canvas.
+export function deviceStage(st, alt, uid) {
+  const S = { x: 250, y: st.device === "browser" ? 70 : 52, w: 700, h: 437.5 };
+  const [bx, by, bx2] = st.box;
+  const k = S.w / (bx2 - bx);
+  const wires = st.notes.map((n) => {
+    const tx = (S.x + (n.at[0] - bx) * k).toFixed(1), ty = (S.y + (n.at[1] - by) * k).toFixed(1), [ax, ay] = n.chip;
+    const d = (tx - ax) * 0.5;
+    const path = `M${ax} ${ay}C${(ax + d).toFixed(1)} ${ay} ${(tx - d).toFixed(1)} ${ty} ${tx} ${ty}`;
+    return `<path class="stage__halo" d="${path}"/><path class="stage__line" d="${path}"/><circle class="stage__ring" cx="${tx}" cy="${ty}" r="9"/><circle class="stage__dot" cx="${tx}" cy="${ty}" r="3.6"/>`;
+  }).join("");
+  const chips = st.notes.map((n) => `<span class="stage__chip stage__chip--${n.chip[0] < STAGE_W / 2 ? "l" : "r"}" style="left:${pct(n.chip[0], STAGE_W)};top:${pct(n.chip[1], STAGE_H)}">${esc(n.t)}</span>`).join("");
+  // badges sit beside the first crop, on the side away from it
+  const onLeft = st.crops[0].x < STAGE_W / 2;
+  const badges = (st.badges || []).map((ic, i) => stageBadge(ic, onLeft ? 870 - i * 74 : 262 + i * 74, 520, STAGE_W, STAGE_H)).join("");
+  return `<div class="stage"><div class="stage__inner">
+${deviceFrame(st.device, S, STAGE_W, STAGE_H, uid, st.domain)}
+<img class="stage__screen" src="/assets/taaweel-app/stage/${st.img}.webp" alt="${esc(alt)}" loading="lazy" width="1280" height="800" style="left:${pct(S.x, STAGE_W)};top:${pct(S.y, STAGE_H)};width:${pct(S.w, STAGE_W)}" />
+<svg class="stage__wires" viewBox="0 0 ${STAGE_W} ${STAGE_H}" aria-hidden="true" focusable="false">${wires}</svg>
+${chips}
+${st.crops.map((c) => cropCard(c, STAGE_W, STAGE_H)).join("")}
+${badges}
+</div></div>
+<ul class="stage__list">${st.notes.map((n) => `<li>${esc(n.t)}</li>`).join("")}</ul>`;
+}
+
+// Tinted feature card: title left, text and CTA right, annotated device below.
+export function stageCard(shot, st, url, ctaLabel, uid, tag = "article") {
+  return `<${tag} class="stagecard tone-${st.tone}">
+<header class="stagecard__head"><h3>${esc(shot.title)}</h3><div><p>${shot.cap}</p><a class="stagecard__cta" href="${url}" target="_blank" rel="noopener">${esc(ctaLabel)} <span aria-hidden="true">→</span></a></div></header>
+${deviceStage(st, shot.alt, uid)}
+</${tag}>`;
+}
+
+// Hub gallery: scroll-snap carousel (swipe/scroll without JS; arrows from /js/stage-carousel.js).
+export function stageGallery({ url, shots, stages, name, domain, logoSrc, logoAlt, ctaLabel = "Open the app" }) {
+  return `<section class="band band--tint stagesband" id="app"><div class="wrap">
+<div class="apphead">
+<img class="app-mark" data-theme-img="${logoSrc.replace(/-dark$/, "")}" src="/assets/${logoSrc}.svg" alt="${esc(logoAlt || name)}" width="44" height="80" />
+${secHead("Inside the app", `Working screens from ${name}`, `Real screens, with the parts that matter marked up. <a href="${url}" target="_blank" rel="noopener">Open ${esc(domain)} ↗</a>`)}
+</div></div>
+<div class="stages" tabindex="0" role="group" aria-label="${esc(name)} features">${shots.map((s, i) => stageCard(s, stages[s.stage], url, ctaLabel, `st${i}`)).join("")}</div>
+<div class="wrap stages__nav"><button type="button" class="stages__btn" data-dir="-1" aria-label="Previous feature" hidden>←</button><button type="button" class="stages__btn" data-dir="1" aria-label="Next feature" hidden>→</button></div>
+<script src="/js/stage-carousel.js" defer></script>
+</section>`;
+}
+
+// Capability page: one wide annotated stage.
+export const stageBand = (shot, st, url, ctaLabel = "Open the app") => `<section class="band band--tint"><div class="wrap">${stageCard(shot, st, url, ctaLabel, "st", "figure")}</div></section>`;
+
+// Taaweel hero: the real run screen in a laptop, with key details lifted out of it.
+export function taaweelHeroArt(label, crops) {
+  const W = 620, H = 470, S = { x: 62, y: 44, w: 496, h: 310 };
+  return `<div class="stage stage--hero tone-green"><div class="stage__inner" style="aspect-ratio:${W}/${H}">
+${deviceFrame("laptop", S, W, H, "hero")}
+<img class="stage__screen" src="/assets/taaweel-app/stage/run.webp" alt="${esc(label)}" fetchpriority="high" width="1280" height="800" style="left:${pct(S.x, W)};top:${pct(S.y, H)};width:${pct(S.w, W)}" />
+${cropCard({ ...crops.progress, x: 0, y: 262, w: 300 }, W, H, true)}
+${cropCard({ ...crops.cost, x: 310, y: 330, w: 300 }, W, H, true)}
+<span class="stage__badge stage__badge--logo" style="left:${pct(540, W)};top:${pct(8, H)}"><svg viewBox="0 0 124 124" aria-hidden="true" focusable="false"><g transform="translate(-28.3 6.8) scale(0.155)" class="twk"><path class="twk-main" fill-rule="evenodd" d="${TWK_MAIN}"/><path class="twk-acc" fill-rule="evenodd" d="${TWK_ACC}"/></g></svg></span>
+${stageBadge("check", 14, 60, W, H)}
+${stageBadge("shield", 552, 190, W, H)}
+</div></div>`;
 }
 
 // ---------- head / header / footer ----------
