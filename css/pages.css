@@ -235,6 +235,11 @@ button.chip { color: var(--brand-muted); }
 .cards > :not(.post-card):nth-child(6n+4), .steps > :nth-child(6n+4), .stats > :nth-child(4n+4) { --accent: var(--brand-violet); --accent-rgb: 179, 139, 255; }
 .cards > :not(.post-card):nth-child(6n+5), .steps > :nth-child(6n+5) { --accent: var(--brand-amber); --accent-rgb: 255, 200, 87; }
 .cards > :not(.post-card):nth-child(6n), .steps > :nth-child(6n) { --accent: var(--brand-sky); --accent-rgb: 90, 200, 250; }
+/* Taaweel product brand (taaweel.snaprytr.com): olive green — doubled class outranks the cycle above */
+.card--taaweel.card--taaweel { --accent: #6aa629; --accent-rgb: 106, 166, 41; }
+.card__ar { font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", "Segoe UI", serif; font-weight: 400; font-size: 1.02em; color: var(--accent); }
+.card__app { align-self: flex-start; font-size: 0.76rem; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--accent) 70%, var(--brand-text)); background: rgba(var(--accent-rgb), 0.10); border: 1px solid rgba(var(--accent-rgb), 0.28); padding: 3px 10px; border-radius: 999px; }
+[data-theme="light"] .card__app { color: color-mix(in srgb, var(--accent) 55%, #000); }
 .cards .pict .ico, .steps .pict .ico { stroke: var(--accent); }
 .cards .pict .ico .dot, .steps .pict .ico .dot { fill: var(--accent); }
 .cards .pict, .steps .pict { background: rgba(var(--accent-rgb), 0.16); }

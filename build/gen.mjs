@@ -158,15 +158,16 @@ for (const p of [taaweel, home]) {
 function renderProductsIndex() {
   const bc = [["/", "SnapKodex"], ["/products/", "Products"]];
   const prods = [
-    { href: taaweel.hub.url, key: "taaweel", ic: "book", tag: "Early access", t: "Taaweel", d: "An AI research engine for Quranic inquiry: whole-corpus concordance, tiered evidence, adversarial audit and cited reports. With Mizan for transparent numerical analysis.", more: "Explore Taaweel", art: "product-taaweel" },
+    { href: taaweel.hub.url, key: "taaweel", ic: "book", tag: "Early access", t: "Taaweel", d: "An AI research engine for Quranic inquiry: whole-corpus concordance, tiered evidence, adversarial audit and cited reports. With Mizan for transparent numerical analysis.", more: "Explore Taaweel", art: "product-taaweel", cls: "card--taaweel", ar: "تأويل", app: "taaweel.snaprytr.com" },
     { href: home.hub.url, key: "home", ic: "sun", tag: "Live", t: "Homeschooling", d: "A family learning OS: guiding-light curriculum, AI-built syllabus, drag-and-drop planner, parent and child players, and fair completion-based scoring.", more: "Explore Homeschooling", art: "product-homeschooling" },
     { href: "/snap-projects.html", key: "sp", ic: "tasks", tag: "Desktop app", t: "Snap Projects", d: "An AI workspace for managers: chat with your files, Jira and Confluence, meeting answers, a commitment ledger that catches what people promised, goals, checks and skills.", more: "Explore Snap Projects", art: "product-snap-projects" },
     { href: "https://snaprytr.com", key: "sr", ic: "pencil", tag: "Live SaaS", t: "SnapRytr", d: "AI chat for expert marketers: briefs, campaign tuning and content flows.", more: "Visit SnapRytr", art: "product-snaprytr" },
     { href: null, key: "slm", ic: "mail", tag: "Coming soon", t: "SLM", d: "Industry-targeted lead discovery with configurable cadences and email campaigns on public leads.", more: "", art: "product-slm" },
   ];
   const card = (x) => {
-    const inner = `<img class="post-card__art" data-theme-img="${x.art}" src="/assets/${x.art}.svg" alt="" width="400" height="120" style="width:100%;height:auto;border-radius:14px" />${L.pict(x.ic)}<span class="card__tag">${x.tag}</span><h3>${x.t}</h3><p>${x.d}</p>${x.more ? `<span class="card__more">${x.more}</span>` : ""}`;
-    return x.href ? `<a class="card" href="${x.href}"${/^https?:/.test(x.href) ? ' target="_blank" rel="noopener"' : ""}>${inner}</a>` : `<div class="card">${inner}</div>`;
+    const inner = `<img class="post-card__art" data-theme-img="${x.art}" src="/assets/${x.art}.svg" alt="" width="400" height="120" style="width:100%;height:auto;border-radius:14px" />${L.pict(x.ic)}<span class="card__tag">${x.tag}</span><h3>${x.t}${x.ar ? ` <span class="card__ar" lang="ar" dir="rtl">${x.ar}</span>` : ""}</h3><p>${x.d}</p>${x.app ? `<span class="card__app">${x.app}</span>` : ""}${x.more ? `<span class="card__more">${x.more}</span>` : ""}`;
+    const cls = x.cls ? ` ${x.cls}` : "";
+    return x.href ? `<a class="card${cls}" href="${x.href}"${/^https?:/.test(x.href) ? ' target="_blank" rel="noopener"' : ""}>${inner}</a>` : `<div class="card${cls}">${inner}</div>`;
   };
   const body = `${L.globalHeader("Products")}
 <main id="main" class="pg"><div class="wrap">

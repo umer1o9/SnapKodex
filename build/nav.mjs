@@ -82,7 +82,7 @@ export function globalMenu() {
   items.push({
     key: "products", label: "Products", href: "/products/", kind: "mega", icon: "cube", tone: "amber",
     columns: [
-      [{ head: { href: `${BASE.taaweel}/`, title: "Taaweel", icon: "book", desc: "AI engine for Quranic research" }, tone: "violet", links: TAAWEEL.map(([s, t, d, i]) => lk(`${BASE.taaweel}/${s}/`, t, d, i, "violet")) }],
+      [{ head: { href: `${BASE.taaweel}/`, title: "Taaweel", icon: "book", desc: "AI engine for Quranic research" }, tone: "green", links: TAAWEEL.map(([s, t, d, i]) => lk(`${BASE.taaweel}/${s}/`, t, d, i, "green")) }],
       [{ head: { href: `${BASE.home}/`, title: "Homeschooling", icon: "sun", desc: "Curriculum and planner for families" }, tone: "amber", links: HOME.map(([s, t, d, i]) => lk(`${BASE.home}/${s}/`, t, d, i, "amber")) }],
       [
         { head: { href: "/snap-projects.html", title: "Snap Projects", icon: "tasks", desc: "AI workspace for managers" }, tone: "mint", links: [lk("/snap-projects.html#whats-new", "What's inside", "Meetings, goals, checks and skills", "sparkle", "mint"), lk("/snap-projects.html#pricing", "Pricing", "Plans and availability", "coin", "mint")] },

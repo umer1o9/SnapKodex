@@ -25,6 +25,14 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 ## Final state (2026-11-05)
 All milestones done and deployed (last commit e09b05b). 47 generated pages + homepage/Snap Projects patches. Known follow-ups: live /sitemap.xml (Cloud Function, left unchanged) still lists /products.html (now a 301) and lacks new pages; sitemap_index.xml and sitemap-*.xml cover them. Per-product blogs not built (by request). Taaweel CTA is early-access email; Homeschooling CTA is https://homeschooling-b3e57.web.app/.
 
+## Taaweel card rebrand (2026-11-05)
+- Owner confirmed Taaweel lives at https://taaweel.snaprytr.com; asked to brand the Taaweel card on /products/ in that app's identity.
+- Extracted the app's real brand (from its CSS): green gradient #6aa629→#4f8a1c, light accent #8ccb45, paper #faf8f3 / dark #17140f, ink #4a3b2c, fonts Inter + Amiri.
+- Redrew `assets/product-taaweel.svg` + `-light.svg` in that palette (report panel, open book, eight-point star medallion, تأويل wordmark, ٦٬٢٣٦ آية).
+- `/products/` card (build/gen.mjs) and homepage card (build/patch-site.mjs) got `card--taaweel` (green accent override in css/pages.css), Amiri Arabic تأويل beside the title, and a `taaweel.snaprytr.com` domain chip (`card__app`).
+- Mega menu Taaweel column switched violet → new `t-green` tone (css/nav.css), flows into every generated page + functions/site-chrome.json.
+- Taaweel hub/spoke pages keep their own violet theme (unchanged, follow-up if wanted: switch theme-taaweel to green).
+
 ## Navigation & chrome overhaul (2026-11-05)
 - One shared header + footer source: `build/nav.mjs` (mega menu: Services 3 cols, Products 4 cols, Insights by topic, Company dropdown; mobile drawer with accordions). Styles `css/nav.css`, behaviour `js/nav.js` (replaces `js/pages.js`).
 - Applied to every generated page and injected (marker-based, idempotent) into index, blog, snap-projects, products, `-snap-projects.html`, `fonts/index.html`.

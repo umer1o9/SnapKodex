@@ -66,11 +66,11 @@ export function patchSite({ ROOT, L, BASE, hasInsights = false, hasServices = fa
   // ---- homepage ----
   let idx = fixLinks(read("index.html"));
   if (!idx.includes('/css/pages.css')) idx = idx.replace('</head>', '    <link rel="stylesheet" href="/css/pages.css" />\n  </head>');
-  const card = (href, ic, tag, title, text) => `<a class="card" href="${href}">${L.pict(ic)}<span class="card__tag">${tag}</span><h3>${title}</h3><p>${text}</p><span class="card__more">Explore</span></a>`;
+  const card = (href, ic, tag, title, text, x = {}) => `<a class="card${x.cls ? " " + x.cls : ""}" href="${href}">${L.pict(ic)}<span class="card__tag">${tag}</span><h3>${title}${x.ar ? ` <span class="card__ar" lang="ar" dir="rtl">${x.ar}</span>` : ""}</h3><p>${text}</p>${x.app ? `<span class="card__app">${x.app}</span>` : ""}<span class="card__more">Explore</span></a>`;
   const productsSection = `<section class="band hp-products" id="products" style="position:relative;z-index:1"><div class="wrap">
 ${L.secHead("Products", "Software we build, ship and own", "Alongside client delivery we run a product studio. Each product is a working application with its own page.")}
 <div class="cards">
-${card(BASE.taaweel + "/", "book", "Early access", "Taaweel", "An AI research engine for Quranic inquiry: whole-corpus concordance, tiered evidence, adversarial audit and cited reports.")}
+${card(BASE.taaweel + "/", "book", "Early access", "Taaweel", "An AI research engine for Quranic inquiry: whole-corpus concordance, tiered evidence, adversarial audit and cited reports.", { cls: "card--taaweel", ar: "تأويل", app: "taaweel.snaprytr.com" })}
 ${card(BASE.home + "/", "sun", "Live", "Homeschooling", "Guiding-light curriculum, an AI-built syllabus, a drag-and-drop planner and fair completion-based scoring for families.")}
 ${card("/snap-projects.html", "tasks", "Desktop app", "Snap Projects", "An AI workspace for managers: your files, Jira and Confluence, meeting answers and a commitment ledger.")}
 ${card("https://snaprytr.com", "pencil", "Live SaaS", "SnapRytr", "AI chat for expert marketers: briefs, campaign tuning and content flows.")}
