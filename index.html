@@ -1707,6 +1707,7 @@
         padding: clamp(32px, 5vw, 64px) clamp(24px, 5vw, 80px);
         border-bottom: 1px solid var(--surface-card-border-subtle);
         background: var(--services-intro-bg);
+        counter-reset: service-index;
       }
 
       .services__intro-inner {
@@ -1863,6 +1864,14 @@
 
         .services__quicklinks {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      /* phones: shorter, mid-cropped photo so the people are visible instead of the white top band */
+      @media (max-width: 560px) {
+        .services__intro-photo {
+          aspect-ratio: 4 / 3;
+          object-position: center 42%;
         }
       }
 
@@ -2228,7 +2237,6 @@
         flex-direction: column;
         gap: var(--section-space-y);
         padding: 0;
-        counter-reset: service-index;
         scroll-margin-top: 88px;
       }
 
@@ -2605,6 +2613,11 @@
       .service-card__lead .service-icon {
         grid-row: 1 / span 2;
         margin-bottom: 0;
+      }
+
+      /* keep the explore link out of column 1, otherwise the auto column widens to the link width and squeezes the title/description */
+      .service-card__lead .service-more {
+        grid-column: 2;
       }
 
       .service-card__subs {

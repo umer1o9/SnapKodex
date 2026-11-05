@@ -25,6 +25,12 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 ## Final state (2026-11-05)
 All milestones done and deployed (last commit e09b05b). 47 generated pages + homepage/Snap Projects patches. Known follow-ups: live /sitemap.xml (Cloud Function, left unchanged) still lists /products.html (now a 301) and lacks new pages; sitemap_index.xml and sitemap-*.xml cover them. Per-product blogs not built (by request). Taaweel CTA is early-access email; Homeschooling CTA is https://homeschooling-b3e57.web.app/.
 
+## Homepage services mobile fixes (2026-11-05)
+- `.service-card__lead .service-more { grid-column: 2 }` — the injected Explore link previously landed in the lead grid's auto column, widening it to ~116px and squeezing title/description to ~118px on phones. Now 52px icon column + fluid text column.
+- Counter reset moved from `.services__stream` to `.services` — the stream reset used to restart numbering after the featured web-development card (01, 01, 02…).
+- Phones ≤560px: services intro photo gets `aspect-ratio: 4/3` + `object-position: center 42%` — was a near-white 429px block in light theme (top band of the image), now shows the team photo in ~257px.
+- Verified at 360/375/414/768 (no horizontal scroll) and desktop 1440 (no regression), both themes.
+
 ## Taaweel card rebrand (2026-11-05)
 - Owner confirmed Taaweel lives at https://taaweel.snaprytr.com; asked to brand the Taaweel card on /products/ in that app's identity.
 - Extracted the app's real brand (from its CSS): green gradient #6aa629→#4f8a1c, light accent #8ccb45, paper #faf8f3 / dark #17140f, ink #4a3b2c, fonts Inter + Amiri.
