@@ -256,6 +256,24 @@ button.chip { color: var(--brand-muted); }
 .appshot figcaption { padding: 14px 18px; font-size: 0.88rem; line-height: 1.5; color: rgba(234, 228, 211, 0.78); border-top: 1px solid rgba(255, 255, 255, 0.07); }
 .appshot figcaption strong { color: #eae4d3; font-weight: 600; }
 .appshot--wide { max-width: 1080px; margin-inline: auto; }
+/* pictogram variant: the SVG carries its own dark paper panel, caption below on the page surface */
+.appshot--picto { background: none; border: 1px solid var(--surface-card-border); }
+.appshot--picto .appshot__bar { display: none; }
+.appshot--picto img { width: 100%; height: auto; }
+.appshot--picto.appshot--wide { max-width: 680px; }
+.appshot--picto figcaption { display: flex; flex-direction: column; gap: 3px; padding: 14px 18px 16px; color: var(--brand-muted); border-top: none; }
+.appshot--picto figcaption strong { font-size: 1rem; color: var(--brand-text); }
+.appshot--picto figcaption span { font-size: 0.86rem; color: var(--brand-muted); }
+[data-theme="light"] .appshot--picto { border-color: rgba(11, 13, 18, 0.1); box-shadow: 0 18px 44px rgba(6, 7, 10, 0.16); }
+[data-theme="light"] .appshot--picto figcaption strong { color: #0b0d12; }
+[data-theme="light"] .appshot--picto { border-color: rgba(11, 13, 18, 0.1); box-shadow: 0 18px 44px rgba(6, 7, 10, 0.16); }
+/* Taaweel knot pictogram inside the hero: cream on dark, brown on light */
+.twk .twk-main { fill: #ede6dc; }
+.twk .twk-acc { fill: #8ccb45; }
+.twk-word { fill: rgba(140, 203, 69, 0.85); }
+[data-theme="light"] .twk .twk-main { fill: #4a3b2c; }
+[data-theme="light"] .twk .twk-acc { fill: #6aa629; }
+[data-theme="light"] .twk-word { fill: #4f8a1c; }
 @media (max-width: 900px) {
   .appgallery { grid-template-columns: 1fr; }
   .apphead { gap: 18px; margin-bottom: 28px; }

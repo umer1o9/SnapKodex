@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240" fill="none">
+  <defs>
+    <linearGradient id="twd" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6aa629" stop-opacity=".26"/>
+      <stop offset=".55" stop-color="#4f8a1c" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#17140f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" rx="16" fill="#17140f"/>
+  <rect width="400" height="240" rx="16" fill="url(#twd)"/>
+  <!-- research composer -->
+  <rect x="36" y="26" width="328" height="36" rx="18" fill="rgba(234,228,211,.06)" stroke="rgba(140,203,69,.35)"/>
+  <circle cx="58" cy="44" r="7" stroke="rgba(234,228,211,.55)" stroke-width="1.6"/>
+  <path d="M63 49l5 5" stroke="rgba(234,228,211,.55)" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M76 44h150" stroke="rgba(234,228,211,.32)" stroke-width="2" stroke-linecap="round"/>
+  <rect x="292" y="35" width="62" height="18" rx="9" fill="#4f8a1c"/>
+  <path d="M304 44h38" stroke="#eae4d3" stroke-width="2" stroke-linecap="round"/>
+  <!-- runs table -->
+  <rect x="36" y="80" width="86" height="7" rx="3.5" fill="rgba(234,228,211,.4)"/>
+  <path d="M36 100h328" stroke="rgba(234,228,211,.14)"/>
+  <text x="36" y="122" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="12" fill="rgba(234,228,211,.85)">#2</text>
+  <rect x="70" y="111" width="46" height="16" rx="8" fill="rgba(106,166,41,.28)" stroke="rgba(140,203,69,.55)"/>
+  <circle cx="80" cy="119" r="3.5" fill="#8ccb45"/>
+  <path d="M120 119h96" stroke="rgba(234,228,211,.55)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M286 119h44" stroke="rgba(234,228,211,.22)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M36 146h328" stroke="rgba(234,228,211,.14)"/>
+  <text x="36" y="168" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="12" fill="rgba(234,228,211,.4)">#3</text>
+  <rect x="70" y="157" width="46" height="16" rx="8" fill="rgba(234,228,211,.06)" stroke="rgba(234,228,211,.25)"/>
+  <circle cx="80" cy="165" r="3.5" fill="rgba(234,228,211,.5)"/>
+  <path d="M120 165h76" stroke="rgba(234,228,211,.3)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M286 165h44" stroke="rgba(234,228,211,.18)" stroke-width="2" stroke-linecap="round"/>
+  <!-- new research button -->
+  <rect x="286" y="192" width="78" height="26" rx="13" fill="#4f8a1c"/>
+  <path d="M325 205h-16M317 197v16" stroke="#eae4d3" stroke-width="2" stroke-linecap="round"/>
+  <text x="291" y="209" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="0" fill="none"> </text>
+  <!-- ta wil accent -->
+  <text x="98" y="210" text-anchor="end" font-family="Amiri, 'Noto Naskh Arabic', 'Segoe UI', serif" font-size="20" fill="rgba(140,203,69,.5)" direction="rtl">تأويل</text>
+</svg>

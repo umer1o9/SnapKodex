@@ -93,7 +93,7 @@ ${L.hero({
     h1: h.h1,
     lead: h.lead,
     actions: [[ctaTarget, ctaLabel + (p.app ? " →" : "")], ["#capabilities", "Explore capabilities", "ghost"]],
-    art: L.heroArt(h.art.main, h.art.sats, h.art.label),
+    art: p.key === "taaweel" ? L.taaweelHeroArt(h.art.label) : L.heroArt(h.art.main, h.art.sats, h.art.label),
   })}
 <section class="stats" aria-label="At a glance">${h.stats.map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("")}</section>
 </div>

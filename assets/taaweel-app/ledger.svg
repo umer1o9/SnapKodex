@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240" viewBox="0 0 400 240" fill="none">
+  <defs>
+    <linearGradient id="twl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6aa629" stop-opacity=".26"/>
+      <stop offset=".55" stop-color="#4f8a1c" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#17140f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" rx="16" fill="#17140f"/>
+  <rect width="400" height="240" rx="16" fill="url(#twl)"/>
+  <!-- ledger header -->
+  <rect x="36" y="30" width="120" height="9" rx="4" fill="rgba(234,228,211,.8)"/>
+  <rect x="306" y="28" width="58" height="16" rx="8" fill="rgba(106,166,41,.22)" stroke="rgba(140,203,69,.55)"/>
+  <text x="318" y="40" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="9" fill="rgba(234,228,211,.7)">5 tiers</text>
+  <path d="M36 54h328" stroke="rgba(234,228,211,.14)"/>
+  <!-- tier rows: tier badge + source line + passage lines + citation chip -->
+  <g font-family="Space Grotesk, Segoe UI, sans-serif" font-size="10">
+    <rect x="36" y="68" width="46" height="18" rx="9" fill="rgba(106,166,41,.32)" stroke="rgba(140,203,69,.65)"/>
+    <text x="44" y="81" fill="#8ccb45">verse</text>
+    <rect x="36" y="106" width="46" height="18" rx="9" fill="rgba(106,166,41,.2)" stroke="rgba(140,203,69,.45)"/>
+    <text x="43" y="119" fill="rgba(234,228,211,.8)">lexicon</text>
+    <rect x="36" y="144" width="46" height="18" rx="9" fill="rgba(106,166,41,.14)" stroke="rgba(140,203,69,.35)"/>
+    <text x="44" y="157" fill="rgba(234,228,211,.7)">tafsir</text>
+    <rect x="36" y="182" width="46" height="18" rx="9" fill="rgba(234,228,211,.06)" stroke="rgba(234,228,211,.3)"/>
+    <text x="43" y="195" fill="rgba(234,228,211,.6)">hadith</text>
+  </g>
+  <g stroke="rgba(234,228,211,.5)" stroke-width="2" stroke-linecap="round">
+    <path d="M98 73h150M98 77h96"/>
+    <path d="M98 111h130M98 115h88"/>
+    <path d="M98 149h142M98 153h104"/>
+    <path d="M98 187h120M98 191h82"/>
+  </g>
+  <g fill="rgba(106,166,41,.35)" stroke="rgba(140,203,69,.6)">
+    <rect x="322" y="66" width="42" height="18" rx="9"/>
+    <rect x="322" y="104" width="42" height="18" rx="9"/>
+    <rect x="322" y="142" width="42" height="18" rx="9"/>
+    <rect x="322" y="180" width="42" height="18" rx="9"/>
+  </g>
+  <g font-family="Space Grotesk, Segoe UI, sans-serif" font-size="10" fill="#8ccb45" text-anchor="middle">
+    <text x="343" y="79">E-1</text>
+    <text x="343" y="117">E-2</text>
+    <text x="343" y="155">E-3</text>
+    <text x="343" y="193">E-4</text>
+  </g>
+</svg>

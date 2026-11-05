@@ -110,6 +110,36 @@ export function heroArt(main, sats = [], label = "") {
 </svg>`;
 }
 
+// ---------- Taaweel hero pictogram: knot logo inside the orbit, stage satellites around ----------
+const TWK_MAIN = "M 621 222.276 L 612.500 232.500 611.903 242.500 C 611.082 256.256, 610.769 322, 611.525 322 C 611.861 322, 616.085 319.452, 620.911 316.338 L 629.685 310.676 630.341 281.588 C 631.214 242.845, 631.174 211.994, 630.250 212.026 C 629.837 212.040, 625.675 216.653, 621 222.276 M 620.310 341.850 L 611.120 348.500 611.024 392 C 610.898 448.955, 610.137 511.908, 609.481 519.680 C 609.194 523.079, 608.706 530.279, 608.397 535.680 C 608.089 541.081, 607.017 552.475, 606.017 561 C 605.016 569.525, 604.324 576.633, 604.477 576.795 C 604.631 576.957, 606.855 573.511, 609.420 569.136 C 617.833 554.786, 624.648 534.922, 626.965 518 C 628.216 508.858, 630.154 402.226, 629.774 363.350 L 629.500 335.201 620.310 341.850";
+const TWK_ACC = "M 629.238 93.043 C 594.460 99.282, 562.490 128.680, 549.589 166.286 C 536.248 205.178, 542.900 243.347, 567.393 268.434 C 570.519 271.636, 573.295 274.038, 573.561 273.772 C 573.827 273.506, 571.600 269.393, 568.611 264.632 C 558.456 248.458, 554.136 235.388, 553.282 218.261 C 551.152 175.515, 577.672 137.831, 619 124.880 C 630.683 121.219, 651.377 121.438, 662.490 125.341 C 684.444 133.051, 699.455 149.590, 705.744 173 C 708.456 183.092, 708.113 205.704, 705.070 217.500 C 693.711 261.531, 667.875 288.320, 593.500 333.186 C 522.690 375.902, 495.383 396.837, 474.332 424.547 C 437.762 472.686, 432.696 540.750, 462.364 585.339 C 491.360 628.918, 550.003 633.182, 589.842 594.609 C 603.378 581.503, 603.696 580.845, 605.910 561.372 C 608.848 535.528, 609.262 527.741, 607.498 531.500 C 606.724 533.150, 606.070 535.104, 606.045 535.841 C 606.020 536.579, 603.961 541.130, 601.469 545.955 C 583.087 581.547, 537.748 596.863, 502.408 579.419 C 465.042 560.974, 452.862 509.897, 475.246 465.519 C 490.541 435.194, 512.035 416.114, 593 360.992 C 662.475 313.692, 690.023 286.466, 708.258 247.082 C 718.750 224.420, 722.406 207.238, 722.424 180.500 C 722.439 157.622, 720.761 149.282, 712.887 133.110 C 703.648 114.136, 686.160 99.863, 665.500 94.436 C 658.330 92.552, 636.623 91.718, 629.238 93.043";
+export function taaweelHeroArt(label = "") {
+  const cx = 240, cy = 198, R = 150;
+  const sats = ["route", "layers", "search", "shield", "graph", "scale"];
+  const pos = (i, n) => {
+    const a = (-90 + (360 / n) * i + 18) * (Math.PI / 180);
+    return [cx + R * Math.cos(a), cy + R * Math.sin(a)];
+  };
+  const satSvg = sats
+    .map((s, i) => {
+      const [x, y] = pos(i, sats.length);
+      return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})"><circle r="30" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.45)"/><g transform="translate(-15 -15) scale(1.25)">${I[s]}</g></g>`;
+    })
+    .join("");
+  const links = sats.map((_, i) => { const [x, y] = pos(i, sats.length); return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(var(--accent-rgb),.28)" stroke-dasharray="3 6"/>`; }).join("");
+  return `<svg class="art ico-scope" viewBox="0 0 480 420" role="img" aria-label="${esc(label || "Taaweel illustration")}">
+  <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="rgb(var(--accent-rgb))" stop-opacity=".32"/><stop offset="1" stop-color="rgb(var(--accent-rgb))" stop-opacity="0"/></radialGradient></defs>
+  <circle cx="${cx}" cy="${cy}" r="205" fill="url(#glow)"/>
+  <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" style="stroke:var(--svg-ring)" stroke-dasharray="2 7"/>
+  <circle cx="${cx}" cy="${cy}" r="${R - 55}" fill="none" style="stroke:var(--svg-ring)"/>
+  ${links}
+  <g><rect x="${cx - 62}" y="${cy - 62}" width="124" height="124" rx="34" style="fill:var(--svg-glass)" stroke="rgba(var(--accent-rgb),.6)" stroke-width="1.4"/>
+  <g transform="translate(${cx - 90.3} ${cy - 55.2}) scale(0.155)" class="twk"><path class="twk-main" fill-rule="evenodd" d="${TWK_MAIN}"/><path class="twk-acc" fill-rule="evenodd" d="${TWK_ACC}"/></g></g>
+  <text x="${cx}" y="${cy + 92}" text-anchor="middle" font-family="Amiri, 'Noto Naskh Arabic', 'Segoe UI', serif" font-size="24" class="twk-word" direction="rtl">تأويل</text>
+  <g class="ico">${satSvg}</g>
+</svg>`;
+}
+
 // ---------- head / header / footer ----------
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -224,12 +254,22 @@ export const callout = (ic, title, text, quiet = false) => `<div class="callout$
 export const cta = ({ title, text, primary, secondary }) => `<div class="ctaband"><h2>${title}</h2><p>${text}</p><div class="phero__actions"><a class="btn btn--primary" href="${primary[0]}"${/^https?:/.test(primary[0]) ? ' target="_blank" rel="noopener"' : ""}>${primary[1]}</a>${secondary ? `<a class="btn btn--ghost" href="${secondary[0]}">${secondary[1]}</a>` : ""}</div></div>`;
 
 // ---------- in-app screenshots (real screens from a product's own app) ----------
-// browser-framed screenshot card; art lives in /assets/<folder>/
-const appshot = ({ img, alt, cap, wide = false, folder, domain }) => `<figure class="appshot${wide ? " appshot--wide" : ""}">
+// Screenshot card: img WITHOUT extension defaults to .png and renders inside a browser frame bar.
+// img WITH extension (e.g. "dashboard.svg") renders as a pictogram panel: no bar, caption carries the title.
+const appshot = ({ img, title, alt, cap, wide = false, folder, domain, picto }) => {
+  const src = `/assets/${folder}/${img.includes(".") ? img : img + ".png"}`;
+  if (picto || img.endsWith(".svg")) {
+    return `<figure class="appshot appshot--picto${wide ? " appshot--wide" : ""}">
+<img src="${src}" alt="${esc(alt || title)}" loading="lazy" width="400" height="240" />
+<figcaption><strong>${esc(title)}</strong><span>${cap}</span></figcaption>
+</figure>`;
+  }
+  return `<figure class="appshot${wide ? " appshot--wide" : ""}">
 <div class="appshot__bar"><i></i><i></i><i></i><span>${esc(domain)}</span></div>
-<img src="/assets/${folder}/${img}.png" alt="${esc(alt)}" loading="lazy" width="1352" height="900" />
+<img src="${src}" alt="${esc(alt)}" loading="lazy" width="1352" height="900" />
 <figcaption>${cap}</figcaption>
 </figure>`;
+};
 
 // "Inside the app" gallery for a product hub: brand mark + working screens + open-the-app link.
 // folder/domain are per-product (screenshots live in /assets/<folder>/, shown under <domain> in the frame bar);

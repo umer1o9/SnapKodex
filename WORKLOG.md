@@ -32,6 +32,12 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - `APP.taaweel` respected: every Taaweel page CTA (header, hero, CTA band, footer) now points at https://taaweel.snapkodex.com ("Open the app"); hub schema gets installUrl.
 - Pages regenerated (47), links ok; verified desktop + mobile, dark + light.
 
+## Pictogram treatment for app screens (2026-11-05)
+- Replaced the raw Taaweel screenshots with 8 hand-drawn SVG pictogram wireframes (assets/taaweel-app/*.svg, 400x240, dark paper + green accent + cream lines + Arabic touches): dashboard, stages, report, ledger, concordance, audit, ontology, mizan. Old PNGs removed.
+- appshot() now renders pictogram panels (img with .svg extension = picto mode, no browser bar, title+caption caption); Homeschooling keeps its real screenshots (extensionless img = .png + frame bar).
+- New taaweelHeroArt() for the Taaweel hub hero: the knot logo (CSS-classed, cream/green on dark, brown/green on light) inside the glass tile with an orbit of six capability satellites and a ta wil wordmark.
+- Wide pictos capped at 680px; captions use theme-aware text colors.
+
 ## Homepage services mobile fixes (2026-11-05)
 - `.service-card__lead .service-more { grid-column: 2 }` — the injected Explore link previously landed in the lead grid's auto column, widening it to ~116px and squeezing title/description to ~118px on phones. Now 52px icon column + fluid text column.
 - Counter reset moved from `.services__stream` to `.services` — the stream reset used to restart numbering after the featured web-development card (01, 01, 02…).
