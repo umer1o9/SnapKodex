@@ -97,7 +97,7 @@ ${L.hero({
   })}
 <section class="stats" aria-label="At a glance">${h.stats.map(([b, s]) => `<div class="stat"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("")}</section>
 </div>
-${p.galleryShots ? L.appGallery({ url: p.app, shots: p.galleryShots, logoAlt: p.name + " — تأويل logo" }) : ""}
+${p.galleryShots ? L.appGallery({ url: p.app, shots: p.galleryShots, name: p.name, folder: p.appAssets.folder, domain: p.appAssets.domain, logoSrc: p.appAssets.logoSrc, logoAlt: p.appAssets.logoAlt, icon: p.icon }) : ""}
 <section class="band"><div class="wrap split"><div>${L.secHead("The problem", h.problemTitle)}<div class="prose">${h.problem.map((t) => `<p>${t}</p>`).join("")}</div></div><div>${L.checklist(h.problemPoints)}</div></div></section>
 <section class="band band--tint" id="capabilities"><div class="wrap">${L.secHead("Capabilities", h.capTitle, h.capLead)}
 <div class="cards">${p.spokes.map((s) => L.cardLink({ href: s.url, icon: s.icon, tag: s.eyebrow, title: s.h1.replace(/<\/?em>/g, ""), text: CARD[s.slug] || s.lead.split(". ")[0] + ".", more: "Read more" })).join("")}</div></div></section>
@@ -131,7 +131,7 @@ ${L.hero({
   })}
 </div>
 <section class="band"><div class="wrap split"><div>${L.secHead("Overview", "What it does")}<div class="prose">${s.overview.map((t) => `<p>${t}</p>`).join("")}</div></div><div>${L.callout(s.callout.icon, s.callout.title, s.callout.text)}<div style="height:22px"></div>${L.checklist(s.check)}</div></div></section>
-${s.shot ? L.appShot(s.shot) : ""}
+${s.shot ? L.appShot(s.shot, p.appAssets.folder, p.appAssets.domain) : ""}
 <section class="band band--tint"><div class="wrap">${L.secHead("How it works", "Step by step")}${L.stepsHtml(s.steps)}</div></section>
 <section class="band"><div class="wrap">${L.secHead("Features", s.featuresTitle)}<div class="cards">${s.features.map((f) => L.cardPlain(f)).join("")}</div></div></section>
 <section class="band band--tint"><div class="wrap">${L.secHead("Keep exploring", `More from ${p.name}`)}${L.wheelNav(p.hub, p.spokes, i)}</div></section>

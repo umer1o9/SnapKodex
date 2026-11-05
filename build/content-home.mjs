@@ -10,6 +10,7 @@ export const home = {
   icon: "sun",
   base: B,
   app: APP.home,
+  appAssets: { folder: "homeschooling-app", domain: "homeschooling.snapkodex.com" },
   hub: {
     nav: "Homeschooling overview",
     url: `${B}/`,
@@ -73,9 +74,17 @@ export const home = {
     ctaTitle: "Build your family's learning plan",
     ctaText: "Open the platform, describe your family and let the curriculum agent start the conversation.",
   },
+  // Real screens from the app (assets/homeschooling-app), shown in the hub gallery.
+  galleryShots: [
+    { img: "dashboard", alt: "A family's dashboard in the Homeschooling platform", cap: "<strong>Family dashboard</strong> — curriculum, planner, syllabus and the children's play space, one tap away." },
+    { img: "curriculum", alt: "The AI curriculum agent after generating a 6-month plan", cap: "<strong>Curriculum Builder</strong> — a short interview, then a six-month plan built around the family's guiding light." },
+    { img: "planner", alt: "The weekly planner with a day-by-day calendar grid", cap: "<strong>Weekly planner</strong> — drag activities into slots across the week, one column per child." },
+    { img: "wikido-scene", alt: "Wikido's illustrated Living Things scene with glowing hotspots", cap: "<strong>Wikido</strong> — a picture encyclopedia children wander through, tapping hotspots to read or listen." },
+  ],
   spokes: [
     {
       slug: "guiding-light-curriculum",
+      shot: { img: "curriculum", alt: "The curriculum agent's chat after generating Amina's 6-month plan", cap: "<strong>A real plan, from a real conversation.</strong> The agent asks about vision and level first, then generates the six-month curriculum as an active plan on the family's workspace." },
       nav: "Guiding-light curriculum",
       icon: "sun",
       sats: ["chat", "users", "doc", "target"],
@@ -114,6 +123,7 @@ export const home = {
     },
     {
       slug: "ai-syllabus-builder",
+      shot: { img: "syllabus", alt: "The syllabus builder with a curriculum ready to generate activities", cap: "<strong>From curriculum to activities.</strong> Generate the activity series subject by subject, or regenerate the whole syllabus as the plan changes." },
       nav: "AI syllabus builder",
       icon: "route",
       sats: ["sparkle", "book", "rocket", "blocks"],
@@ -152,6 +162,7 @@ export const home = {
     },
     {
       slug: "weekly-planner",
+      shot: { img: "planner", alt: "The weekly planner showing a day-by-day calendar grid for the week", cap: "<strong>A real week, laid out.</strong> One column per day, activities dropped into time slots, today highlighted." },
       nav: "Weekly planner",
       icon: "calendar",
       sats: ["route", "users", "clock", "play"],
@@ -266,6 +277,7 @@ export const home = {
     },
     {
       slug: "kids-learning-world",
+      shot: { img: "wikido-scene", alt: "Wikido's illustrated Living Things meadow scene with glowing hotspots and narration", cap: "<strong>Wikido, open on Living Things.</strong> A hand-illustrated scene with glowing hotspots to tap, each one read aloud or explored deeper." },
       nav: "Kids' learning world",
       icon: "globe",
       sats: ["blocks", "mic", "eye", "sparkle"],

@@ -223,27 +223,32 @@ export const checklist = (items) => `<ul class="checklist">${items.map((i) => `<
 export const callout = (ic, title, text, quiet = false) => `<div class="callout${quiet ? " callout--quiet" : ""}"><h3>${pict(ic, "sm")}${title}</h3><p>${text}</p></div>`;
 export const cta = ({ title, text, primary, secondary }) => `<div class="ctaband"><h2>${title}</h2><p>${text}</p><div class="phero__actions"><a class="btn btn--primary" href="${primary[0]}"${/^https?:/.test(primary[0]) ? ' target="_blank" rel="noopener"' : ""}>${primary[1]}</a>${secondary ? `<a class="btn btn--ghost" href="${secondary[0]}">${secondary[1]}</a>` : ""}</div></div>`;
 
-// ---------- Taaweel in-app screenshots ----------
-// browser-framed screenshot card; art lives in /assets/taaweel-app/
-const appshot = ({ img, alt, cap, wide = false }) => `<figure class="appshot${wide ? " appshot--wide" : ""}">
-<div class="appshot__bar"><i></i><i></i><i></i><span>taaweel.snapkodex.com</span></div>
-<img src="/assets/taaweel-app/${img}.png" alt="${esc(alt)}" loading="lazy" width="1352" height="900" />
+// ---------- in-app screenshots (real screens from a product's own app) ----------
+// browser-framed screenshot card; art lives in /assets/<folder>/
+const appshot = ({ img, alt, cap, wide = false, folder, domain }) => `<figure class="appshot${wide ? " appshot--wide" : ""}">
+<div class="appshot__bar"><i></i><i></i><i></i><span>${esc(domain)}</span></div>
+<img src="/assets/${folder}/${img}.png" alt="${esc(alt)}" loading="lazy" width="1352" height="900" />
 <figcaption>${cap}</figcaption>
 </figure>`;
 
-// "Inside the app" gallery for the product hub: brand logo + working screens + open-the-app link.
-export function appGallery({ url, shots, logoAlt }) {
+// "Inside the app" gallery for a product hub: brand mark + working screens + open-the-app link.
+// folder/domain are per-product (screenshots live in /assets/<folder>/, shown under <domain> in the frame bar);
+// logoSrc is optional — pass a dedicated brand mark (tall SVG) or omit to fall back to the product's own icon tile.
+export function appGallery({ url, shots, name, folder, domain, logoSrc, logoAlt, icon }) {
+  const mark = logoSrc
+    ? `<img class="app-mark" data-theme-img="${logoSrc.replace(/-dark$/, "")}" src="/assets/${logoSrc}.svg" alt="${esc(logoAlt || name)}" width="44" height="80" />`
+    : `<span class="app-mark app-mark--icon">${pict(icon, "lg")}</span>`;
   return `<section class="band band--tint" id="app"><div class="wrap">
 <div class="apphead">
-<img class="taaweel-mark" data-theme-img="taaweel-logo" src="/assets/taaweel-logo-dark.svg" alt="${esc(logoAlt)}" width="44" height="80" />
-${secHead("Inside the app", "Working screens from Taaweel", `Real research runs on taaweel.snapkodex.com — every stage, ledger row and verdict is on the record. <a href="${url}" target="_blank" rel="noopener">Open the app ↗</a>`)}
+${mark}
+${secHead("Inside the app", `Working screens from ${name}`, `Real screens from ${domain} — every stage is on the record. <a href="${url}" target="_blank" rel="noopener">Open the app ↗</a>`)}
 </div>
-<div class="appgallery">${shots.map((s) => appshot(s)).join("")}</div>
+<div class="appgallery">${shots.map((s) => appshot({ ...s, folder, domain })).join("")}</div>
 </div></section>`;
 }
 
 // single framed screenshot used on capability pages
-export const appShot = (s) => `<section class="band band--tint"><div class="wrap">${appshot({ ...s, wide: true })}</div></section>`;
+export const appShot = (s, folder, domain) => `<section class="band band--tint"><div class="wrap">${appshot({ ...s, folder, domain, wide: true })}</div></section>`;
 
 // ring navigation for a spoke inside its wheel
 export function wheelNav(hub, spokes, i) {

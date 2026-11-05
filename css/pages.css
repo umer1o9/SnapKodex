@@ -241,11 +241,12 @@ button.chip { color: var(--brand-muted); }
 .card__app { align-self: flex-start; font-size: 0.76rem; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--accent) 70%, var(--brand-text)); background: rgba(var(--accent-rgb), 0.10); border: 1px solid rgba(var(--accent-rgb), 0.28); padding: 3px 10px; border-radius: 999px; }
 [data-theme="light"] .card__app { color: color-mix(in srgb, var(--accent) 55%, #000); }
 
-/* ---------- Taaweel in-app screenshots (browser-framed) ---------- */
+/* ---------- in-app screenshots (browser-framed, per product) ---------- */
 .apphead { display: flex; align-items: center; gap: 26px; margin-bottom: 38px; }
 .apphead .sec-head { margin-bottom: 0; }
 .apphead .sec-head p a { color: var(--accent); font-weight: 600; }
-.taaweel-mark { width: 42px; height: 76px; object-fit: contain; flex-shrink: 0; }
+.app-mark { width: 42px; height: 76px; object-fit: contain; flex-shrink: 0; }
+.app-mark--icon { display: inline-flex; flex-shrink: 0; }
 .appgallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
 .appshot { margin: 0; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #17140f; border: 1px solid var(--surface-card-border); box-shadow: 0 24px 56px rgba(6, 7, 10, 0.35); }
 .appshot__bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
@@ -258,7 +259,7 @@ button.chip { color: var(--brand-muted); }
 @media (max-width: 900px) {
   .appgallery { grid-template-columns: 1fr; }
   .apphead { gap: 18px; margin-bottom: 28px; }
-  .taaweel-mark { width: 34px; height: 62px; }
+  .app-mark { width: 34px; height: 62px; }
 }
 .cards .pict .ico, .steps .pict .ico { stroke: var(--accent); }
 .cards .pict .ico .dot, .steps .pict .ico .dot { fill: var(--accent); }

@@ -1689,6 +1689,18 @@
       <!-- sp-whatsnew:start -->
 <section class="band" id="whats-new" style="position:relative;z-index:1"><div class="wrap theme-snapprojects"><div class="sec-head"><span class="sec-eyebrow">Built into the desktop app</span><h2>Beyond chat: tools for running real projects</h2><p>Recent releases add the features managers asked for most. Pricing and availability are shown below.</p></div><div class="cards"><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="fill" x="9" y="3" width="6" height="11" rx="3"/><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></svg></span><h3>Meeting answers</h3><p>A short answer to say aloud, a delivery cue and deeper follow-ups with dated, sourced evidence tiles. Statistics are accepted only when they match real search citations.</p></div><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V4"/><path class="fill" d="M5 4h11l-2 4 2 4H5z"/><path d="M5 4h11l-2 4 2 4H5z"/></svg></span><h3>Commitment ledger</h3><p>Reads meeting transcripts, Slack, Jira and ClickUp to catch verbal commitments that never landed anywhere, and flags drift between what was said and what the tracker shows.</p></div><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle class="dot" cx="12" cy="12" r="1.6"/></svg></span><h3>Goals</h3><p>Give the assistant a durable objective with a token budget. It keeps working across many turns, checkpoints its progress and stops when it can show the work is done.</p></div><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle class="fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16.2 9.5"/></svg></span><h3>Checks</h3><p>Write a question once, such as whether a contract renews automatically, and get a probability, a pick or a score for every document, with flagged results queued for review.</p></div><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="fill" d="m11 3 2 5.6L18.6 10.6 13 12.6 11 18.2 9 12.6 3.4 10.6 9 8.6z"/><path d="m11 3 2 5.6 5.6 2-5.6 2L11 18.2l-2-5.6-5.6-2 5.6-2z"/><path d="M19 16v5M16.5 18.5h5"/></svg></span><h3>Skills</h3><p>Save how you like recurring work done, including release notes or client reports, and the assistant follows it whenever a request matches. Import Claude-style SKILL.md files.</p></div><div class="card"><span class="pict"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="fill" x="3" y="6" width="13" height="12" rx="2.5"/><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3z"/></svg></span><h3>Video and 3D animation</h3><p>Generate narrated videos and standalone 3D animations. Scenes are written as code by your chosen model, checked and repaired automatically, and rendered offline.</p></div></div></div></section>
 <!-- sp-whatsnew:end -->
+<!-- sp-gallery:start -->
+<section class="band band--tint" id="app"><div class="wrap">
+<div class="apphead">
+<span class="app-mark app-mark--icon"><span class="pict pict--lg"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="fill" x="4" y="4" width="16" height="16" rx="3"/><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span></span>
+<div class="sec-head"><span class="sec-eyebrow">Inside the app</span><h2>Working screens from Snap Projects</h2><p>The desktop assistant, open on Hassan's own workspace &mdash; chats, projects and files side by side.</p></div>
+</div>
+<div class="appgallery">
+<figure class="appshot"><img src="/assets/snap-projects-app/chat.png" alt="The Snap Projects chat composer, ready for a new conversation" loading="lazy" width="1440" height="900" /><figcaption><strong>One assistant, every workspace.</strong> Chats, Projects, Files, Notes, People, Tasks, Reports, Video, Checks and Knowledge depth, all one click away.</figcaption></figure>
+<figure class="appshot"><img src="/assets/snap-projects-app/projects.png" alt="The Projects view in Snap Projects, listing a workspace's projects" loading="lazy" width="1440" height="900" /><figcaption><strong>Projects, not just chats.</strong> Each project keeps its own folder, files and conversation history together.</figcaption></figure>
+</div>
+</div></section>
+<!-- sp-gallery:end -->
 <section class="comparison" id="pricing">
         <div>
           <h2 class="comparison__title">Snap Projects pricing plans</h2>
@@ -2454,10 +2466,10 @@
         let osText = "Try for free"; // Default fallback
         let downloadUrl = "#"; // Default fallback
         
-        // Mac download link
-        const macDownloadUrl = "https://github.com/umer1o9/Product-Knowledge-Software-App-Release/releases/download/v1.0.4/Knowledge-Console-1.0.4-arm64.dmg";
-        // Windows download link
-        const windowsDownloadUrl = "https://github.com/umer1o9/Product-Knowledge-Software-App-Release/releases/download/v1.0.4/Knowledge-Console-Setup-1.0.4.exe";
+        // Always the latest release (GitHub redirects /releases/latest to whatever
+        // version was most recently published, so this link never goes stale).
+        const macDownloadUrl = "https://github.com/umer1o9/Product-Knowledge-Software-App-Release/releases/latest";
+        const windowsDownloadUrl = "https://github.com/umer1o9/Product-Knowledge-Software-App-Release/releases/latest";
         
         if (platform.includes("mac") || userAgent.includes("macintosh") || userAgent.includes("mac os")) {
           osText = "Try for free on Mac";

@@ -10,6 +10,7 @@ export const taaweel = {
   icon: "book",
   base: B,
   app: APP.taaweel,
+  appAssets: { folder: "taaweel-app", domain: "taaweel.snapkodex.com", logoSrc: "taaweel-logo-dark", logoAlt: "Taaweel — تأويل logo" },
   mail: "mailto:hello@snapkodex.com?subject=Taaweel%20early%20access",
   hub: {
     nav: "Taaweel overview",
