@@ -25,6 +25,13 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 ## Final state (2026-11-05)
 All milestones done and deployed (last commit e09b05b). 47 generated pages + homepage/Snap Projects patches. Known follow-ups: live /sitemap.xml (Cloud Function, left unchanged) still lists /products.html (now a 301) and lacks new pages; sitemap_index.xml and sitemap-*.xml cover them. Per-product blogs not built (by request). Taaweel CTA is early-access email; Homeschooling CTA is https://homeschooling-b3e57.web.app/.
 
+## Taaweel app screenshots, logo and CTAs (2026-11-05)
+- Logged into taaweel.snaprytr.com, captured real app screens (dashboard, run #2 pipeline, report, stage table, qalb concordance, trace corpus/tafsir, ontology graph, numerics, chats, Mizan) into `assets/taaweel-app/` (13 PNGs, ~2MB).
+- Brand logo extracted from the app own inline SVG: `assets/taaweel-logo-dark.svg` (cream/light-green) + `-light.svg` (brown/green), swapped via `data-theme-img="taaweel-logo"` (registered in js/theme.js).
+- `lib.mjs`: `appGallery()` (hub: logo + Inside-the-app + browser-framed grid) and `appShot()` (per-spoke framed screenshot); each spoke in content-taaweel.mjs carries a `shot`, hub carries `galleryShots`.
+- `APP.taaweel` respected: every Taaweel page CTA (header, hero, CTA band, footer) now points at https://taaweel.snapkodex.com ("Open the app"); hub schema gets installUrl.
+- Pages regenerated (47), links ok; verified desktop + mobile, dark + light.
+
 ## Homepage services mobile fixes (2026-11-05)
 - `.service-card__lead .service-more { grid-column: 2 }` — the injected Explore link previously landed in the lead grid's auto column, widening it to ~116px and squeezing title/description to ~118px on phones. Now 52px icon column + fluid text column.
 - Counter reset moved from `.services__stream` to `.services` — the stream reset used to restart numbering after the featured web-development card (01, 01, 02…).

@@ -240,6 +240,26 @@ button.chip { color: var(--brand-muted); }
 .card__ar { font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", "Segoe UI", serif; font-weight: 400; font-size: 1.02em; color: var(--accent); }
 .card__app { align-self: flex-start; font-size: 0.76rem; font-weight: 500; letter-spacing: 0.02em; color: color-mix(in srgb, var(--accent) 70%, var(--brand-text)); background: rgba(var(--accent-rgb), 0.10); border: 1px solid rgba(var(--accent-rgb), 0.28); padding: 3px 10px; border-radius: 999px; }
 [data-theme="light"] .card__app { color: color-mix(in srgb, var(--accent) 55%, #000); }
+
+/* ---------- Taaweel in-app screenshots (browser-framed) ---------- */
+.apphead { display: flex; align-items: center; gap: 26px; margin-bottom: 38px; }
+.apphead .sec-head { margin-bottom: 0; }
+.apphead .sec-head p a { color: var(--accent); font-weight: 600; }
+.taaweel-mark { width: 42px; height: 76px; object-fit: contain; flex-shrink: 0; }
+.appgallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+.appshot { margin: 0; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; background: #17140f; border: 1px solid var(--surface-card-border); box-shadow: 0 24px 56px rgba(6, 7, 10, 0.35); }
+.appshot__bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.appshot__bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, 0.16); }
+.appshot__bar span { margin-left: 8px; font-size: 0.72rem; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.45); }
+.appshot img { width: 100%; height: auto; display: block; }
+.appshot figcaption { padding: 14px 18px; font-size: 0.88rem; line-height: 1.5; color: rgba(234, 228, 211, 0.78); border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.appshot figcaption strong { color: #eae4d3; font-weight: 600; }
+.appshot--wide { max-width: 1080px; margin-inline: auto; }
+@media (max-width: 900px) {
+  .appgallery { grid-template-columns: 1fr; }
+  .apphead { gap: 18px; margin-bottom: 28px; }
+  .taaweel-mark { width: 34px; height: 62px; }
+}
 .cards .pict .ico, .steps .pict .ico { stroke: var(--accent); }
 .cards .pict .ico .dot, .steps .pict .ico .dot { fill: var(--accent); }
 .cards .pict, .steps .pict { background: rgba(var(--accent-rgb), 0.16); }

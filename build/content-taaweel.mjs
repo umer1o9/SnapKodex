@@ -71,12 +71,22 @@ export const taaweel = {
       ["Can I export reports?", "Yes. Reports can be exported as Markdown, HTML and DOCX."],
       ["What is Mizan?", "Mizan is a companion application for transparent numerical analysis of the Quran text. It shows what was counted, how, and what the result does not establish."],
     ],
-    ctaTitle: "See Taaweel run on your question",
-    ctaText: "Tell us the question you are researching. We will walk through a run and what the evidence ledger and audit look like.",
+    ctaTitle: "Open Taaweel and start a run",
+    ctaText: "Bring your own question. The engine refines it with you, runs the thirteen-stage pipeline over the whole corpus, and hands you a report where every claim is cited and checked.",
   },
+  // Real screens from the app (assets/taaweel-app), shown in the hub gallery.
+  galleryShots: [
+    { img: "dashboard", alt: "Taaweel runs dashboard with the research composer", cap: "<strong>Runs dashboard</strong> — ask a question, watch runs, and keep every stage on the record." },
+    { img: "run", alt: "A completed Taaweel research run with its pipeline stages", cap: "<strong>Run #2 — “what is QALB?”</strong> — 13 of 13 stages complete, tokens and cost per run." },
+    { img: "evidence", alt: "The thirteen-stage pipeline table of a Taaweel run", cap: "<strong>Pipeline stages</strong> — refinement, cartography, evidence, adversarial critique, uṣūl audit, report." },
+    { img: "report", alt: "A cited Taaweel research report", cap: "<strong>The cited report</strong> — answer first, then the argument, with a table of contents you can check against." },
+    { img: "ontology-graph", alt: "The Taaweel ontology graph explorer", cap: "<strong>Ontology explorer</strong> — a curated concept graph with 2D/3D layouts and link provenance." },
+    { img: "mizan", alt: "Mizan, the numerical analysis companion tool", cap: "<strong>Mizan</strong> — the companion tool for transparent numerical analysis of the text." },
+  ],
   spokes: [
     {
       slug: "research-pipeline",
+      shot: { img: "evidence", alt: "The thirteen-stage pipeline table of a completed Taaweel run", cap: "<strong>A real run, on the record.</strong> Each of the thirteen stages stores its status, model, tokens and cost — corpus cartography, evidence collection, adversarial critique and the uṣūl audit among them." },
       nav: "Research pipeline",
       icon: "route",
       sats: ["chat", "network", "layers", "doc"],
@@ -116,6 +126,7 @@ export const taaweel = {
     },
     {
       slug: "evidence-and-citations",
+      shot: { img: "trace-tafsir", alt: "The tafsir ledger of a Taaweel run - sources read and passages kept", cap: "<strong>Evidence on the record.</strong> The trace shows exactly which tafsir sources were read, how many passages each contributed, and what was set aside." },
       nav: "Evidence & citations",
       icon: "layers",
       sats: ["book", "doc", "search", "users"],
@@ -155,6 +166,7 @@ export const taaweel = {
     },
     {
       slug: "root-and-word-studies",
+      shot: { img: "pipeline-stages", alt: "Whole-corpus concordance of qalb clustered by sense in the Taaweel app", cap: "<strong>Concordance, clustered.</strong> Every occurrence of qalb across 21 verses, grouped by how the word is used - with the Arabic attributes that drive each cluster." },
       nav: "Root & word studies",
       icon: "network",
       sats: ["book", "search", "graph", "bars"],
@@ -193,6 +205,7 @@ export const taaweel = {
     },
     {
       slug: "adversarial-audit",
+      shot: { img: "report", alt: "A Taaweel report carrying objections, rulings and usul compliance checks", cap: "<strong>Audited before you read it.</strong> The final report carries the objections that were raised, the rulings on them, and the usul compliance checks - so you can see what survived." },
       nav: "Adversarial audit",
       icon: "shield",
       sats: ["scale", "flag", "check", "eye"],
@@ -232,6 +245,7 @@ export const taaweel = {
     },
     {
       slug: "ontology-explorer",
+      shot: { img: "ontology-graph", alt: "The Taaweel ontology graph explorer with branch colours and link types", cap: "<strong>Explore the graph.</strong> Concepts and entities the Quran words point to, laid out in 2D or 3D, with every link provenance one click away." },
       nav: "Ontology explorer",
       icon: "graph",
       sats: ["network", "check", "flag", "layers"],
@@ -270,6 +284,7 @@ export const taaweel = {
     },
     {
       slug: "mizan-numerical-analysis",
+      shot: { img: "mizan", alt: "Mizan - type a verse, surah or word and see its numbers", cap: "<strong>Mizan, the companion tool.</strong> Word counts, letter counts and abjad totals for any verse, surah or word - each shown with the counting rule that produced it." },
       nav: "Mizan numerical analysis",
       icon: "scale",
       sats: ["bars", "cube", "dice", "wave"],

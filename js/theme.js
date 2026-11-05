@@ -18,6 +18,10 @@
   };
 
   const THEME_IMAGE_PATHS = {
+    "taaweel-logo": {
+      dark: "/assets/taaweel-logo-dark.svg",
+      light: "/assets/taaweel-logo-light.svg",
+    },
     "hero-header": {
       dark: "/assets/services/header home.png",
       light: "/assets/services/home header light.png",
