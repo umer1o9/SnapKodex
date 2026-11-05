@@ -26,7 +26,7 @@
 .t-mint   { --tone: #46d69a; --ink: #46d69a; }
 .t-coral  { --tone: #ff9966; --ink: #ff9966; }
 .t-amber  { --tone: #ffc857; --ink: #ffc857; }
-.t-green  { --tone: #6aa629; --ink: #8ccb45; } /* Taaweel brand (taaweel.snaprytr.com) */
+.t-green  { --tone: #6aa629; --ink: #8ccb45; } /* Taaweel brand (taaweel.snapkodex.com) */
 [data-theme="light"] .t-cyan   { --ink: #0b8297; }
 [data-theme="light"] .t-green  { --ink: #43731a; }
 [data-theme="light"] .t-violet { --ink: #6d3fd1; }

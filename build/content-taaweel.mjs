@@ -1,5 +1,5 @@
 // Taaweel product content. Source of truth: product_knowledge.md (derived from the Taaweel / Burhan / Mizan codebases).
-import { BASE } from "./lib.mjs";
+import { BASE, APP } from "./lib.mjs";
 const B = BASE.taaweel;
 
 export const taaweel = {
@@ -9,6 +9,7 @@ export const taaweel = {
   tag: "Quran research engine",
   icon: "book",
   base: B,
+  app: APP.taaweel,
   mail: "mailto:hello@snapkodex.com?subject=Taaweel%20early%20access",
   hub: {
     nav: "Taaweel overview",

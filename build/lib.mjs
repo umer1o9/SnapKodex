@@ -14,8 +14,8 @@ export const BASE = {
   snapprojects: "/products/snap-projects",
 };
 export const APP = {
-  taaweel: null, // not yet public: CTA is early access by email
-  home: "https://homeschooling-b3e57.web.app/",
+  taaweel: "https://taaweel.snapkodex.com",
+  home: "https://homeschooling.snapkodex.com/",
 };
 
 export const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

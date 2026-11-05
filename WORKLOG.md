@@ -50,3 +50,8 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - Palette added across cards, steps, stats, section eyebrows and the footer.
 - `/blog/<slug>` article pages (Cloud Function) now use the shared header and footer via `functions/site-chrome.json`.
 - Live `/sitemap.xml` now lists all static pages via `functions/site-pages.json` plus blog articles, drops `/products.html`, and still serves static pages if the blog API is down. Both JSON files are written by `node build/gen.mjs`.
+
+## App links moved to snapkodex.com subdomains (2026-11-05)
+- `APP.taaweel` is now https://taaweel.snapkodex.com and `APP.home` is https://homeschooling.snapkodex.com/ (build/lib.mjs). Taaweel's main button changed from "Request early access" to "Open the app".
+- Taaweel card label on the homepage and /products/ updated to the new host.
+- Not changed: the "Early access" card tag and the Taaweel FAQ answer about requesting access by email. `assets/taaweel-app/` and the two Taaweel logos are not used by any page and were left uncommitted.
