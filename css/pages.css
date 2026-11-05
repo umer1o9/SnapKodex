@@ -372,6 +372,24 @@ figure.stagecard { max-width: 1120px; margin-inline: auto; }
 .lightbox__btn { width: 44px; height: 44px; border-radius: 50%; font-size: 1.15rem; cursor: pointer; color: #fff; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.25); }
 .lightbox__btn:hover, .lightbox__btn:focus-visible { background: rgba(255, 255, 255, 0.22); }
 .lightbox__view { position: absolute; inset: 0; display: grid; place-items: center; overflow: auto; padding: 68px 16px 16px; touch-action: pan-x pan-y pinch-zoom; }
-.lightbox__view img { max-width: 100%; max-height: calc(100dvh - 90px); width: auto; height: auto; border-radius: 10px; cursor: zoom-in; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); }
+.lightbox__content { cursor: zoom-in; }
+.lightbox.is-actual .lightbox__content { cursor: zoom-out; }
+.lightbox__content > img { display: block; max-width: 100%; max-height: calc(100dvh - 90px); width: auto; height: auto; border-radius: 10px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); }
 .lightbox.is-actual .lightbox__view { place-items: start; }
-.lightbox.is-actual .lightbox__view img { max-width: none; max-height: none; cursor: zoom-out; }
+.lightbox.is-actual .lightbox__content > img { max-width: none; max-height: none; }
+/* enlarged annotated stage: everything stays (frame, labels, connectors, crops), always dark-styled */
+.lightbox__stage { --stage-line: rgb(var(--tone-rgb)); --stage-halo: rgba(0, 0, 0, 0.5); width: min(calc(100vw - 32px), calc((100dvh - 100px) * 2)); }
+.lightbox__stage.stage--hero { width: min(calc(100vw - 32px), calc((100dvh - 100px) * 1.32)); }
+.lightbox.is-actual .lightbox__stage { width: 1500px; }
+.lightbox.is-actual .lightbox__stage.stage--hero { width: 1000px; }
+.lightbox .lightbox__stage .stage__inner { width: auto; margin-left: 0; cursor: inherit; }
+.lightbox .lightbox__stage .stage__chip, .lightbox .lightbox__stage .stage__crop { display: block; }
+.lightbox .lightbox__stage .stage__wires { display: block; }
+.lightbox .lightbox__stage .stage__badge { display: grid; }
+.lightbox .lightbox__stage .stage__spark { display: inline; }
+/* enlarged stage keeps true proportions (no min font clamp); phones get a medium "actual" size to pan */
+.lightbox .lightbox__stage .stage__chip { font-size: 1.22cqw; }
+@media (max-width: 760px) {
+  .lightbox.is-actual .lightbox__stage { width: 820px; }
+  .lightbox.is-actual .lightbox__stage.stage--hero { width: 600px; }
+}
