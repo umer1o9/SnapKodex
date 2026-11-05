@@ -55,3 +55,6 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - `APP.taaweel` is now https://taaweel.snapkodex.com and `APP.home` is https://homeschooling.snapkodex.com/ (build/lib.mjs). Taaweel's main button changed from "Request early access" to "Open the app".
 - Taaweel card label on the homepage and /products/ updated to the new host.
 - Not changed: the "Early access" card tag and the Taaweel FAQ answer about requesting access by email. `assets/taaweel-app/` and the two Taaweel logos are not used by any page and were left uncommitted.
+
+## Taaweel wording: early access removed (2026-11-05)
+- Owner confirmed Taaweel should no longer say early access. Card tag on the homepage and /products/ is now "Live", and the "Is Taaweel available now?" FAQ and llms.txt say it is live at taaweel.snapkodex.com.

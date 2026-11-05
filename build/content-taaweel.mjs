@@ -64,7 +64,7 @@ export const taaweel = {
       "<strong>No borrowed credentials.</strong> Taaweel makes no claim of external certification.",
     ],
     faqs: [
-      ["Is Taaweel available now?", "Taaweel is in development and available for early access. Request access by email and we will share the current state, including what works end to end."],
+      ["Is Taaweel available now?", "Yes. Taaweel is live at taaweel.snapkodex.com. Email hello@snapkodex.com with any questions about what it covers today."],
       ["Which sources does it read?", "The Quran corpus with root and token data, the Lane lexicon and classical dictionary entries, and tafsir databases including al-Ṭabarī and Ibn Kathīr. Corpora are opened read-only."],
       ["How is it different from asking a chatbot?", "A chatbot answers once and does not show its work. Taaweel runs staged research, keeps every intermediate result, cites every claim to a ledger of evidence and runs an adversarial audit before writing the report."],
       ["Does Taaweel give religious rulings?", "No. It is a research tool. It labels the epistemic status of each claim and is designed to support, not replace, qualified scholarship."],
