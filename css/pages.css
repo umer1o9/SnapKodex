@@ -350,6 +350,28 @@ figure.stagecard { max-width: 1120px; margin-inline: auto; }
   .stages .stagecard { flex-basis: 88%; }
   .stagecard__head { grid-template-columns: 1fr; }
   .stage:not(.stage--hero) .stage__inner { width: 158%; margin-left: -29%; }
+  .stage:not(.stage--hero) .stage__zoom { right: 20%; top: 3%; }
   .stage:not(.stage--hero) .stage__chip, .stage:not(.stage--hero) .stage__wires, .stage:not(.stage--hero) .stage__crop, .stage:not(.stage--hero) .stage__badge, .stage:not(.stage--hero) .stage__spark { display: none; }
   .stage__list { display: flex; }
 }
+
+/* ---------- enlarge screenshots (js/lightbox.js) ---------- */
+[data-zoom] { cursor: zoom-in; }
+.stage__zoom { position: absolute; z-index: 3; right: 1.2%; top: 2%; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+  background: rgba(12, 14, 19, 0.78); border: 1px solid rgba(255, 255, 255, 0.3); color: #fff; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); }
+.stage__zoom svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.stage__zoom:hover, .stage__zoom:focus-visible { background: var(--tone, #2f6b12); }
+.stage--hero .stage__zoom { right: auto; left: 2%; top: auto; bottom: 2%; }
+.appshot[data-zoom] img { transition: opacity 0.2s; }
+.appshot[data-zoom]:hover img { opacity: 0.92; }
+.lightbox-open { overflow: hidden; }
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #06070a; color: #fff; }
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.6); }
+.lightbox__bar { position: absolute; inset: 0 0 auto; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: linear-gradient(rgba(6, 7, 10, 0.9), rgba(6, 7, 10, 0)); }
+.lightbox__cap { flex: 1; min-width: 0; font-size: 0.88rem; color: rgba(255, 255, 255, 0.8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lightbox__btn { width: 44px; height: 44px; border-radius: 50%; font-size: 1.15rem; cursor: pointer; color: #fff; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.25); }
+.lightbox__btn:hover, .lightbox__btn:focus-visible { background: rgba(255, 255, 255, 0.22); }
+.lightbox__view { position: absolute; inset: 0; display: grid; place-items: center; overflow: auto; padding: 68px 16px 16px; touch-action: pan-x pan-y pinch-zoom; }
+.lightbox__view img { max-width: 100%; max-height: calc(100dvh - 90px); width: auto; height: auto; border-radius: 10px; cursor: zoom-in; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); }
+.lightbox.is-actual .lightbox__view { place-items: start; }
+.lightbox.is-actual .lightbox__view img { max-width: none; max-height: none; cursor: zoom-out; }

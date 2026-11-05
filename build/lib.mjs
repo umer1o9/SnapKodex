@@ -166,7 +166,8 @@ export function deviceStage(st, alt, uid) {
   // badges sit beside the first crop, on the side away from it
   const onLeft = st.crops[0].x < STAGE_W / 2;
   const badges = (st.badges || []).map((ic, i) => stageBadge(ic, onLeft ? 870 - i * 74 : 262 + i * 74, 520, STAGE_W, STAGE_H)).join("");
-  return `<div class="stage"><div class="stage__inner">
+  return `<div class="stage"><div class="stage__inner" data-zoom="/assets/taaweel-app/${st.img}.png" data-zoom-alt="${esc(alt)}">
+<button type="button" class="stage__zoom" aria-label="Enlarge screenshot"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M10.5 7.5v6M7.5 10.5h6"/></svg></button>
 ${deviceFrame(st.device, S, STAGE_W, STAGE_H, uid, st.domain)}
 <img class="stage__screen" src="/assets/taaweel-app/stage/${st.img}.webp" alt="${esc(alt)}" loading="lazy" width="1280" height="800" style="left:${pct(S.x, STAGE_W)};top:${pct(S.y, STAGE_H)};width:${pct(S.w, STAGE_W)}" />
 <svg class="stage__wires" viewBox="0 0 ${STAGE_W} ${STAGE_H}" aria-hidden="true" focusable="false">${wires}</svg>
@@ -204,7 +205,8 @@ export const stageBand = (shot, st, url, ctaLabel = "Open the app") => `<section
 // Taaweel hero: the real run screen in a laptop, with key details lifted out of it.
 export function taaweelHeroArt(label, crops) {
   const W = 620, H = 470, S = { x: 62, y: 44, w: 496, h: 310 };
-  return `<div class="stage stage--hero tone-green"><div class="stage__inner" style="aspect-ratio:${W}/${H}">
+  return `<div class="stage stage--hero tone-green"><div class="stage__inner" style="aspect-ratio:${W}/${H}" data-zoom="/assets/taaweel-app/run.png" data-zoom-alt="${esc(label)}">
+<button type="button" class="stage__zoom" aria-label="Enlarge screenshot"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M10.5 7.5v6M7.5 10.5h6"/></svg></button>
 ${deviceFrame("laptop", S, W, H, "hero")}
 <img class="stage__screen" src="/assets/taaweel-app/stage/run.webp" alt="${esc(label)}" fetchpriority="high" width="1280" height="800" style="left:${pct(S.x, W)};top:${pct(S.y, H)};width:${pct(S.w, W)}" />
 ${cropCard({ ...crops.progress, x: 0, y: 262, w: 300 }, W, H, true)}
@@ -297,7 +299,7 @@ export function productFooter({ name, base, cols, tone }) {
   return productFooterHtml({ name, pictHtml: pict(cols.icon), blurb: cols.blurb, groups: cols.groups, tone });
 }
 
-export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/nav.js" defer></script>`;
+export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/nav.js" defer></script><script src="/js/lightbox.js" defer></script>`;
 
 export const page = (headHtml, body, bodyClass) => `${headHtml}
 <body class="${bodyClass}">
@@ -339,7 +341,7 @@ const appshot = ({ img, title, alt, cap, wide = false, folder, domain, picto }) 
 <figcaption><strong>${esc(title)}</strong><span>${cap}</span></figcaption>
 </figure>`;
   }
-  return `<figure class="appshot${wide ? " appshot--wide" : ""}">
+  return `<figure class="appshot${wide ? " appshot--wide" : ""}" data-zoom="${src}">
 <div class="appshot__bar"><i></i><i></i><i></i><span>${esc(domain)}</span></div>
 <img src="${src}" alt="${esc(alt)}" loading="lazy" width="1352" height="900" />
 <figcaption>${cap}</figcaption>

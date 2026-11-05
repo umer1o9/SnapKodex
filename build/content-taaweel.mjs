@@ -77,17 +77,17 @@ export const taaweel = {
   },
   // Real screens from the app (assets/taaweel-app), shown in the hub gallery.
   galleryShots: [
-    { stage: "dashboard", title: "Runs dashboard", alt: "Framed screenshot of the Taaweel runs dashboard with the research composer", cap: "Ask a question, watch runs land, and keep every stage on the record." },
-    { stage: "run", title: "A complete run", alt: "Framed screenshot of a completed Taaweel run with thirteen stages done", cap: "Thirteen stages from refinement to report - tokens, cost and status per stage." },
-    { stage: "report", title: "The cited report", alt: "Framed screenshot of a cited Taaweel research report", cap: "Answer first, then the argument - every claim pointing to a source you can open." },
-    { stage: "trace-corpus", title: "The corpus it counted", alt: "Framed screenshot of the verse clusters a Taaweel run counted", cap: "Every occurrence of a word, clustered by how it is actually used in the text." },
-    { stage: "ontology-graph", title: "The concept graph", alt: "Framed screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities laid out as a graph, every link one click from its provenance." },
-    { stage: "mizan", title: "Mizan", alt: "Framed screenshot of Mizan with numerical results for a verse", cap: "Numbers for any verse, surah or word - always with the counting rule that produced them." },
+    { stage: "dashboard", title: "Runs dashboard", alt: "Screenshot of the Taaweel runs dashboard with the research composer", cap: "Ask a question, watch runs land, and keep every stage on the record." },
+    { stage: "run", title: "A complete run", alt: "Screenshot of a completed Taaweel run with thirteen stages done", cap: "Thirteen stages from refinement to report - tokens, cost and status per stage." },
+    { stage: "report", title: "The cited report", alt: "Screenshot of a cited Taaweel research report", cap: "Answer first, then the argument - every claim pointing to a source you can open." },
+    { stage: "trace-corpus", title: "The corpus it counted", alt: "Screenshot of the verse clusters a Taaweel run counted", cap: "Every occurrence of a word, clustered by how it is actually used in the text." },
+    { stage: "ontology-graph", title: "The concept graph", alt: "Screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities laid out as a graph, every link one click from its provenance." },
+    { stage: "mizan", title: "Mizan", alt: "Screenshot of Mizan with numerical results for a verse", cap: "Numbers for any verse, surah or word - always with the counting rule that produced them." },
   ],
   spokes: [
     {
       slug: "research-pipeline",
-      shot: { stage: "run", title: "Thirteen stages", alt: "Framed screenshot of the thirteen-stage pipeline of a completed Taaweel run", cap: "Refinement, corpus cartography, evidence, dossier, critique, audit, report - each stage stored with its model, tokens and cost." },
+      shot: { stage: "run", title: "Thirteen stages", alt: "Screenshot of the thirteen-stage pipeline of a completed Taaweel run", cap: "Refinement, corpus cartography, evidence, dossier, critique, audit, report - each stage stored with its model, tokens and cost." },
       nav: "Research pipeline",
       icon: "route",
       sats: ["chat", "network", "layers", "doc"],
@@ -167,7 +167,7 @@ export const taaweel = {
     },
     {
       slug: "root-and-word-studies",
-      shot: { stage: "trace-corpus", title: "Concordance, clustered", alt: "Framed screenshot of the qalb concordance clustered by sense", cap: "Every occurrence of qalb across 21 verses, grouped by how the word is actually used, with the Arabic attributes that drive each cluster." },
+      shot: { stage: "trace-corpus", title: "Concordance, clustered", alt: "Screenshot of the qalb concordance clustered by sense", cap: "Every occurrence of qalb across 21 verses, grouped by how the word is actually used, with the Arabic attributes that drive each cluster." },
       nav: "Root & word studies",
       icon: "network",
       sats: ["book", "search", "graph", "bars"],
@@ -246,7 +246,7 @@ export const taaweel = {
     },
     {
       slug: "ontology-explorer",
-      shot: { stage: "ontology-graph", title: "The concept graph", alt: "Framed screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities the Quran words point to, laid out in 2D or 3D, every link one click from its provenance." },
+      shot: { stage: "ontology-graph", title: "The concept graph", alt: "Screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities the Quran words point to, laid out in 2D or 3D, every link one click from its provenance." },
       nav: "Ontology explorer",
       icon: "graph",
       sats: ["network", "check", "flag", "layers"],
@@ -285,7 +285,7 @@ export const taaweel = {
     },
     {
       slug: "mizan-numerical-analysis",
-      shot: { stage: "mizan", title: "Mizan", alt: "Framed screenshot of Mizan showing word, letter and abjad counts", cap: "Numbers for any verse, surah or word - word counts, letter counts, abjad totals - each shown with the counting rule that produced it." },
+      shot: { stage: "mizan", title: "Mizan", alt: "Screenshot of Mizan showing word, letter and abjad counts", cap: "Numbers for any verse, surah or word - word counts, letter counts, abjad totals - each shown with the counting rule that produced it." },
       nav: "Mizan numerical analysis",
       icon: "scale",
       sats: ["bars", "cube", "dice", "wave"],

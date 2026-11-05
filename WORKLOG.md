@@ -91,3 +91,4 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - Hero: the run screen in a laptop with progress and cost crops, Taaweel knot badge and icon badges, replacing the icon orbit.
 - Data: `build/content-taaweel-stages.mjs` (notes target source-PNG pixels), crop boxes in `build/taaweel-stage-crops.json`, WebP cut by `python build/gen-taaweel-stages.py` into `assets/taaweel-app/stage/`.
 - Checked with Playwright at 1400px (dark and light) and 375px: no horizontal overflow, connectors land on their targets.
+- Enlarge: every annotated stage, the hero, and the Homeschooling/Snap Projects screenshot cards open the full-resolution PNG in a dialog (`js/lightbox.js`, loaded site-wide; 1.6KB). Fit-to-screen first; tap/click/Enter toggles 100% so it can be panned or pinch-zoomed on phones; Escape or ✕ closes and returns focus. Tested with Playwright at 1400px and 375px with touch.
