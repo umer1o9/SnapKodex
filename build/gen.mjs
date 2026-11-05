@@ -43,14 +43,13 @@ const CARD = {
 // ---------------- product wheel pages ----------------
 function productChrome(p) {
   const links = [
-    [`${p.base}/#capabilities`, "Capabilities"],
     [`${p.base}/#how`, "How it works"],
     [`${p.base}/#audience`, "Who it's for"],
     [`${p.base}/#faq`, "FAQ"],
   ];
   const ctaTarget = p.app || p.mail;
   const ctaLabel = p.app ? "Open the app" : "Request early access";
-  const header = L.productHeader({ name: p.name, tag: p.tag, iconName: p.icon, base: p.base, links, cta: [ctaTarget, ctaLabel] });
+  const header = L.productHeader({ name: p.name, tag: p.tag, iconName: p.icon, base: p.base, links, features: p.spokes.map((s) => [s.url, s.nav]), cta: [ctaTarget, ctaLabel] });
   const footer = L.productFooter({
     name: p.name,
     base: p.base,

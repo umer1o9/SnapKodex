@@ -1,6 +1,9 @@
 // Shared helpers for the Snap Kodex static page generator.
 // Run: node build/gen.mjs   (outputs HTML next to the source tree; commit the output)
 
+import { navBlock, productNavBlock, richFooter, productFooterHtml } from "./nav.mjs";
+export { navBlock, richFooter };
+
 export const SITE = "https://snapkodex.com";
 export const ORG = "Snap Kodex";
 
@@ -144,18 +147,9 @@ ${FONTS}
 <link rel="stylesheet" href="/css/site.css" />
 <link rel="stylesheet" href="/css/theme.css" />
 <link rel="stylesheet" href="/css/pages.css" />
+<link rel="stylesheet" href="/css/nav.css" />
 ${extra}
 </head>`;
-}
-
-const toggleBtn = `<button type="button" class="nav__theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to light theme"><span class="material-symbols-rounded" aria-hidden="true">light_mode</span></button>`;
-const hamburger = `<button class="nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-drawer" aria-label="Open menu"><span class="material-symbols-rounded" aria-hidden="true">menu</span></button>`;
-
-function drawer(links, cta) {
-  return `<div class="nav__drawer" id="site-nav-drawer" aria-hidden="true"><div class="nav__drawer-backdrop" data-nav-close tabindex="-1" aria-hidden="true"></div>
-<div class="nav__drawer-panel" role="dialog" aria-modal="true" aria-label="Site menu"><div class="nav__drawer-head"><span class="nav__drawer-title">Menu</span><button class="nav__drawer-close" type="button" data-nav-close aria-label="Close menu"><span class="material-symbols-rounded" aria-hidden="true">close</span></button></div>
-<div class="nav__drawer-links">${links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("")}</div>
-<div class="nav__drawer-actions">${toggleBtn}<a class="nav__cta" href="${cta[0]}">${cta[1]}</a></div></div></div>`;
 }
 
 const AMBIENT = `<div class="ambient" aria-hidden="true"><div class="ambient__orb ambient__orb--cyan"></div><div class="ambient__orb ambient__orb--purple"></div><div class="ambient__orb ambient__orb--mid"></div><div class="ambient__orb ambient__orb--mint"></div><div class="ambient__grid"></div></div>`;
@@ -182,40 +176,23 @@ export const globalLinks = () =>
   GLOBAL_LINKS_ALL.filter(([h]) => !(h === "ins" && !LIVE.insights)).map(([h, t]) => [h === "svc" ? U.services() : h === "con" ? U.contact() : h === "ins" ? "/insights/" : h, t]);
 
 export function globalHeader(current = "") {
-  const GL = globalLinks();
-  const links = GL.map(([h, t]) => `<a href="${h}"${current === t ? ' aria-current="page"' : ""}>${t}</a>`).join("");
-  return `<a class="skip-link" href="#main">Skip to content</a>${SVG_DEFS}${AMBIENT}
-<header class="site-header"><nav class="nav" aria-label="Primary"><a class="nav__logo" href="/" aria-label="Snap Kodex home"><img data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex" width="160" height="36" /></a>
-<div class="nav__links">${links}</div><div class="nav__actions">${toggleBtn}<a class="nav__cta" href="${U.contact()}">Start a project</a></div>${hamburger}</nav></header>
-${drawer(GL, [U.contact(), "Start a project"])}`;
+  return `<a class="skip-link" href="#main">Skip to content</a>${AMBIENT}
+${navBlock(current)}`;
 }
 
-// Product-scoped header: product wordmark + product links only (no cross-silo links).
-export function productHeader({ name, tag, iconName, base, links, cta }) {
-  const l = links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("");
-  return `<a class="skip-link" href="#main">Skip to content</a>${SVG_DEFS}${AMBIENT}
-<header class="site-header"><nav class="nav" aria-label="Primary"><a class="pbrand" href="${base}/" aria-label="${esc(name)} home">${pict(iconName)}<span>${esc(name)}<small>${esc(tag)}</small></span></a>
-<div class="nav__links">${l}</div><div class="nav__actions">${toggleBtn}<a class="nav__cta" href="${cta[0]}"${/^https?:/.test(cta[0]) ? ' target="_blank" rel="noopener"' : ""}>${cta[1]}</a></div>${hamburger}</nav></header>
-${drawer(links, cta)}`;
+// Product-scoped header: same mega-menu component, product pages only (no cross-silo links).
+export function productHeader({ name, tag, iconName, base, links, cta, features = [] }) {
+  return `<a class="skip-link" href="#main">Skip to content</a>${AMBIENT}
+${productNavBlock({ name, tag, pictHtml: pict(iconName), base, features, links, cta })}`;
 }
 
-export function globalFooter() {
-  return `<footer class="footer"><div class="footer__cols">
-<div><img class="footer__logo" data-logo="snapkodex" src="/snapkodex logo full dark.svg" alt="Snap Kodex logo" /><p>AI-native software house for SaaS, enterprise software and agentic AI, plus proprietary products.</p></div>
-<div><h4>Services</h4><a href="${U.agentic()}">Agentic AI development</a><a href="${U.saas()}">SaaS &amp; enterprise development</a><a href="${U.agents()}">AI agents &amp; automation</a></div>
-<div><h4>Products</h4><a href="/products/">All products</a><a href="${BASE.taaweel}/">Taaweel</a><a href="${BASE.home}/">Homeschooling</a><a href="/snap-projects.html">Snap Projects</a></div>
-<div><h4>Company</h4>${LIVE.insights ? '<a href="/insights/">Insights</a>' : ""}<a href="${U.contact()}">Contact</a><a href="mailto:hello@snapkodex.com">hello@snapkodex.com</a><a href="/#partners">Partners</a></div></div>
-<div class="footer__bar"><span>&copy; ${new Date().getFullYear()} Snap Kodex. Mon&ndash;Fri 9:00&ndash;18:00.</span><span>snapkodex.com</span></div></footer>`;
-}
+export const globalFooter = () => richFooter();
 
 export function productFooter({ name, base, cols }) {
-  return `<footer class="footer"><div class="footer__cols">
-<div><div class="pbrand">${pict(cols.icon)}<span>${esc(name)}</span></div><p>${esc(cols.blurb)}</p></div>
-${cols.groups.map((g) => `<div><h4>${g.title}</h4>${g.links.map(([h, t]) => `<a href="${h}">${t}</a>`).join("")}</div>`).join("")}</div>
-<div class="footer__bar"><span class="footer__attrib">An AI product engineered by <a href="${SITE}/">Snap Kodex</a>.</span><span>&copy; ${new Date().getFullYear()} Snap Kodex</span></div></footer>`;
+  return productFooterHtml({ name, pictHtml: pict(cols.icon), blurb: cols.blurb, groups: cols.groups });
 }
 
-export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/pages.js" defer></script>`;
+export const SCRIPTS = `<script src="/js/theme.js" defer></script><script src="/js/nav.js" defer></script>`;
 
 export const page = (headHtml, body, bodyClass) => `${headHtml}
 <body class="${bodyClass}">

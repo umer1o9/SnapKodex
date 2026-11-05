@@ -22,19 +22,52 @@ export function patchSite({ ROOT, L, BASE, hasInsights = false, hasServices = fa
       .replace(/href="\.\/products\.html"/g, 'href="/products/"')
       .replace(/href="products\.html"/g, 'href="/products/"')
       .replace(/snapkodex\.com\/products\.html/g, "snapkodex.com/products/");
-  const addInsightsLink = (s) => {
-    s = s.replace(/(?:\s*<a href="\/insights\/">Insights<\/a>)+/g, "");
-    if (!hasInsights) return s;
-    // after the Blog link inside nav__links and nav__drawer-links, add an Insights link once
-    return s.replace(/(<a href="(?:\.\/)?blog\.html" data-blog-link[^>]*>Blog<\/a>)(?!<a href="\/insights\/">)(\s*)/g, '$1$2<a href="/insights/">Insights</a>$2');
+
+
+  // ---- shared chrome: one header (mega menu + drawer) and one footer on every hand-written page ----
+  const endOfEl = (s, start, tag) => {
+    const re = new RegExp("<(/?)" + tag + "\\b[^>]*>", "g");
+    re.lastIndex = start;
+    let depth = 0, m;
+    while ((m = re.exec(s))) {
+      depth += m[1] ? -1 : 1;
+      if (depth === 0) return m.index + m[0].length;
+    }
+    throw new Error("unbalanced " + tag);
+  };
+  const swapChrome = (s, current) => {
+    // header + drawer
+    const hs = "<!-- site-nav:start -->", he = "<!-- site-nav:end -->";
+    const block = hs + "\n" + L.navBlock(current) + "\n" + he;
+    if (s.includes(hs)) s = s.replace(new RegExp(hs + "[\\s\\S]*?" + he), () => block);
+    else {
+      const a = s.indexOf('<header class="site-header">');
+      if (a < 0) throw new Error("header not found");
+      const hEnd = s.indexOf("</header>", a) + "</header>".length;
+      const d = s.indexOf('<div class="nav__drawer"', hEnd);
+      const b = d >= 0 && !s.slice(hEnd, d).trim() ? endOfEl(s, d, "div") : hEnd;
+      s = s.slice(0, a) + block + s.slice(b);
+    }
+    // footer
+    const fs_ = "<!-- site-footer:start -->", fe = "<!-- site-footer:end -->";
+    const fblock = fs_ + "\n" + L.richFooter() + "\n" + fe;
+    if (s.includes(fs_)) s = s.replace(new RegExp(fs_ + "[\\s\\S]*?" + fe), () => fblock);
+    else {
+      const a = s.indexOf('<footer class="footer">');
+      if (a < 0) throw new Error("footer not found");
+      const b = s.indexOf("</footer>", a) + "</footer>".length;
+      s = s.slice(0, a) + fblock + s.slice(b);
+    }
+    if (!s.includes("/css/nav.css")) s = s.replace("</head>", () => '<link rel="stylesheet" href="/css/nav.css" />\n</head>');
+    if (!s.includes("/js/nav.js")) s = s.replace("</body>", () => '<script src="/js/nav.js" defer></script>\n</body>');
+    return s;
   };
 
   // ---- homepage ----
   let idx = fixLinks(read("index.html"));
-  idx = addInsightsLink(idx);
   if (!idx.includes('/css/pages.css')) idx = idx.replace('</head>', '    <link rel="stylesheet" href="/css/pages.css" />\n  </head>');
   const card = (href, ic, tag, title, text) => `<a class="card" href="${href}">${L.pict(ic)}<span class="card__tag">${tag}</span><h3>${title}</h3><p>${text}</p><span class="card__more">Explore</span></a>`;
-  const productsSection = `<section class="band hp-products" id="products" style="position:relative;z-index:1">${L.SVG_DEFS}<div class="wrap">
+  const productsSection = `<section class="band hp-products" id="products" style="position:relative;z-index:1"><div class="wrap">
 ${L.secHead("Products", "Software we build, ship and own", "Alongside client delivery we run a product studio. Each product is a working application with its own page.")}
 <div class="cards">
 ${card(BASE.taaweel + "/", "book", "Early access", "Taaweel", "An AI research engine for Quranic inquiry: whole-corpus concordance, tiered evidence, adversarial audit and cited reports.")}
@@ -70,11 +103,12 @@ ${card("https://snaprytr.com", "pencil", "Live SaaS", "SnapRytr", "AI chat for e
   }
   idx = inject(idx, "hp-products", productsSection, /<section class="techstack" id="techstack">/);
   if (insightsPreview) idx = inject(idx, "hp-insights", insightsPreview, /<section class="faq" id="faq"/);
+  idx = swapChrome(idx, "");
   save("index.html", idx);
 
   // ---- other pages: just fix links and add Insights link ----
-  for (const f of ["blog.html", "snap-projects.html"]) {
-    let s = addInsightsLink(fixLinks(read(f)));
+  for (const f of ["blog.html", "snap-projects.html", "products.html", "-snap-projects.html", "fonts/index.html"]) {
+    let s = fixLinks(read(f));
     if (f === "snap-projects.html") {
       if (!s.includes("/css/pages.css")) s = s.replace("</head>", '<link rel="stylesheet" href="/css/pages.css" /></head>');
       const items = [
@@ -85,9 +119,10 @@ ${card("https://snaprytr.com", "pencil", "Live SaaS", "SnapRytr", "AI chat for e
         ["sparkle", "Skills", "Save how you like recurring work done, including release notes or client reports, and the assistant follows it whenever a request matches. Import Claude-style SKILL.md files."],
         ["video", "Video and 3D animation", "Generate narrated videos and standalone 3D animations. Scenes are written as code by your chosen model, checked and repaired automatically, and rendered offline."],
       ];
-      const sec = `<section class="band" id="whats-new" style="position:relative;z-index:1">${L.SVG_DEFS}<div class="wrap theme-snapprojects">${L.secHead("Built into the desktop app", "Beyond chat: tools for running real projects", "Recent releases add the features managers asked for most. Pricing and availability are shown below.")}<div class="cards">${items.map(([ic, t, d]) => L.cardPlain({ icon: ic, title: t, text: d })).join("")}</div></div></section>`;
+      const sec = `<section class="band" id="whats-new" style="position:relative;z-index:1"><div class="wrap theme-snapprojects">${L.secHead("Built into the desktop app", "Beyond chat: tools for running real projects", "Recent releases add the features managers asked for most. Pricing and availability are shown below.")}<div class="cards">${items.map(([ic, t, d]) => L.cardPlain({ icon: ic, title: t, text: d })).join("")}</div></div></section>`;
       s = inject(s, "sp-whatsnew", sec, /<section class="comparison" id="pricing">/);
     }
+    s = swapChrome(s, f === "blog.html" ? "company" : f === "fonts/index.html" ? "" : "products");
     save(f, s);
   }
 }

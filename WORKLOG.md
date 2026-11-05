@@ -24,3 +24,9 @@ Owner asked (2026-11-05, going to sleep, NO questions allowed, work autonomously
 
 ## Final state (2026-11-05)
 All milestones done and deployed (last commit e09b05b). 47 generated pages + homepage/Snap Projects patches. Known follow-ups: live /sitemap.xml (Cloud Function, left unchanged) still lists /products.html (now a 301) and lacks new pages; sitemap_index.xml and sitemap-*.xml cover them. Per-product blogs not built (by request). Taaweel CTA is early-access email; Homeschooling CTA is https://homeschooling-b3e57.web.app/.
+
+## Navigation & chrome overhaul (2026-11-05)
+- One shared header + footer source: `build/nav.mjs` (mega menu: Services 3 cols, Products 4 cols, Insights by topic, Company dropdown; mobile drawer with accordions). Styles `css/nav.css`, behaviour `js/nav.js` (replaces `js/pages.js`).
+- Applied to every generated page and injected (marker-based, idempotent) into index, blog, snap-projects, products, `-snap-projects.html`, `fonts/index.html`.
+- Product pages keep a silo-scoped menu (own pages only) in the same component; no cross-product links.
+- `admin.html` (private inbox) intentionally untouched.
