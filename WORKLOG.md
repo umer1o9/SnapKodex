@@ -38,6 +38,11 @@ All milestones done and deployed (last commit e09b05b). 47 generated pages + hom
 - New taaweelHeroArt() for the Taaweel hub hero: the knot logo (CSS-classed, cream/green on dark, brown/green on light) inside the glass tile with an orbit of six capability satellites and a ta wil wordmark.
 - Wide pictos capped at 680px; captions use theme-aware text colors.
 
+## Annotated screenshot frames (2026-11-05)
+- Abstract pictograms replaced: real app screenshots returned (restored PNGs from 472afce) and are now wrapped in premium SVG frames - browser chrome with traffic lights, URL pill (taaweel.snapkodex.com), ta wil mark, green glow, drop shadows - with annotation chips and elbow connectors pointing at real features ("13 of 13 stages complete", "Every claim carries a citation", ...).
+- Generator: build/gen-taaweel-frames.py (annotation targets in original screenshot px; auto wrap, overlap avoidance, side margins). Screenshots embedded as base64 WebP q85 (SVGs via <img> cannot reference external files); 8 self-contained SVGs, 33-133KB each. Source PNGs kept for regeneration.
+- Mapping: hub gallery = dashboard, run, report, trace-corpus, ontology-graph, mizan; spokes = run (pipeline), trace-tafsir (evidence), trace-corpus (roots), evidence (audit), ontology-graph, mizan. .appshot--picto CSS: no double frame (SVG carries its own).
+
 ## Homepage services mobile fixes (2026-11-05)
 - `.service-card__lead .service-more { grid-column: 2 }` — the injected Explore link previously landed in the lead grid's auto column, widening it to ~116px and squeezing title/description to ~118px on phones. Now 52px icon column + fluid text column.
 - Counter reset moved from `.services__stream` to `.services` — the stream reset used to restart numbering after the featured web-development card (01, 01, 02…).

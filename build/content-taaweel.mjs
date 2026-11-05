@@ -77,17 +77,17 @@ export const taaweel = {
   },
   // Real screens from the app (assets/taaweel-app), shown in the hub gallery.
   galleryShots: [
-    { img: "dashboard.svg", picto: true, title: "Runs dashboard", alt: "Pictogram of the Taaweel runs dashboard with the research composer", cap: "Ask a question, watch runs land, and keep every stage on the record." },
-    { img: "stages.svg", picto: true, title: "Thirteen stages", alt: "Pictogram of the thirteen-stage pipeline table, every stage marked done", cap: "Refinement, cartography, evidence, dossier, critique, audit, report - each stored with its model, tokens and cost." },
-    { img: "report.svg", picto: true, title: "The cited report", alt: "Pictogram of a cited research report with a table of contents", cap: "Answer first, then the argument - every claim pointing to a source you can open." },
-    { img: "concordance.svg", picto: true, title: "Concordance", alt: "Pictogram of the qalb concordance clustered by sense with Arabic attribute pills", cap: "Every occurrence of a word, clustered by how it is actually used in the text." },
-    { img: "ontology.svg", picto: true, title: "Ontology explorer", alt: "Pictogram of the ontology graph with branch colours and link types", cap: "The concept graph, laid out in 2D or 3D, every link one click from its provenance." },
-    { img: "mizan.svg", picto: true, title: "Mizan", alt: "Pictogram of Mizan showing word, letter and abjad counts for a verse", cap: "Numbers for any verse, surah or word - always with the counting rule that produced them." },
+    { img: "dashboard.svg", picto: true, title: "Runs dashboard", alt: "Framed screenshot of the Taaweel runs dashboard with the research composer", cap: "Ask a question, watch runs land, and keep every stage on the record." },
+    { img: "run.svg", picto: true, title: "A complete run", alt: "Framed screenshot of a completed Taaweel run with thirteen stages done", cap: "Thirteen stages from refinement to report - tokens, cost and status per stage." },
+    { img: "report.svg", picto: true, title: "The cited report", alt: "Framed screenshot of a cited Taaweel research report", cap: "Answer first, then the argument - every claim pointing to a source you can open." },
+    { img: "trace-corpus.svg", picto: true, title: "The corpus it counted", alt: "Framed screenshot of the verse clusters a Taaweel run counted", cap: "Every occurrence of a word, clustered by how it is actually used in the text." },
+    { img: "ontology-graph.svg", picto: true, title: "The concept graph", alt: "Framed screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities laid out as a graph, every link one click from its provenance." },
+    { img: "mizan.svg", picto: true, title: "Mizan", alt: "Framed screenshot of Mizan with numerical results for a verse", cap: "Numbers for any verse, surah or word - always with the counting rule that produced them." },
   ],
   spokes: [
     {
       slug: "research-pipeline",
-      shot: { img: "stages.svg", picto: true, title: "Thirteen stages", alt: "The thirteen-stage pipeline table of a Taaweel run, every row marked done", cap: "Refinement, corpus cartography, evidence, dossier, critique, audit, report - each stage stored with its model, tokens and cost." },
+      shot: { img: "run.svg", picto: true, title: "Thirteen stages", alt: "Framed screenshot of the thirteen-stage pipeline of a completed Taaweel run", cap: "Refinement, corpus cartography, evidence, dossier, critique, audit, report - each stage stored with its model, tokens and cost." },
       nav: "Research pipeline",
       icon: "route",
       sats: ["chat", "network", "layers", "doc"],
@@ -127,7 +127,7 @@ export const taaweel = {
     },
     {
       slug: "evidence-and-citations",
-      shot: { img: "ledger.svg", picto: true, title: "The evidence ledger", alt: "The tiered evidence ledger of a Taaweel run with verse, lexicon, tafsir and hadith rows", cap: "Five tiers, oldest to newest: verses, lexicons, tafsir, hadith - every row resolving to a citation you can open." },
+      shot: { img: "trace-tafsir.svg", picto: true, title: "The evidence ledger", alt: "The tiered evidence ledger of a Taaweel run with verse, lexicon, tafsir and hadith rows", cap: "Five tiers, oldest to newest: verses, lexicons, tafsir, hadith - every row resolving to a citation you can open." },
       nav: "Evidence & citations",
       icon: "layers",
       sats: ["book", "doc", "search", "users"],
@@ -167,7 +167,7 @@ export const taaweel = {
     },
     {
       slug: "root-and-word-studies",
-      shot: { img: "concordance.svg", picto: true, title: "Concordance, clustered", alt: "The qalb concordance clustered by sense with Arabic attribute pills", cap: "Every occurrence of qalb across 21 verses, grouped by how the word is actually used, with the Arabic attributes that drive each cluster." },
+      shot: { img: "trace-corpus.svg", picto: true, title: "Concordance, clustered", alt: "Framed screenshot of the qalb concordance clustered by sense", cap: "Every occurrence of qalb across 21 verses, grouped by how the word is actually used, with the Arabic attributes that drive each cluster." },
       nav: "Root & word studies",
       icon: "network",
       sats: ["book", "search", "graph", "bars"],
@@ -206,7 +206,7 @@ export const taaweel = {
     },
     {
       slug: "adversarial-audit",
-      shot: { img: "audit.svg", picto: true, title: "Fourteen principles, checked", alt: "The usul audit shield with principle chips checked against a Taaweel conclusion", cap: "A red team attacks the conclusion first; the audit then checks it against the usul principles - in code, not on the model's honour." },
+      shot: { img: "evidence.svg", picto: true, title: "Fourteen principles, checked", alt: "The usul audit shield with principle chips checked against a Taaweel conclusion", cap: "A red team attacks the conclusion first; the audit then checks it against the usul principles - in code, not on the model's honour." },
       nav: "Adversarial audit",
       icon: "shield",
       sats: ["scale", "flag", "check", "eye"],
@@ -246,7 +246,7 @@ export const taaweel = {
     },
     {
       slug: "ontology-explorer",
-      shot: { img: "ontology.svg", picto: true, title: "The concept graph", alt: "The Taaweel ontology graph with branch colours, link types and 2D or 3D layout", cap: "Concepts and entities the Quran words point to, laid out in 2D or 3D, every link one click from its provenance." },
+      shot: { img: "ontology-graph.svg", picto: true, title: "The concept graph", alt: "Framed screenshot of the Taaweel ontology graph explorer", cap: "Concepts and entities the Quran words point to, laid out in 2D or 3D, every link one click from its provenance." },
       nav: "Ontology explorer",
       icon: "graph",
       sats: ["network", "check", "flag", "layers"],
@@ -285,7 +285,7 @@ export const taaweel = {
     },
     {
       slug: "mizan-numerical-analysis",
-      shot: { img: "mizan.svg", picto: true, title: "Mizan", alt: "Mizan showing word, letter and abjad counts for a verse with the counting rule", cap: "Numbers for any verse, surah or word - word counts, letter counts, abjad totals - each shown with the counting rule that produced it." },
+      shot: { img: "mizan.svg", picto: true, title: "Mizan", alt: "Framed screenshot of Mizan showing word, letter and abjad counts", cap: "Numbers for any verse, surah or word - word counts, letter counts, abjad totals - each shown with the counting rule that produced it." },
       nav: "Mizan numerical analysis",
       icon: "scale",
       sats: ["bars", "cube", "dice", "wave"],
